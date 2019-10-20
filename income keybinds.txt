@@ -1,0 +1,18 @@
+File menu
+=======================
+Add Income Ctrl + O
+Exit Alt + F4
+=======================
+Total income menu
+========================
+Monthly Income Alt + M
+Yearly Income Alt + Y
+========================
+About menu
+==============
+About Ctrl + I
+==============
+Help menu 
+==============
+Help Ctrl + F1
+==============

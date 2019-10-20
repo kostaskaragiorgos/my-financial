@@ -1,0 +1,16 @@
+File menu
+=======================
+Exit Alt + F4
+=======================
+Show menu
+========================
+Monthly Expenses Ctrl + S
+========================
+About menu
+==============
+About Ctrl + I
+==============
+Help menu 
+==============
+Help Ctrl + F1
+==============
