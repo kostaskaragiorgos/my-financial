@@ -1,5 +1,6 @@
 File menu
 =======================
+Roll Alt + S
 Exit Alt + F4
 =======================
 About menu
