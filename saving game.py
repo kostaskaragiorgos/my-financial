@@ -20,6 +20,7 @@ class Saving_game():
         self.menu = Menu(self.master)
         
         self.file_menu = Menu(self.menu,tearoff = 0)
+        self.file_menu.add_command(label = "Roll",accelerator = 'Alt+S',command = self.rolld)
         self.file_menu.add_command(label="Exit",accelerator= 'Alt+F4',command = self.exitmenu)
         self.menu.add_cascade(label = "File",menu=self.file_menu)
         
@@ -35,7 +36,7 @@ class Saving_game():
         self.master.bind('<Alt-F4>',lambda event: self.exitmenu())
         self.master.bind('<Control-F1>',lambda event: self.helpmenu())
         self.master.bind('<Control-i>',lambda event: self.aboutmenu())
-        
+        self.master.bind('<Alt-s>',lambda event: self.rolld())
         
         self.rollb = Button(self.master,text = "Roll",command = self.rolld)
         self.rollb.pack()
