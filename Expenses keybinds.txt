@@ -3,9 +3,13 @@ File menu
 Exit Alt + F4
 =======================
 Show menu
-========================
+===================================
+Show Monthly Other Alt + O
+Show Monthly Transportation Alt + T
+Show Monthly Grocery Alt + G
+Show Monthly Bills/Taxes Alt + B
 Monthly Expenses Ctrl + S
-========================
+===================================
 About menu
 ==============
 About Ctrl + I
