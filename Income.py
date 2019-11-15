@@ -104,7 +104,6 @@ class Income():
             for row in reader:
                 if row[2] == str("Salary"):
                     sum_mon_salary += float(row[0])
-            ot.close()
         msg.showinfo("Monthly income from Salay","Monthly Income from salary for the "+str(self.nowmonth)+" month is "+ str(sum_mon_salary))
     
     
@@ -116,7 +115,6 @@ class Income():
             for row in reader:
                 if row[2] == str("Other"):
                     sum_other += float(row[0])
-            ot.close()
         msg.showinfo("Monthly income from other","Monthly Income from other for the "+str(self.nowmonth)+" month is "+ str(sum_other))
     
     
@@ -141,7 +139,6 @@ class Income():
                             next(reader)
                             for row in reader:
                                 sum += int(row[0])
-                            r.close()
                         data=sum
                 f = Figure(figsize=(4,5), dpi=100)
                 ax = f.add_subplot(111)
@@ -158,7 +155,6 @@ class Income():
             next(reader)
             for row in reader:
                 sum += int(row[0])
-            r.close()
         msg.showinfo("Montly Income","YOUR INCOME FOR THE "+str(self.nowmonth)+" MONTH IS "+str(sum))
     
     def addinc(self):
@@ -181,7 +177,6 @@ class Income():
             with open('income'+str(self.nowmonth)+'.csv', 'a+') as f:
                 thewriter = csv.writer(f)
                 thewriter.writerow([str(self.textamount.get(1.0,END)),self.textdes.get(1.0,END),str(self.var_cat_list.get())])
-                f.close()
             msg.showinfo("Income info","Amount: "+str(self.textamount.get(1.0,END))+"Description: "+self.textdes.get(1.0,END) +"Category: "+ str(self.var_cat_list.get()))
     def exitmenu(self):
         if msg.askokcancel("Quit?", "Really quit?"):
