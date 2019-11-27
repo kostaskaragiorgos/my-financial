@@ -15,6 +15,10 @@
 
 <p><img src ="Expenses new.png" title = "Expenses Version"/> </p>
 
+## Emergency fund
+<p> You can create an emergency fund plan  </p>
+
 <p><img src ="em fund.png" title = "em fund Version"/> </p>
+
 <p><img src ="income new.png" title = " income Version"/> </p>
 <p><img src = "game.png" title = "Game Version"/> </p>
