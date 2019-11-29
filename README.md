@@ -20,5 +20,14 @@
 
 <p><img src ="em fund.png" title = "em fund Version"/> </p>
 
+ ## Income 
+ 
+ <p> You can keep track of your income </p>
+ 
 <p><img src ="income new.png" title = " income Version"/> </p>
+
+## Saving game
+
+<p> A simple saving game </p>
+
 <p><img src = "game.png" title = "Game Version"/> </p>
