@@ -31,3 +31,12 @@
 <p> A simple saving game </p>
 
 <p><img src = "game.png" title = "Game Version"/> </p>
+
+## Keybinds
+
+ <ul>
+  <li> Roll (Alt+S) </li>
+  <li> Exit (Alt+F4) </li>
+  <li> About (Ctrl+I) </li>
+  <li> Help (Ctrl+F1) </li>
+</ul>
