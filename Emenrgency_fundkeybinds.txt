@@ -1,0 +1,17 @@
+File menu
+===============================
+Plan an Emergency Fund Ctrl + P
+Exit Alt + F4
+===============================
+Show menu
+==================
+Show Plans Alt + P
+==================
+About menu
+==============
+About Ctrl + I
+==============
+Help menu 
+==============
+Help Ctrl + F1
+==============
