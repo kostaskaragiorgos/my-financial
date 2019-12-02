@@ -20,6 +20,16 @@
 
 <p><img src ="em fund.png" title = "em fund Version"/> </p>
 
+## Keybinds
+
+ <ul>
+  <li> Plan an Emergency Fund(Ctrl+P) </li>
+  <li> Exit(Alt+F4) </li>
+  <li> Show Plans(Alt+P) </li>
+  <li> Abput(Ctrl+I) </li>
+  <li> Help(Ctrl+F1) </li>
+</ul>
+
  ## Income 
  
  <p> You can keep track of your income </p>
