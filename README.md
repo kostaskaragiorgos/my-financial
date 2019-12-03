@@ -36,6 +36,17 @@
  
 <p><img src ="income new.png" title = " income Version"/> </p>
 
+## Keybinds
+
+ <ul>
+  <li> Add Income(Ctrl+O) </li>
+  <li> Exit(Alt+F4) </li>
+  <li> Monthly Income(Alt+M) </li>
+  <li> Yearly Income(Alt+Y) </li>
+  <li> Abput(Ctrl+I) </li>
+  <li> Help(Ctrl+F1) </li>
+</ul>
+
 ## Saving game
 
 <p> A simple saving game </p>
