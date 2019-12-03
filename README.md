@@ -15,6 +15,19 @@
 
 <p><img src ="Expenses new.png" title = "Expenses Version"/> </p>
 
+## Keybinds 
+
+ <ul>
+  <li> Exit(Alt+F4) </li>
+  <li> Show Monthly Other(Alt+O) </li>
+  <li> Show Monthly Transportation(Alt+T) </li>
+  <li> Show Monthly Grocery(Alt+G) </li>
+  <li> Show Monthly Bills/Taxes(Alt+B) </li>
+  <li> Monthly Expenses(Ctrl+S) </li>
+  <li> Abput(Ctrl+I) </li>
+  <li> Help(Ctrl+F1) </li>
+</ul>
+
 ## Emergency fund
 <p> You can create an emergency fund plan  </p>
 
