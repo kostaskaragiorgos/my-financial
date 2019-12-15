@@ -1,6 +1,18 @@
 # my financial
 
-
+## FILES
+<ul>
+ <li> Emenrgency_fundkeybinds.txt(.txt keybinds file for Emenrgency_funds) </li> 
+ <li> Expenses keybinds.txt(.txt keybinds file fir expenses) </li>
+ <li> Income.py(income main) </li>
+ <li> Saving_Game.csv(.csv file of saving game) </li>
+ <li> expenses.py(expenses main) </li>
+ <li> imf.py(emenrgency main) </li>
+ <li> income keybinds.txt(.txt keybinds file for income) </li>
+ <li> myexpp2.py(expenses main update) </li>
+ <li> saving game keybinds.txt(.txt keybinds for saving game) </li>
+ <li> saving game.py(saving game main) </li>
+</ul>
 
 ## Dependencies
 
