@@ -13,7 +13,7 @@ class Expenses():
     def __init__(self,master):
         self.master = master
         self.master.title("Expenses")
-        self.master.geometry("250x120")
+        self.master.geometry("250x140")
         self.master.resizable(False,False)
        # folders 
         if os.path.exists("expenses") == False:
