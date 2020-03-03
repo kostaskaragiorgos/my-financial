@@ -58,8 +58,8 @@ class Income():
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.editmenu = Menu(self.menu, tearoff=0)
-        self.editmenu.add_command(label = "Clear Amount")
-        self.editmenu.add_command(label = "Clear Description")
+        self.editmenu.add_command(label = "Clear Amount", accelerator='Ctrl+Z', command=self.clearamount)
+        self.editmenu.add_command(label = "Clear Description", accelerator='Alt+Z', command=self.cleardesc)
         self.menu.add_cascade(label = "Edit",menu=self.editmenu)
         self.showinc = Menu(self.menu, tearoff=0)
         self.showinc.add_command(label="Monthly Salary", accelerator='Alt+S', command=self.monsal)
@@ -80,6 +80,12 @@ class Income():
         self.master.bind('<Control-i>', lambda event: aboutmenu())
         self.master.bind('<Alt-m>', lambda event: self.moninc())
         self.master.bind('<Control-o>', lambda event: self.addinc())
+        self.master.bind('<Control-z>', lambda event:self.clearamount())
+        self.master.bind('<Alt-z>', lambda event: self.cleardesc())
+    def clearamount(self):
+        self.textamount.delete(1.0, END)
+    def cleardesc(self):
+        self.textdes.delete(1.0, END)
     def monsal(self):
         """ monthly income from salary """
         sum_mon_salary = 0
