@@ -3,10 +3,16 @@ File menu
 Add Income Ctrl + O
 Exit Alt + F4
 =======================
+Edit menu
+=========================
+Clear Amount Ctrl +Z
+Clear Description Alt + Z
+========================= 
 Total income menu
 ========================
+Monthly Salary Alt + S
+Monthly Other Alt + O
 Monthly Income Alt + M
-Yearly Income Alt + Y
 ========================
 About menu
 ==============
