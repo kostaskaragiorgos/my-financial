@@ -70,7 +70,6 @@ class Income():
         self.showinc.add_command(label = "Monthly Salary",accelerator = 'Alt+S',command = self.monsal)
         self.showinc.add_command(label = "Monthly Other",accelerator = 'Alt+O',command = self.monoth)
         self.showinc.add_command(label = "Monthly Income",accelerator = 'Alt+M',command = self.moninc)
-        self.showinc.add_command(label = "Yearly income",accelerator = 'Alt+Y',command = self.yinc)
         self.menu.add_cascade(label = "Total Income",menu = self.showinc)
         
         self.about_menu = Menu(self.menu,tearoff = 0)
@@ -90,7 +89,6 @@ class Income():
         self.master.bind('<Control-i>',lambda event:self.aboutmenu())
         self.master.bind('<Alt-m>',lambda event:self.moninc())
         self.master.bind('<Control-o>',lambda event:self.addinc())
-        self.master.bind('<Alt-y>',lambda event:self.yinc())
         
         
     
@@ -106,37 +104,6 @@ class Income():
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         sum_other = df[df['Category']== "Other"]['Amount'].sum()
         msg.showinfo("Monthly income from other","Monthly Income from other for the "+str(self.nowmonth)+" month is "+ str(sum_other))
-    
-    
-        
-    def yinc(self):
-        data = []
-        avmonths = []
-        avdata = 0
-        thismonth = datetime.date.today().month
-        for i in range(thismonth+1):
-            if os.path.exists('income'+str(i)+'.csv') == True:
-                avdata += 1
-        if avdata != thismonth:
-            msg.showerror("Error ", "I have not that much data")
-            if msg.askyesno("Available Data","Do you want me to plot the available data??") ==True:
-                for i in range(thismonth+1):
-                    sum = 0
-                    if os.path.exists('income'+str(i)+'.csv'):
-                        avmonths = i
-                        with open('income'+str(i)+'.csv', 'r') as r:
-                            reader = csv.reader(r)
-                            next(reader)
-                            for row in reader:
-                                sum += int(row[0])
-                        data=sum
-                f = Figure(figsize=(4,5), dpi=100)
-                ax = f.add_subplot(111)
-                rects1 = ax.bar(avmonths,data)
-                canvas = FigureCanvasTkAgg(f,Tk())
-                canvas.get_tk_widget().pack()    
-                        
-                    
             
     def moninc(self):
         sum = 0
