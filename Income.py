@@ -4,7 +4,7 @@ from tkinter import filedialog
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
-
+import pandas as pd
 import os 
 import csv
 import datetime
@@ -13,7 +13,7 @@ class Income():
     def __init__(self,master):
         self.master = master
         self.master.title("Income")
-        self.master.geometry("250x120")
+        self.master.geometry("250x140")
         self.master.resizable(False,False)
        # folders 
         if os.path.exists("income") == False:
@@ -21,9 +21,7 @@ class Income():
             os.chdir("income")
         else:
             os.chdir("income")
-        
         nowyear = datetime.date.today().year
-        
         if os.path.exists(str(nowyear)) == False:
             os.mkdir(str(nowyear))
             os.chdir(str(nowyear))
@@ -98,23 +96,15 @@ class Income():
     
     def monsal(self):
         sum_mon_salary = 0
-        with open('income'+str(self.nowmonth)+'.csv','r') as ot:
-            reader = csv.reader(ot)
-            next(reader)
-            for row in reader:
-                if row[2] == str("Salary"):
-                    sum_mon_salary += float(row[0])
+        df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
+        sum_mon_salary = df[df['Category']== "Salary"]['Amount'].sum()
         msg.showinfo("Monthly income from Salay","Monthly Income from salary for the "+str(self.nowmonth)+" month is "+ str(sum_mon_salary))
     
     
     def monoth(self):
         sum_other = 0
-        with open('income'+str(self.nowmonth)+'.csv','r') as ot:
-            reader = csv.reader(ot)
-            next(reader)
-            for row in reader:
-                if row[2] == str("Other"):
-                    sum_other += float(row[0])
+        df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
+        sum_other = df[df['Category']== "Other"]['Amount'].sum()
         msg.showinfo("Monthly income from other","Monthly Income from other for the "+str(self.nowmonth)+" month is "+ str(sum_other))
     
     
@@ -150,11 +140,8 @@ class Income():
             
     def moninc(self):
         sum = 0
-        with open('income'+str(self.nowmonth)+'.csv', 'r') as r:
-            reader = csv.reader(r)
-            next(reader)
-            for row in reader:
-                sum += int(row[0])
+        df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
+        sum = df['Amount'].sum()
         msg.showinfo("Montly Income","YOUR INCOME FOR THE "+str(self.nowmonth)+" MONTH IS "+str(sum))
     
     def addinc(self):
