@@ -37,8 +37,8 @@ class Expenses():
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.edit_menu = Menu(self.menu, tearoff=0)
-        self.edit_menu.add_command(label="Clear Amount", command=self.clearamount)
-        self.edit_menu.add_command(label="Clear Description", command=self.cleardes)
+        self.edit_menu.add_command(label="Clear Amount", accelerator='Ctrl+Z', command=self.clearamount)
+        self.edit_menu.add_command(label="Clear Description", accelerator='Alt+Z', command=self.cleardes)
         self.menu.add_cascade(label="Edit", menu=self.edit_menu)
         self.show = Menu(self.menu, tearoff=0)
         self.show.add_command(label="Show Monthly Other", accelerator='Alt+O', command=self.monexpother)
@@ -62,6 +62,8 @@ class Expenses():
         self.master.bind('<Alt-s>', lambda event: self.monexp())
         self.master.bind('<Alt-b>', lambda event: self.monexptaxes())
         self.master.bind('<Alt-g>', lambda event: self.monexpgrocery())
+        self.master.bind('<Control-z>', lambda event: self.clearamount())
+        self.master.bind('<Alt-z>', lambda event: self.cleardes())
         #basic gui
         self.amountl = Label(self.master,
                              text="Enter the amount")
