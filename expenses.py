@@ -37,8 +37,8 @@ class Expenses():
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.edit_menu = Menu(self.menu, tearoff=0)
-        self.edit_menu.add_command(label="Clear Amount")
-        self.edit_menu.add_command(label="Clear Description")
+        self.edit_menu.add_command(label="Clear Amount", command=self.clearamount)
+        self.edit_menu.add_command(label="Clear Description", command=self.cleardes)
         self.menu.add_cascade(label="Edit", menu=self.edit_menu)
         self.show = Menu(self.menu, tearoff=0)
         self.show.add_command(label="Show Monthly Other", accelerator='Alt+O', command=self.monexpother)
@@ -79,6 +79,10 @@ class Expenses():
         self.popupcatlistmenu.pack()
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp) 
         self.incomeb.pack()
+    def clearamount(self):
+        self.textamount.delete(1.0, END)
+    def cleardes(self):
+        self.textdes.delete(1.0, END)
     def monexpother(self):
         """ calculates the other monthly expenses """
         sum_other = 0
