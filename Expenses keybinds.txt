@@ -2,6 +2,11 @@ File menu
 =======================
 Exit Alt + F4
 =======================
+Edit menu
+=========================
+Clear Amount Ctrl + Z
+Clear Description Alt + Z
+=========================
 Show menu
 ===================================
 Show Monthly Other Alt + O
