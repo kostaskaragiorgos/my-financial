@@ -3,6 +3,7 @@ from tkinter import messagebox as msg
 import os 
 import csv
 import datetime
+import pandas as pd
 def aboutmenu():
     """ about menu class """
     msg.showinfo("About", "Expenses\nVersion 1.0")
@@ -77,21 +78,14 @@ class Expenses():
     def monexpother(self):
         """ calculates the other monthly expenses """
         sum_other = 0
-        with open('expenses'+str(self.nowmonth)+'.csv', 'r') as ot:
-            reader = csv.reader(ot)
-            for row in reader:
-                if row[3] == str("Other"):
-                    sum_other += float(row[1])
-            ot.close()
+
+        df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
+        sum_other = df[df['Category']== "Other"]['Amount'].sum()
         msg.showinfo("Monthly Expenses for other", "Monthly Expenses for other for the "+str(self.nowmonth)+" month is "+ str(sum_other))
     def monexptransportation(self):
         sum_transp = 0
-        with open('expenses'+str(self.nowmonth)+'.csv', 'r') as tp:
-            reader = csv.reader(tp)
-            for row in reader:
-                if row[3] == str("Transportation"):
-                    sum_transp += float(row[1])
-            tp.close()
+        df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
+        sum_transp = df[df['Category']== "Transportation"]['Amount'].sum()
         msg.showinfo("Monthly Expenses for transportation", "Monthly Expenses for Transportation for the "+str(self.nowmonth)+ " month is "+ str(sum_transp))
     def monexpgrocery(self):
         sum_groc = 0
