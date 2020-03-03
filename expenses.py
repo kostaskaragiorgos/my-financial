@@ -78,7 +78,6 @@ class Expenses():
     def monexpother(self):
         """ calculates the other monthly expenses """
         sum_other = 0
-
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         sum_other = df[df['Category']== "Other"]['Amount'].sum()
         msg.showinfo("Monthly Expenses for other", "Monthly Expenses for other for the "+str(self.nowmonth)+" month is "+ str(sum_other))
@@ -89,29 +88,18 @@ class Expenses():
         msg.showinfo("Monthly Expenses for transportation", "Monthly Expenses for Transportation for the "+str(self.nowmonth)+ " month is "+ str(sum_transp))
     def monexpgrocery(self):
         sum_groc = 0
-        with open('expenses'+str(self.nowmonth)+'.csv', 'r') as o:
-            reader = csv.reader(o)
-            for row in reader:
-                if row[3] == str("Grocery"):
-                    sum_groc += float(row[1])
-            o.close()
+        df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
+        sum_groc = df[df['Category']== "Grocery"]['Amount'].sum()
         msg.showinfo("Monthly Expenses for Grocery", "Monthly Expenses for Grocery for the "+str(self.nowmonth)+" month is " +str(sum_groc))
     def monexptaxes(self):
         sum_taxes = 0
-        with open('expenses'+str(self.nowmonth)+'.csv', 'r') as t:
-            reader = csv.reader(t)
-            for row in reader:
-                if row[3] == str("Bills/Taxes"):
-                    sum_taxes += float(row[1])
-            t.close()
+        df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
+        sum_taxes = df[df['Category']== "Grocery"]['Amount'].sum()
         msg.showinfo("Monthly Expenses for Bills/Taxes", "Monthly Expenses for Bills/Taxes for the "+str(self.nowmonth)+" month is "+str(sum_taxes))
     def monexp(self):
         sum = 0
-        with open('expenses'+str(self.nowmonth)+'.csv', 'r') as r:
-            reader = csv.reader(r)
-            for row in reader:
-                sum += float(row[1])
-            r.close()
+        df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
+        sum = df['Amount'].sum()
         msg.showinfo("Montly Expenses", "YOUR EXPENSES FOR THE "+str(self.nowmonth)+" MONTH IS "+str(sum))
     def addexp(self):
         valam = 0
