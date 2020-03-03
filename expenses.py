@@ -103,17 +103,17 @@ class Expenses():
         msg.showinfo("Montly Expenses", "YOUR EXPENSES FOR THE "+str(self.nowmonth)+" MONTH IS "+str(sum))
     def addexp(self):
         try:
-            if float(self.textamount.get(1.0, END)) > 0 or (not self.textdes.count(1.0, END) == (1, )):
-                msg.showinfo("Expanse", "Day:"+str(datetime.date.today().day) +"\nAmount:"+str(self.textamount.get(1.0, END)) +"\nDescription:" + self.textdes.get(1.0, END) + "\nCategory:"+str(self.var_cat_list.get()))
+            if float(self.textamount.get(1.0, END)) > 0 and (not self.textdes.count(1.0, END) == (1, )):
                 with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
                     thewriter = csv.writer(f)
                     thewriter.writerow([str(datetime.date.today().day), str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
+                msg.showinfo("Expanse", "Day:"+str(datetime.date.today().day) +"\nAmount:"+str(self.textamount.get(1.0, END)) +"\nDescription:" + self.textdes.get(1.0, END) + "\nCategory:"+str(self.var_cat_list.get()))
             else:
                 msg.showerror("Value Error", "Enter a number higher than zero\n Enter a description")
-                self.textamount.delete(0, END)
         except:
             msg.showerror("Value Error", "Enter a number higher than zero\n Enter a description")
-            self.textamount.delete(1.0, END)
+        self.textamount.delete(1.0, END)
+        self.textdes.delete(1.0, END)
     def exitmenu(self):
         """ exit menu function """
         if msg.askokcancel("Quit?", "Really quit?"):
