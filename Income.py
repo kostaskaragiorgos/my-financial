@@ -100,12 +100,16 @@ class Income():
                     thewriter = csv.writer(f)
                     thewriter.writerow([str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
                 msg.showinfo("Income info", "Amount: "+str(self.textamount.get(1.0, END))+"Description: "+self.textdes.get(1.0, END) +"Category: "+ str(self.var_cat_list.get()))
+                self.textamount.delete(1.0, END)
+                self.textdes.delete(1.0, END)
             else:
                 msg.showerror("Value Error", "Enter a number higher than zero \nEnter a description")
                 self.textamount.delete(0, END)
+                self.textdes.delete(1.0, END)
         except:
             msg.showerror("Value Error", "Enter a number higher than zero \nEnter a description")
             self.textamount.delete(1.0, END)
+            self.textdes.delete(1.0, END)
     def exitmenu(self):
         """ exit menu function """
         if msg.askokcancel("Quit?", "Really quit?"):
