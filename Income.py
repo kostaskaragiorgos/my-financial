@@ -116,7 +116,6 @@ class Income():
             msg.showerror("Value Error", "Enter a number higher than zero \nEnter a description")
         self.textamount.delete(1.0, END)
         self.textdes.delete(1.0, END)
-        
     def exitmenu(self):
         """ exit menu function """
         if msg.askokcancel("Quit?", "Really quit?"):
