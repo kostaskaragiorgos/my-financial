@@ -79,22 +79,22 @@ class Expenses():
         """ calculates the other monthly expenses """
         sum_other = 0
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        sum_other = df[df['Category']== "Other"]['Amount'].sum()
+        sum_other = df[df['Category'] == "Other"]['Amount'].sum()
         msg.showinfo("Monthly Expenses for other", "Monthly Expenses for other for the "+str(self.nowmonth)+" month is "+ str(sum_other))
     def monexptransportation(self):
         sum_transp = 0
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        sum_transp = df[df['Category']== "Transportation"]['Amount'].sum()
+        sum_transp = df[df['Category'] == "Transportation"]['Amount'].sum()
         msg.showinfo("Monthly Expenses for transportation", "Monthly Expenses for Transportation for the "+str(self.nowmonth)+ " month is "+ str(sum_transp))
     def monexpgrocery(self):
         sum_groc = 0
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        sum_groc = df[df['Category']== "Grocery"]['Amount'].sum()
+        sum_groc = df[df['Category'] == "Grocery"]['Amount'].sum()
         msg.showinfo("Monthly Expenses for Grocery", "Monthly Expenses for Grocery for the "+str(self.nowmonth)+" month is " +str(sum_groc))
     def monexptaxes(self):
         sum_taxes = 0
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        sum_taxes = df[df['Category']== "Grocery"]['Amount'].sum()
+        sum_taxes = df[df['Category'] == "Grocery"]['Amount'].sum()
         msg.showinfo("Monthly Expenses for Bills/Taxes", "Monthly Expenses for Bills/Taxes for the "+str(self.nowmonth)+" month is "+str(sum_taxes))
     def monexp(self):
         sum = 0
@@ -102,26 +102,18 @@ class Expenses():
         sum = df['Amount'].sum()
         msg.showinfo("Montly Expenses", "YOUR EXPENSES FOR THE "+str(self.nowmonth)+" MONTH IS "+str(sum))
     def addexp(self):
-        valam = 0
-        valdes = 0
         try:
-            if float(self.textamount.get(1.0, END)) > 0:
-                valam = 1
+            if float(self.textamount.get(1.0, END)) > 0 or (not self.textdes.count(1.0, END) == (1, )):
+                msg.showinfo("Expanse", "Day:"+str(datetime.date.today().day) +"\nAmount:"+str(self.textamount.get(1.0, END)) +"\nDescription:" + self.textdes.get(1.0, END) + "\nCategory:"+str(self.var_cat_list.get()))
+                with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
+                    thewriter = csv.writer(f)
+                    thewriter.writerow([str(datetime.date.today().day), str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
             else:
-                msg.showerror("Value Error", "Enter a number higher than zero")
+                msg.showerror("Value Error", "Enter a number higher than zero\n Enter a description")
                 self.textamount.delete(0, END)
         except:
-            msg.showerror("Value Error", "Enter a number higher than zero")
+            msg.showerror("Value Error", "Enter a number higher than zero\n Enter a description")
             self.textamount.delete(1.0, END)
-        if self.textdes.count(1.0, END) == (1, ):
-            msg.showerror("Description Error", "Enter a description")
-        else:
-            valdes = 1
-        if valam == 1 and valdes == 1:
-            msg.showinfo("Expanse", "Day:"+str(datetime.date.today().day) +"\nAmount:"+str(self.textamount.get(1.0, END)) +"\nDescription:" + self.textdes.get(1.0, END) + "\nCategory:"+str(self.var_cat_list.get()))
-            with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
-                thewriter = csv.writer(f)
-                thewriter.writerow([str(datetime.date.today().day), str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
     def exitmenu(self):
         """ exit menu function """
         if msg.askokcancel("Quit?", "Really quit?"):
