@@ -60,7 +60,7 @@
  
  <p> You can keep track of your income </p>
  
-<p><img src ="income new.png" title = " income Version"/> </p>
+<p><img src ="income.png" title = " income Version"/> </p>
 
 ## Keybinds
 
