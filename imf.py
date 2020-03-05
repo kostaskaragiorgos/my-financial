@@ -38,6 +38,7 @@ class Emergency_Fund():
         self.master.bind('<Alt-p>', lambda event: self.showplan())
     def showplan(self):
         df = pd.read_csv('Emergency Fund.csv')
+        df = df.drop_duplicates(keep='first')
         msg.showinfo("EMERGENCY FUND", str(df))
     def plan(self):
         mf = sd.askfloat("Emergency Fund amount", "Enter the amount of the emergency fund", 
@@ -59,18 +60,9 @@ class Emergency_Fund():
         dif = mf - mongot
         mneeded = dif // savam
         msg.showinfo("MONTHS YOU NEED", "YOU NEED "+str(int(mneeded))+" month(s) to get "+str(mf)+" having "+str(mongot)+" saving "+str(savam)+" per month ")
-        flagex = 0
-        with open('Emergency Fund.csv','r') as t:
-            reader = csv.reader(t)
-            for row in reader:
-                if row[0] == str(mf) and row[1] == str(mongot) and row[2] == str(savam):
-                    flagex = flagex+1
-            t.close()
-        if flagex ==0:
-            with open('Emergency Fund.csv', 'a+') as g:
-                thewriter = csv.writer(g)
-                thewriter.writerow([str(mf),str(mongot),str(savam),str(mneeded)])
-                g.close()
+        with open('Emergency Fund.csv', 'a+') as g:
+            thewriter = csv.writer(g)
+            thewriter.writerow([str(mf),str(mongot),str(savam),str(mneeded)])
     def exitmenu(self):
         if msg.askokcancel("Quit?", "Really quit?"):
             self.master.destroy()
