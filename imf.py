@@ -6,7 +6,7 @@ import csv
 import pandas as pd
 def aboutmenu():
     """ about function """
-    msg.showinfo("About" ,"About Emergency Fund \nVersion 1.0")
+    msg.showinfo("About", "About Emergency Fund \nVersion 1.0")
 def helpmenu():
     """ help menu function """
     msg.showinfo("Help", "Press the button")
@@ -48,16 +48,16 @@ class Emergency_Fund():
         msg.showinfo("EMERGENCY FUND", str(df))
     def plan(self):
         mf = sd.askfloat("Emergency Fund amount", "Enter the amount of the emergency fund", 
-                         parent = self.master, minvalue=100, maxvalue=10000)
+                         parent=self.master, minvalue=100, maxvalue=10000)
         while mf is None:
             mf = sd.askfloat("Emergency Fund amount", "Enter the amount of the emergency fund", 
-                             parent = self.master, minvalue=100, maxvalue=10000)
+                             parent=self.master, minvalue=100, maxvalue=10000)
             
         mongot = sd.askfloat("Amount of money You have", "Enter the amount of money you have",
-                             parent = self.master, minvalue=0, maxvalue=mf-1)
+                             parent=self.master, minvalue=0, maxvalue=mf-1)
         while mongot is None:
-             mongot = sd.askfloat("Amount of money You have", "Enter the amount of money you have",
-                                  parent=self.master, minvalue=0, maxvalue=mf-1)
+            mongot = sd.askfloat("Amount of money You have", "Enter the amount of money you have",
+                                 parent=self.master, minvalue=0, maxvalue=mf-1)
         savam = sd.askfloat("Amount of savings", "Enter the amount of monthly savings",
                             parent=self.master, minvalue=50, maxvalue=100000)
         while savam is None:
@@ -68,8 +68,9 @@ class Emergency_Fund():
         msg.showinfo("MONTHS YOU NEED", "YOU NEED "+str(int(mneeded))+" month(s) to get "+str(mf)+" having "+str(mongot)+" saving "+str(savam)+" per month ")
         with open('Emergency Fund.csv', 'a+') as g:
             thewriter = csv.writer(g)
-            thewriter.writerow([str(mf),str(mongot),str(savam),str(mneeded)])
+            thewriter.writerow([str(mf), str(mongot), str(savam), str(mneeded)])
     def exitmenu(self):
+        """ exit menu function"""
         if msg.askokcancel("Quit?", "Really quit?"):
             self.master.destroy()
 def main():
