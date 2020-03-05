@@ -28,6 +28,10 @@
 
 <p><img src ="Expenses new.png" title = "Expenses Version"/> </p>
 
+**Expenses Radon**
+
+<p><img src ="expenses radon cc.png" title = "Expenses Radon cc"/> </p>
+
 ## Keybinds 
 
  <ul>
@@ -60,7 +64,14 @@
  
  <p> You can keep track of your income </p>
  
+ **Current Version**
+
 <p><img src ="income.png" title = " income Version"/> </p>
+
+**Income Radon**
+
+<p><img src ="income radon cc.png" title = "income radon cc"/> </p>
+
 
 ## Keybinds
 
