@@ -4,6 +4,12 @@ from tkinter import simpledialog as sd
 import os 
 import csv
 import pandas as pd
+def aboutmenu():
+    """ about function """
+    msg.showinfo("About" ,"About Emergency Fund \nVersion 1.0")
+def helpmenu():
+    """ help menu function """
+    msg.showinfo("Help", "Press the button")
 class Emergency_Fund():
     def __init__(self, master):
         self.master = master
@@ -25,15 +31,15 @@ class Emergency_Fund():
         self.showplans.add_command(label="Show Plans", accelerator='Alt+P', command=self.showplan)
         self.menu.add_cascade(label="Show", menu=self.showplans)
         self.about_menu = Menu(self.menu, tearoff=0)
-        self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=self.aboutmenu)
+        self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
         self.menu.add_cascade(label="About", menu=self.about_menu)
         self.help_menu = Menu(self.menu, tearoff=0)
-        self.help_menu.add_command(label="Help", accelerator='Ctrl+F1', command=self.helpmenu)
+        self.help_menu.add_command(label="Help", accelerator='Ctrl+F1', command=helpmenu)
         self.menu.add_cascade(label="Help", menu=self.help_menu)
         self.master.config(menu=self.menu)
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
-        self.master.bind('<Control-F1>', lambda event: self.helpmenu())
-        self.master.bind('<Control-i>', lambda event: self.aboutmenu())
+        self.master.bind('<Control-F1>', lambda event: helpmenu())
+        self.master.bind('<Control-i>', lambda event: aboutmenu())
         self.master.bind('<Control-p>', lambda event: self.plan())
         self.master.bind('<Alt-p>', lambda event: self.showplan())
     def showplan(self):
@@ -66,11 +72,8 @@ class Emergency_Fund():
     def exitmenu(self):
         if msg.askokcancel("Quit?", "Really quit?"):
             self.master.destroy()
-    def aboutmenu(self):
-        msg.showinfo("About" ,"About Emergency Fund \nVersion 1.0")
-    def helpmenu(self):
-        msg.showinfo("Help", "Press the button")
 def main():
+    """ main function """
     root = Tk()
     Emergency_Fund(root)
     root.mainloop()
