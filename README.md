@@ -30,7 +30,10 @@
 
 **Expenses Radon**
 
-<p><img src ="expenses radon cc.png" title = "Expenses Radon cc"/> </p>
+<p><img src="expenses radon cc.png" title="Expenses Radon cc"/> </p>
+<p><img src="expenses radon hal.png" title="Expenses Radon hal"/> </p>
+<p><img src="expenses radon mi.png" title="Expenses Radon mi"/> </p>
+<p><img src="expenses radon raw.png" title="Expenses Radon raw"/> </p>
 
 ## Keybinds 
 
