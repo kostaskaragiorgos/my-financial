@@ -82,26 +82,33 @@ class Expenses():
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp) 
         self.incomeb.pack()
     def clearamount(self):
+        """ clears amount text field """
         self.textamount.delete(1.0, END)
     def cleardes(self):
+        """ clears description text field """
         self.textdes.delete(1.0, END)
     def monexpother(self):
         """ calculates the other monthly expenses """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         msg.showinfo("Monthly Expenses for other", "Monthly Expenses for other for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == "Other"]['Amount'].sum()))
     def monexptransportation(self):
+        """ shows monthly expenses for transportation"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         msg.showinfo("Monthly Expenses for transportation", "Monthly Expenses for Transportation for the "+str(self.nowmonth)+ " month is "+ str(df[df['Category'] == "Transportation"]['Amount'].sum()))
     def monexpgrocery(self):
+        """ shows expenses for grocery"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         msg.showinfo("Monthly Expenses for Grocery", "Monthly Expenses for Grocery for the "+str(self.nowmonth)+" month is " +str(df[df['Category'] == "Grocery"]['Amount'].sum()))
     def monexptaxes(self):
+        """ shows expenses for bills/Taxes """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         msg.showinfo("Monthly Expenses for Bills/Taxes", "Monthly Expenses for Bills/Taxes for the "+str(self.nowmonth)+" month is "+str(df[df['Category'] == "Grocery"]['Amount'].sum()))
     def monexp(self):
+        """ shows montly Expenses"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         msg.showinfo("Montly Expenses", "YOUR EXPENSES FOR THE "+str(self.nowmonth)+" MONTH IS "+str(df['Amount'].sum()))
     def addexp(self):
+        """ adds and expense"""
         try:
             if float(self.textamount.get(1.0, END)) > 0 and (not self.textdes.count(1.0, END) == (1, )):
                 with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
