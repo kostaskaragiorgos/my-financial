@@ -1,3 +1,4 @@
+""" keep track of your expenses """
 from tkinter import Tk, Button, Menu, Label, Text, OptionMenu, StringVar, END
 from tkinter import messagebox as msg
 import os 
