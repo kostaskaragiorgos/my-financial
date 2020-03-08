@@ -73,7 +73,10 @@
 
 **Income Radon**
 
-<p><img src ="income radon cc.png" title = "income radon cc"/> </p>
+<p><img src="income radon cc.png" title = "income radon cc"/> </p>
+<p><img src="income radon hal.png" title ="income radon hal"/> </p>
+<p><img src="income radon mi.png" title ="income radon mi"/></p>
+<p><img src="income radon raw.png" title="income radon raw"/></p>
 
 
 ## Keybinds
