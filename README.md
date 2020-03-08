@@ -26,7 +26,7 @@
 
 **Current Version**
 
-<p><img src ="Expenses new.png" title = "Expenses Version"/> </p>
+<p><img src ="Expenses.png" title = "Expenses Version"/> </p>
 
 **Expenses Radon**
 
