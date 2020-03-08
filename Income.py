@@ -1,3 +1,4 @@
+""" keep track of your income """
 from tkinter import Tk, Label, Text, Button, StringVar, Menu
 from tkinter import messagebox as msg, OptionMenu, END
 import datetime
@@ -60,7 +61,7 @@ class Income():
         self.editmenu = Menu(self.menu, tearoff=0)
         self.editmenu.add_command(label="Clear Amount", accelerator='Ctrl+Z', command=self.clearamount)
         self.editmenu.add_command(label="Clear Description", accelerator='Alt+Z', command=self.cleardesc)
-        self.menu.add_cascade(label="Edit",menu=self.editmenu)
+        self.menu.add_cascade(label="Edit", menu=self.editmenu)
         self.showinc = Menu(self.menu, tearoff=0)
         self.showinc.add_command(label="Monthly Salary", accelerator='Alt+S', command=self.monsal)
         self.showinc.add_command(label="Monthly Other", accelerator='Alt+O', command=self.monoth)
@@ -83,14 +84,17 @@ class Income():
         self.master.bind('<Control-z>', lambda event: self.clearamount())
         self.master.bind('<Alt-z>', lambda event: self.cleardesc())
     def clearamount(self):
+        """ clears amount text field """
         self.textamount.delete(1.0, END)
     def cleardesc(self):
+        """ clears description text field """
         self.textdes.delete(1.0, END)
     def monsal(self):
         """ monthly income from salary """
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         msg.showinfo("Monthly income from Salay", "Monthly Income from salary for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == "Salary"]['Amount'].sum()))
     def monoth(self):
+        """ monthly income from other ways except salary """
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         msg.showinfo("Monthly income from other", "Monthly Income from other for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == "Other"]['Amount'].sum()))
     def moninc(self):
@@ -98,6 +102,7 @@ class Income():
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         msg.showinfo("Montly Income", "YOUR INCOME FOR THE "+str(self.nowmonth)+" MONTH IS "+str(df['Amount'].sum()))
     def addinc(self):
+        """ adds an income"""
         try:
             if float(self.textamount.get(1.0, END)) > 0 and (not self.textdes.count(1.0, END) == (1, )):
                 with open('income'+str(self.nowmonth)+'.csv', 'a+') as f:

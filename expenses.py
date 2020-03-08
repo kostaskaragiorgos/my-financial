@@ -109,7 +109,7 @@ class Expenses():
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         msg.showinfo("Montly Expenses", "YOUR EXPENSES FOR THE "+str(self.nowmonth)+" MONTH IS "+str(df['Amount'].sum()))
     def addexp(self):
-        """ adds and expense"""
+        """ adds an expense"""
         try:
             if float(self.textamount.get(1.0, END)) > 0 and (not self.textdes.count(1.0, END) == (1, )):
                 with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
