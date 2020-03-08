@@ -87,30 +87,20 @@ class Expenses():
         self.textdes.delete(1.0, END)
     def monexpother(self):
         """ calculates the other monthly expenses """
-        sum_other = 0
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        sum_other = df[df['Category'] == "Other"]['Amount'].sum()
-        msg.showinfo("Monthly Expenses for other", "Monthly Expenses for other for the "+str(self.nowmonth)+" month is "+ str(sum_other))
+        msg.showinfo("Monthly Expenses for other", "Monthly Expenses for other for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == "Other"]['Amount'].sum()))
     def monexptransportation(self):
-        sum_transp = 0
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        sum_transp = df[df['Category'] == "Transportation"]['Amount'].sum()
-        msg.showinfo("Monthly Expenses for transportation", "Monthly Expenses for Transportation for the "+str(self.nowmonth)+ " month is "+ str(sum_transp))
+        msg.showinfo("Monthly Expenses for transportation", "Monthly Expenses for Transportation for the "+str(self.nowmonth)+ " month is "+ str(df[df['Category'] == "Transportation"]['Amount'].sum()))
     def monexpgrocery(self):
-        sum_groc = 0
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        sum_groc = df[df['Category'] == "Grocery"]['Amount'].sum()
-        msg.showinfo("Monthly Expenses for Grocery", "Monthly Expenses for Grocery for the "+str(self.nowmonth)+" month is " +str(sum_groc))
+        msg.showinfo("Monthly Expenses for Grocery", "Monthly Expenses for Grocery for the "+str(self.nowmonth)+" month is " +str(df[df['Category'] == "Grocery"]['Amount'].sum()))
     def monexptaxes(self):
-        sum_taxes = 0
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        sum_taxes = df[df['Category'] == "Grocery"]['Amount'].sum()
-        msg.showinfo("Monthly Expenses for Bills/Taxes", "Monthly Expenses for Bills/Taxes for the "+str(self.nowmonth)+" month is "+str(sum_taxes))
+        msg.showinfo("Monthly Expenses for Bills/Taxes", "Monthly Expenses for Bills/Taxes for the "+str(self.nowmonth)+" month is "+str(df[df['Category'] == "Grocery"]['Amount'].sum()))
     def monexp(self):
-        sum = 0
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        sum = df['Amount'].sum()
-        msg.showinfo("Montly Expenses", "YOUR EXPENSES FOR THE "+str(self.nowmonth)+" MONTH IS "+str(sum))
+        msg.showinfo("Montly Expenses", "YOUR EXPENSES FOR THE "+str(self.nowmonth)+" MONTH IS "+str(df['Amount'].sum()))
     def addexp(self):
         try:
             if float(self.textamount.get(1.0, END)) > 0 and (not self.textdes.count(1.0, END) == (1, )):
