@@ -88,21 +88,15 @@ class Income():
         self.textdes.delete(1.0, END)
     def monsal(self):
         """ monthly income from salary """
-        sum_mon_salary = 0
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        sum_mon_salary = df[df['Category'] == "Salary"]['Amount'].sum()
-        msg.showinfo("Monthly income from Salay", "Monthly Income from salary for the "+str(self.nowmonth)+" month is "+ str(sum_mon_salary))
+        msg.showinfo("Monthly income from Salay", "Monthly Income from salary for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == "Salary"]['Amount'].sum()))
     def monoth(self):
-        sum_other = 0
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        sum_other = df[df['Category'] == "Other"]['Amount'].sum()
-        msg.showinfo("Monthly income from other", "Monthly Income from other for the "+str(self.nowmonth)+" month is "+ str(sum_other))
+        msg.showinfo("Monthly income from other", "Monthly Income from other for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == "Other"]['Amount'].sum()))
     def moninc(self):
         """ total monthly income """
-        sum = 0
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        sum = df['Amount'].sum()
-        msg.showinfo("Montly Income", "YOUR INCOME FOR THE "+str(self.nowmonth)+" MONTH IS "+str(sum))
+        msg.showinfo("Montly Income", "YOUR INCOME FOR THE "+str(self.nowmonth)+" MONTH IS "+str(df['Amount'].sum()))
     def addinc(self):
         try:
             if float(self.textamount.get(1.0, END)) > 0 and (not self.textdes.count(1.0, END) == (1, )):
