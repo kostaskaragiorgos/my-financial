@@ -5,6 +5,7 @@ import os
 import csv
 import datetime
 import pandas as pd
+import matplotlib.pyplot as plt
 def aboutmenu():
     """ about menu class """
     msg.showinfo("About", "Expenses\nVersion 1.0")
@@ -42,7 +43,7 @@ class Expenses():
         self.edit_menu.add_command(label="Clear Description", accelerator='Alt+Z', command=self.cleardes)
         self.menu.add_cascade(label="Edit", menu=self.edit_menu)
         self.charts = Menu(self.menu, tearoff=0)
-        self.charts.add_command(label="Pie Chart")
+        self.charts.add_command(label="Pie Chart", command = self.piechart)
         self.menu.add_cascade(label="Charts", menu=self.charts)
         self.show = Menu(self.menu, tearoff=0)
         self.show.add_command(label="Show Monthly Other", accelerator='Alt+O', command=self.monexpother)
@@ -85,6 +86,13 @@ class Expenses():
         self.popupcatlistmenu.pack()
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp) 
         self.incomeb.pack()
+    def piechart(self):
+        df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
+        slices = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
+        cat = ["Other", "Transportation", "Grocery", "Bills/Taxes"]
+        col = ['r', 'g','w','b']
+        plt.pie(slices, labels=cat, colors=col, startangle = 90, autopct='%1.1f%%')
+        plt.show()
     def clearamount(self):
         """ clears amount text field """
         self.textamount.delete(1.0, END)
@@ -106,7 +114,7 @@ class Expenses():
     def monexptaxes(self):
         """ shows expenses for bills/Taxes """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        msg.showinfo("Monthly Expenses for Bills/Taxes", "Monthly Expenses for Bills/Taxes for the "+str(self.nowmonth)+" month is "+str(df[df['Category'] == "Grocery"]['Amount'].sum()))
+        msg.showinfo("Monthly Expenses for Bills/Taxes", "Monthly Expenses for Bills/Taxes for the "+str(self.nowmonth)+" month is "+str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum()))
     def monexp(self):
         """ shows montly Expenses"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
