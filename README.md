@@ -106,3 +106,6 @@
   <li> About (Ctrl+I) </li>
   <li> Help (Ctrl+F1) </li>
 </ul>
+
+## License
+[GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
