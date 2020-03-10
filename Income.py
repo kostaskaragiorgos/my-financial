@@ -89,14 +89,11 @@ class Income():
         self.master.bind('<Alt-z>', lambda event: self.cleardesc())
     def piechart(self):
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        salar = df[df['Category'] == "Salary"]['Amount'].sum()
-        othe = df[df['Category'] == "Other"]['Amount'].sum()
-        slices = [salar, othe]
+        slices = [df[df['Category'] == "Salary"]['Amount'].sum(), df[df['Category'] == "Other"]['Amount'].sum()]
         cat = ['Salary', 'Other']
         col = ['red','green']
-        plt.pie(slices, labels=cat, colors=col, startangle = 90 , autopct='%1.1f%%')
+        plt.pie(slices, labels=cat, colors=col, startangle = 90, autopct='%1.1f%%')
         plt.show()
-
     def clearamount(self):
         """ clears amount text field """
         self.textamount.delete(1.0, END)
