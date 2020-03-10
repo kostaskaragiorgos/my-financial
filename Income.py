@@ -16,7 +16,7 @@ class Income():
     def __init__(self, master):
         self.master = master
         self.master.title("Income")
-        self.master.geometry("250x140")
+        self.master.geometry("250x160")
         self.master.resizable(False, False)
        # folders 
         if not os.path.exists("income"):
@@ -62,6 +62,9 @@ class Income():
         self.editmenu.add_command(label="Clear Amount", accelerator='Ctrl+Z', command=self.clearamount)
         self.editmenu.add_command(label="Clear Description", accelerator='Alt+Z', command=self.cleardesc)
         self.menu.add_cascade(label="Edit", menu=self.editmenu)
+        self.charts = Menu(self.menu, tearoff=0)
+        self.charts.add_command(label="Show Pie chart")
+        self.menu.add_cascade(label="Show", menu=self.charts)
         self.showinc = Menu(self.menu, tearoff=0)
         self.showinc.add_command(label="Monthly Salary", accelerator='Alt+S', command=self.monsal)
         self.showinc.add_command(label="Monthly Other", accelerator='Alt+O', command=self.monoth)
