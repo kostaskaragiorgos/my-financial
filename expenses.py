@@ -69,7 +69,7 @@ class Expenses():
         self.master.bind('<Alt-g>', lambda event: self.monexpgrocery())
         self.master.bind('<Control-z>', lambda event: self.clearamount())
         self.master.bind('<Alt-z>', lambda event: self.cleardes())
-        self.master.bind('<Control-p>',lambda event: self.piechart())
+        self.master.bind('<Control-p>', lambda event: self.piechart())
         #basic gui
         self.amountl = Label(self.master,
                              text="Enter the amount")
@@ -91,8 +91,8 @@ class Expenses():
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         slices = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
         cat = ["Other", "Transportation", "Grocery", "Bills/Taxes"]
-        col = ['r', 'g','w','b']
-        plt.pie(slices, labels=cat, colors=col, startangle = 90, autopct='%1.1f%%')
+        col = ['r', 'g', 'w', 'b']
+        plt.pie(slices, labels=cat, colors=col, startangle=90, autopct='%1.1f%%')
         plt.show()
     def clearamount(self):
         """ clears amount text field """
