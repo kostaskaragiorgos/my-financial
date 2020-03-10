@@ -5,6 +5,7 @@ import datetime
 import os
 import csv
 import pandas as pd
+import matplotlib.pyplot as plt
 def aboutmenu():
     """ about menu function """
     msg.showinfo("About Income ", "Income\nVersion 1.0")
@@ -63,7 +64,7 @@ class Income():
         self.editmenu.add_command(label="Clear Description", accelerator='Alt+Z', command=self.cleardesc)
         self.menu.add_cascade(label="Edit", menu=self.editmenu)
         self.charts = Menu(self.menu, tearoff=0)
-        self.charts.add_command(label="Show Pie chart")
+        self.charts.add_command(label="Show Pie chart", command= self.piechart)
         self.menu.add_cascade(label="Show", menu=self.charts)
         self.showinc = Menu(self.menu, tearoff=0)
         self.showinc.add_command(label="Monthly Salary", accelerator='Alt+S', command=self.monsal)
@@ -86,6 +87,16 @@ class Income():
         self.master.bind('<Control-o>', lambda event: self.addinc())
         self.master.bind('<Control-z>', lambda event: self.clearamount())
         self.master.bind('<Alt-z>', lambda event: self.cleardesc())
+    def piechart(self):
+        df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
+        salar = df[df['Category'] == "Salary"]['Amount'].sum()
+        othe = df[df['Category'] == "Other"]['Amount'].sum()
+        slices = [salar, othe]
+        cat = ['Salary', 'Other']
+        col = ['red','green']
+        plt.pie(slices, labels=cat, colors=col, startangle = 90 , autopct='%1.1f%%')
+        plt.show()
+
     def clearamount(self):
         """ clears amount text field """
         self.textamount.delete(1.0, END)
