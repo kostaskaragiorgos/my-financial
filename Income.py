@@ -64,7 +64,7 @@ class Income():
         self.editmenu.add_command(label="Clear Description", accelerator='Alt+Z', command=self.cleardesc)
         self.menu.add_cascade(label="Edit", menu=self.editmenu)
         self.charts = Menu(self.menu, tearoff=0)
-        self.charts.add_command(label="Show Pie chart", command= self.piechart)
+        self.charts.add_command(label="Show Pie chart", accelerator='Ctrl+P', command=self.piechart)
         self.menu.add_cascade(label="Show", menu=self.charts)
         self.showinc = Menu(self.menu, tearoff=0)
         self.showinc.add_command(label="Monthly Salary", accelerator='Alt+S', command=self.monsal)
@@ -87,6 +87,7 @@ class Income():
         self.master.bind('<Control-o>', lambda event: self.addinc())
         self.master.bind('<Control-z>', lambda event: self.clearamount())
         self.master.bind('<Alt-z>', lambda event: self.cleardesc())
+        self.master.bind('<Control-p>',lambda event: self.piechart())
     def piechart(self):
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         slices = [df[df['Category'] == "Salary"]['Amount'].sum(), df[df['Category'] == "Other"]['Amount'].sum()]
