@@ -64,6 +64,7 @@ class Income():
         self.editmenu.add_command(label="Clear Description", accelerator='Alt+Z', command=self.cleardesc)
         self.menu.add_cascade(label="Edit", menu=self.editmenu)
         self.charts = Menu(self.menu, tearoff=0)
+        self.charts.add_command(label="Show Bar chart")
         self.charts.add_command(label="Show Pie chart", accelerator='Ctrl+P', command=self.piechart)
         self.menu.add_cascade(label="Show", menu=self.charts)
         self.showinc = Menu(self.menu, tearoff=0)
