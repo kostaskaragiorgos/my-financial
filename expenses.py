@@ -4,6 +4,7 @@ from tkinter import messagebox as msg
 import os 
 import csv
 import datetime
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 def aboutmenu():
@@ -43,7 +44,7 @@ class Expenses():
         self.edit_menu.add_command(label="Clear Description", accelerator='Alt+Z', command=self.cleardes)
         self.menu.add_cascade(label="Edit", menu=self.edit_menu)
         self.charts = Menu(self.menu, tearoff=0)
-        self.charts.add_command(label="Bar Chart")
+        self.charts.add_command(label="Bar Chart", command=self.barchart)
         self.charts.add_command(label="Pie Chart", accelerator='Ctrl+P', command=self.piechart)
         self.menu.add_cascade(label="Charts", menu=self.charts)
         self.show = Menu(self.menu, tearoff=0)
@@ -88,6 +89,13 @@ class Expenses():
         self.popupcatlistmenu.pack()
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp) 
         self.incomeb.pack()
+    def barchart(self):
+        df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
+        x = np.arange(4)
+        data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
+        plt.bar(x, data)
+        plt.xticks(x, ('Other', 'Transportation', 'Grocery', 'Bills/Taxes'))
+        plt.show()
     def piechart(self):
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         slices = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
