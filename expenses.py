@@ -44,7 +44,7 @@ class Expenses():
         self.edit_menu.add_command(label="Clear Description", accelerator='Alt+Z', command=self.cleardes)
         self.menu.add_cascade(label="Edit", menu=self.edit_menu)
         self.charts = Menu(self.menu, tearoff=0)
-        self.charts.add_command(label="Bar Chart", command=self.barchart)
+        self.charts.add_command(label="Bar Chart", accelerator='Ctrl+B', command=self.barchart)
         self.charts.add_command(label="Pie Chart", accelerator='Ctrl+P', command=self.piechart)
         self.menu.add_cascade(label="Charts", menu=self.charts)
         self.show = Menu(self.menu, tearoff=0)
@@ -72,6 +72,7 @@ class Expenses():
         self.master.bind('<Control-z>', lambda event: self.clearamount())
         self.master.bind('<Alt-z>', lambda event: self.cleardes())
         self.master.bind('<Control-p>', lambda event: self.piechart())
+        self.master.bind('<Control-b>', lambda event: self.barchart())
         #basic gui
         self.amountl = Label(self.master,
                              text="Enter the amount")
