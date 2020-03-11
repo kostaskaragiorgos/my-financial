@@ -5,6 +5,7 @@ import datetime
 import os
 import csv
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 def aboutmenu():
     """ about menu function """
@@ -64,7 +65,7 @@ class Income():
         self.editmenu.add_command(label="Clear Description", accelerator='Alt+Z', command=self.cleardesc)
         self.menu.add_cascade(label="Edit", menu=self.editmenu)
         self.charts = Menu(self.menu, tearoff=0)
-        self.charts.add_command(label="Show Bar chart")
+        self.charts.add_command(label="Show Bar chart", command=self.barchart)
         self.charts.add_command(label="Show Pie chart", accelerator='Ctrl+P', command=self.piechart)
         self.menu.add_cascade(label="Show", menu=self.charts)
         self.showinc = Menu(self.menu, tearoff=0)
@@ -89,6 +90,13 @@ class Income():
         self.master.bind('<Control-z>', lambda event: self.clearamount())
         self.master.bind('<Alt-z>', lambda event: self.cleardesc())
         self.master.bind('<Control-p>', lambda event: self.piechart())
+    def barchart(self):
+        df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
+        x = np.arange(2)
+        data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]
+        plt.bar(x, data)
+        plt.xticks(x, ('Other', 'Salary'))
+        plt.show()
     def piechart(self):
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         slices = [df[df['Category'] == "Salary"]['Amount'].sum(), df[df['Category'] == "Other"]['Amount'].sum()]
