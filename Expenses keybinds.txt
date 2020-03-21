@@ -1,5 +1,6 @@
 File menu
 =======================
+Add Expense Ctrl + T
 Exit Alt + F4
 =======================
 Edit menu
