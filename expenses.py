@@ -37,6 +37,7 @@ class Expenses():
                 thewriter.writerow(['Day', 'Amount', 'Description', 'Category']) 
         self.menu = Menu(self.master)
         self.file_menu = Menu(self.menu, tearoff=0)
+        self.file_menu.add_command(label="Add Expense", accelerator='Ctrl+T', command=self.addexp)
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.edit_menu = Menu(self.menu, tearoff=0)
@@ -61,6 +62,7 @@ class Expenses():
         self.help_menu.add_command(label="Help", accelerator='Ctrl+F1')
         self.menu.add_cascade(label="Help", menu=self.help_menu)
         self.master.config(menu=self.menu)
+        self.master.bind('<Control-t>',lambda event: self.addexp())
         self.master.bind('<Alt-o>', lambda event: self.monexpother())
         self.master.bind('<Alt-t>', lambda event: self.monexptransportation())
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
@@ -141,9 +143,9 @@ class Expenses():
                     thewriter.writerow([str(datetime.date.today().day), str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
                 msg.showinfo("Expanse", "Day:"+str(datetime.date.today().day) +"\nAmount:"+str(self.textamount.get(1.0, END)) +"\nDescription:" + self.textdes.get(1.0, END) + "\nCategory:"+str(self.var_cat_list.get()))
             else:
-                msg.showerror("Value Error", "Enter a number higher than zero\n Enter a description")
+                msg.showerror("Value Error", "Enter a number higher than zero\nEnter a description")
         except:
-            msg.showerror("Value Error", "Enter a number higher than zero\n Enter a description")
+            msg.showerror("Value Error", "Enter a number higher than zero\nEnter a description")
         self.textamount.delete(1.0, END)
         self.textdes.delete(1.0, END)
     def exitmenu(self):
