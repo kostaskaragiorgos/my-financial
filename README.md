@@ -69,6 +69,7 @@
 ## Expenses_Keybinds 
 
  <ul>
+  <li> Add Expense(Ctrl+T) </li>
   <li> Exit(Alt+F4) </li>
   <li> Clear Amount(Ctrl+Z) </li>
   <li> Clear Description(Alt+Z) </li>
@@ -89,6 +90,13 @@
  ## Emergency_fund_Current_Version
 
 <p><img src ="em fund.png" title = "em fund Version"/> </p>
+
+## Emergency_fund_Radon
+
+<p><img src="emf radon cc.png" title = "emf radon cc"/> </p>
+<p><img src="emf radon hal.png" title ="emf radon hal"/> </p>
+<p><img src="emf radon mi.png" title ="emf radon mi"/></p>
+<p><img src="emf radon raw.png" title="emf radon raw"/></p>
 
 ## Emergency_fund_Keybinds
 
