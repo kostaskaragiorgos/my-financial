@@ -11,13 +11,19 @@
   * [Files](#Files)
   * [Dependencies](#Dependencies)
   * [Expenses](#Expenses)
-    * [Current Version](#Current_Version)
-    * [Expenses Radon](#Expenses_Radon)
-    * [Keybinds](#Keybinds)
-  * [Emergency fund](#Emergency_fund)
-    * [Keybinds](#Keybinds)
-    * [Current Version](#Current_Version)
+    * [Expenses_Current_Version](#Expenses_Current_Version)
+    * [Expenses_Radon](#Expenses_Radon)
+    * [Expenses_Keybinds](#Expenses_Keybinds)
+  * [Emergency_fund](#Emergency_fund)
+    * [Emergency_fund_Current_Version](#Emergency_fund_Current_Version)
+    * [Emergency_fund_Keybinds](#Emergency_fund_Keybinds)
   * [Income](#Income)
+    * [Income_Current_Version](#Income_Current_Version)
+    * [Income_Radon](#Income_Radon)
+    * [Income_Keybinds](#Income_Keybinds)
+  * [Saving_game](#Saving_game)
+    * [Saving_game_Current_Version](#Saving_game_Current_Version)
+    * [Saving_game_Keybinds](#Saving_game_Keybinds)
   * [License](#License)
 <!--te-->
 
@@ -49,18 +55,18 @@
 ## Expenses
 <p> You can keep track of your expenses </p>
 
-## Current Version
+## Expenses_Current_Version
 
 <p><img src ="Expenses.png" title = "Expenses Version"/> </p>
 
-## Expenses Radon
+## Expenses_Radon
 
 <p><img src="expenses radon cc.png" title="Expenses Radon cc"/> </p>
 <p><img src="expenses radon hal.png" title="Expenses Radon hal"/> </p>
 <p><img src="expenses radon mi.png" title="Expenses Radon mi"/> </p>
 <p><img src="expenses radon raw.png" title="Expenses Radon raw"/> </p>
 
-## Keybinds 
+## Expenses_Keybinds 
 
  <ul>
   <li> Exit(Alt+F4) </li>
@@ -73,14 +79,14 @@
   <li> Help(Ctrl+F1) </li>
 </ul>
 
-## Emergency fund
+## Emergency_fund
 <p> You can create an emergency fund plan  </p>
 
- ## Current Version
+ ## Emergency_fund_Current_Version
 
 <p><img src ="em fund.png" title = "em fund Version"/> </p>
 
-## Keybinds
+## Emergency_fund_Keybinds
 
  <ul>
   <li> Plan an Emergency Fund(Ctrl+P) </li>
@@ -94,11 +100,11 @@
  
  <p> You can keep track of your income </p>
  
- ## Current Version
+ ## Income_Current_Version
 
 <p><img src ="income.png" title = " income Version"/> </p>
 
-## Income Radon
+## Income_Radon
 
 <p><img src="income radon cc.png" title = "income radon cc"/> </p>
 <p><img src="income radon hal.png" title ="income radon hal"/> </p>
@@ -106,7 +112,7 @@
 <p><img src="income radon raw.png" title="income radon raw"/></p>
 
 
-## Keybinds
+## Income_Keybinds
 
 <ul>
   <li> Add Income(Ctrl+O) </li>
@@ -117,13 +123,15 @@
   <li> Help(Ctrl+F1) </li>
 </ul>
 
-## Saving game
+## Saving_game
 
 <p> A simple saving game </p>
 
+ ## Saving_game_Current_Version
+
 <p> <img src = "game.png" title = "Game Version"/> </p>
 
-## Keybinds
+## Saving_game_Keybinds
 
 <ul>
   <li> Roll (Alt+S) </li>
