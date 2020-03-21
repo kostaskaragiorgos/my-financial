@@ -96,6 +96,7 @@ class Expenses():
         data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
         plt.bar(x, data)
         plt.xticks(x, ('Other', 'Transportation', 'Grocery', 'Bills/Taxes'))
+        plt.title("Bar Chart of Expenses")
         plt.show()
     def piechart(self):
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
@@ -103,6 +104,7 @@ class Expenses():
         cat = ["Other", "Transportation", "Grocery", "Bills/Taxes"]
         col = ['r', 'g', 'w', 'b']
         plt.pie(slices, labels=cat, colors=col, startangle=90, autopct='%1.1f%%')
+        plt.title("Pie Chart of Expenses")
         plt.show()
     def clearamount(self):
         """ clears amount text field """
