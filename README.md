@@ -2,7 +2,26 @@
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/) [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
 
-## FILES
+
+# Table of contents
+
+<!--ts-->
+  * [my financial](#my_financial)
+  * [Table of contents](#Table_of_contents)
+  * [Files](#Files)
+  * [Dependencies](#Dependencies)
+  * [Expenses](#Expenses)
+    * [Current Version](#Current_Version)
+    * [Expenses Radon](#Expenses_Radon)
+    * [Keybinds](#Keybinds)
+  * [Emergency fund](#Emergency_fund)
+    * [Keybinds](#Keybinds)
+    * [Current Version](#Current_Version)
+  * [Income](#Income)
+  * [License](#License)
+<!--te-->
+
+## Files
 <ul>
  <li> Emenrgency_fundkeybinds.txt(.txt keybinds file for Emenrgency_funds) </li> 
  <li> Expenses keybinds.txt(.txt keybinds file fir expenses) </li>
@@ -30,11 +49,11 @@
 ## Expenses
 <p> You can keep track of your expenses </p>
 
-**Current Version**
+## Current Version
 
 <p><img src ="Expenses.png" title = "Expenses Version"/> </p>
 
-**Expenses Radon**
+## Expenses Radon
 
 <p><img src="expenses radon cc.png" title="Expenses Radon cc"/> </p>
 <p><img src="expenses radon hal.png" title="Expenses Radon hal"/> </p>
@@ -57,6 +76,8 @@
 ## Emergency fund
 <p> You can create an emergency fund plan  </p>
 
+ ## Current Version
+
 <p><img src ="em fund.png" title = "em fund Version"/> </p>
 
 ## Keybinds
@@ -73,11 +94,11 @@
  
  <p> You can keep track of your income </p>
  
- **Current Version**
+ ## Current Version
 
 <p><img src ="income.png" title = " income Version"/> </p>
 
-**Income Radon**
+## Income Radon
 
 <p><img src="income radon cc.png" title = "income radon cc"/> </p>
 <p><img src="income radon hal.png" title ="income radon hal"/> </p>
@@ -87,7 +108,7 @@
 
 ## Keybinds
 
- <ul>
+<ul>
   <li> Add Income(Ctrl+O) </li>
   <li> Exit(Alt+F4) </li>
   <li> Monthly Income(Alt+M) </li>
@@ -100,11 +121,11 @@
 
 <p> A simple saving game </p>
 
-<p><img src = "game.png" title = "Game Version"/> </p>
+<p> <img src = "game.png" title = "Game Version"/> </p>
 
 ## Keybinds
 
- <ul>
+<ul>
   <li> Roll (Alt+S) </li>
   <li> Exit (Alt+F4) </li>
   <li> About (Ctrl+I) </li>
@@ -112,4 +133,5 @@
 </ul>
 
 ## License
+
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
