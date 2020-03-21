@@ -117,8 +117,13 @@
 <ul>
   <li> Add Income(Ctrl+O) </li>
   <li> Exit(Alt+F4) </li>
+  <li> Clear Amount(Ctrl+Z) </li>
+  <li> Clear Description(Alt+Z) </li>
+  <li> Show Bar chart(Ctrl+B) </li>
+  <li> Show Pie chart(Ctrl+P) </li>
+  <li> Monthly Salary(Alt+S) </li>
+  <li> Monthly Other(Alt+O) </li>
   <li> Monthly Income(Alt+M) </li>
-  <li> Yearly Income(Alt+Y) </li>
   <li> Abput(Ctrl+I) </li>
   <li> Help(Ctrl+F1) </li>
 </ul>
