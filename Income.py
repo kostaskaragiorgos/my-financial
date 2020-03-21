@@ -97,6 +97,7 @@ class Income():
         data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]
         plt.bar(x, data)
         plt.xticks(x, ('Other', 'Salary'))
+        plt.title("Bar Chart of Income")
         plt.show()
     def piechart(self):
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
@@ -104,6 +105,7 @@ class Income():
         cat = ['Salary', 'Other']
         col = ['red', 'green']
         plt.pie(slices, labels=cat, colors=col, startangle=90, autopct='%1.1f%%')
+        plt.title("Pie Chart of Income")
         plt.show()
     def clearamount(self):
         """ clears amount text field """
