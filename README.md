@@ -70,6 +70,10 @@
 
  <ul>
   <li> Exit(Alt+F4) </li>
+  <li> Clear Amount(Ctrl+Z) </li>
+  <li> Clear Description(Alt+Z) </li>
+  <li> Bar Chart(Ctrl+B) </li>
+  <li> Pie Chart(Ctrl+P) </li>
   <li> Show Monthly Other(Alt+O) </li>
   <li> Show Monthly Transportation(Alt+T) </li>
   <li> Show Monthly Grocery(Alt+G) </li>
