@@ -62,7 +62,7 @@ class Expenses():
         self.help_menu.add_command(label="Help", accelerator='Ctrl+F1')
         self.menu.add_cascade(label="Help", menu=self.help_menu)
         self.master.config(menu=self.menu)
-        self.master.bind('<Control-t>',lambda event: self.addexp())
+        self.master.bind('<Control-t>', lambda event: self.addexp())
         self.master.bind('<Alt-o>', lambda event: self.monexpother())
         self.master.bind('<Alt-t>', lambda event: self.monexptransportation())
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
@@ -93,14 +93,15 @@ class Expenses():
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp) 
         self.incomeb.pack()
     def barchart(self):
+        """ expenses bar chart"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        x = np.arange(4)
         data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
-        plt.bar(x, data)
-        plt.xticks(x, ('Other', 'Transportation', 'Grocery', 'Bills/Taxes'))
+        plt.bar(np.arange(4), data)
+        plt.xticks(np.arange(4), ('Other', 'Transportation', 'Grocery', 'Bills/Taxes'))
         plt.title("Bar Chart of Expenses")
         plt.show()
     def piechart(self):
+        """ expenses bar chart"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         slices = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
         cat = ["Other", "Transportation", "Grocery", "Bills/Taxes"]
