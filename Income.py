@@ -92,14 +92,15 @@ class Income():
         self.master.bind('<Control-p>', lambda event: self.piechart())
         self.master.bind('<Control-b>', lambda event: self.barchart())
     def barchart(self):
+        """ shows a bar chart of income"""
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        x = np.arange(2)
         data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]
-        plt.bar(x, data)
-        plt.xticks(x, ('Other', 'Salary'))
+        plt.bar(np.arange(2), data)
+        plt.xticks(np.arange(2), ('Other', 'Salary'))
         plt.title("Bar Chart of Income")
         plt.show()
     def piechart(self):
+        """ shows a pie chart of income"""
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         slices = [df[df['Category'] == "Salary"]['Amount'].sum(), df[df['Category'] == "Other"]['Amount'].sum()]
         cat = ['Salary', 'Other']
