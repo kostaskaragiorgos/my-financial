@@ -103,7 +103,7 @@ class Expenses():
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
         maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
-        self.filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt")""",("csv files", "*.csv")""", ("all files", "*.*")))
+        self.filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"),("csv files", "*.csv"), ("all files", "*.*")))
         if  self.filenamesave.endswith(".txt"):
             f = open(str(self.filenamesave)+".txt", 'a')
             f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
@@ -114,6 +114,16 @@ class Expenses():
             f.write("Min:"+ str(minexp))
             f.write("Max:"+ str(maxexp))
             msg.showinfo("SUCCESS","Overview saved successfully")
+        elif self.filenamesave.endswith(".csv"):
+            with open(self.filenamesave+'.csv','a+') as f:
+                thewriter = csv.writer(f)
+                thewriter.writerow(["Other:", str(df[df['Category'] == "Other"]['Amount'].sum())])
+                thewriter.writerow(["Transportation:", str(df[df['Category'] == "Transportation"]['Amount'].sum())])
+                thewriter.writerow(["Grocery:", str(df[df['Category'] == "Grocery"]['Amount'].sum())])
+                thewriter.writerow(["Bills/Taxes:", str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())])
+                thewriter.writerow(["Total:", str(df['Amount'].sum())])
+                thewriter.writerow(["Min:", str(minexp)])
+                thewriter.writerow(["Max:", str(maxexp)])
         else:
             msg.showerror("Abort", "Abort")
     def show_overview(self):
