@@ -1,6 +1,7 @@
 """ keep track of your expenses """
 from tkinter import Tk, Button, Menu, Label, Text, OptionMenu, StringVar, END
 from tkinter import messagebox as msg
+from tkinter import filedialog
 import os 
 import csv
 import datetime
@@ -33,6 +34,7 @@ class Expenses():
             os.chdir(str(nowyear))
         #csv file
         self.nowmonth = datetime.date.today().month
+        self.filenamesave = ""
         if not os.path.exists('expenses'+str(self.nowmonth)+'.csv'):
             with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
                 thewriter = csv.writer(f)
@@ -98,8 +100,22 @@ class Expenses():
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp) 
         self.incomeb.pack()
     def saveas(self):
-        pass
-
+        df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
+        minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
+        maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
+        self.filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt")""",("csv files", "*.csv")""", ("all files", "*.*")))
+        if  self.filenamesave.endswith(".txt"):
+            f = open(str(self.filenamesave)+".txt", 'a')
+            f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
+            f.write("Transportation:"+ str(df[df['Category'] == "Transportation"]['Amount'].sum()))
+            f.write("Grocery:"+ str(df[df['Category'] == "Grocery"]['Amount'].sum()))
+            f.write("Bills/Taxes:"+ str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum()))
+            f.write("Total:"+ str(df['Amount'].sum()))
+            f.write("Min:"+ str(minexp))
+            f.write("Max:"+ str(maxexp))
+            msg.showinfo("SUCCESS","Overview saved successfully")
+        else:
+            msg.showerror("Abort", "Abort")
     def show_overview(self):
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
