@@ -54,7 +54,7 @@ class Expenses():
         self.show.add_command(label="Show Monthly Grocery", accelerator='Alt+G', command=self.monexpgrocery)
         self.show.add_command(label="Show Monthly Bills/Taxes", accelerator='Alt+B', command=self.monexptaxes)
         self.show.add_command(label='Show Monthly Expenses', accelerator='Alt+S', command=self.monexp)
-        self.show.add_command(label="Show Overview")
+        self.show.add_command(label="Show Overview", command=self.show_overview)
         self.menu.add_cascade(label="Show", menu=self.show)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
@@ -93,6 +93,10 @@ class Expenses():
         self.popupcatlistmenu.pack()
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp) 
         self.incomeb.pack()
+    def show_overview(self):
+        df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
+        msg.showinfo("Expenses Overview" ,"Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) + "\nTransportation:" + str(df[df['Category'] == "Transportation"]['Amount'].sum())+
+        "\nGrocery:" + str(df[df['Category'] == "Grocery"]['Amount'].sum()) + "\nBills/Taxes:" + str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())+ "\nTotal:"+str(df['Amount'].sum()))
     def barchart(self):
         """ expenses bar chart"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
