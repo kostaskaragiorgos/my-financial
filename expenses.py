@@ -54,6 +54,7 @@ class Expenses():
         self.show.add_command(label="Show Monthly Grocery", accelerator='Alt+G', command=self.monexpgrocery)
         self.show.add_command(label="Show Monthly Bills/Taxes", accelerator='Alt+B', command=self.monexptaxes)
         self.show.add_command(label='Show Monthly Expenses', accelerator='Alt+S', command=self.monexp)
+        self.show.add_command(label="Show Overview")
         self.menu.add_cascade(label="Show", menu=self.show)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
