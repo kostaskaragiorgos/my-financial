@@ -7,6 +7,8 @@ import datetime
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+def helpmenu():
+    msg.showinfo("Help","You can keep track of your expenses")
 def aboutmenu():
     """ about menu class """
     msg.showinfo("About", "Expenses\nVersion 1.0")
@@ -38,6 +40,7 @@ class Expenses():
         self.menu = Menu(self.master)
         self.file_menu = Menu(self.menu, tearoff=0)
         self.file_menu.add_command(label="Add Expense", accelerator='Ctrl+T', command=self.addexp)
+        self.file_menu.add_command(label="Save Overview as", command=self.saveas)
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.edit_menu = Menu(self.menu, tearoff=0)
@@ -60,14 +63,14 @@ class Expenses():
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
         self.menu.add_cascade(label="About", menu=self.about_menu)
         self.help_menu = Menu(self.menu, tearoff=0)
-        self.help_menu.add_command(label="Help", accelerator='Ctrl+F1')
+        self.help_menu.add_command(label="Help", accelerator='Ctrl+F1', command=helpmenu)
         self.menu.add_cascade(label="Help", menu=self.help_menu)
         self.master.config(menu=self.menu)
         self.master.bind('<Control-t>', lambda event: self.addexp())
         self.master.bind('<Alt-o>', lambda event: self.monexpother())
         self.master.bind('<Alt-t>', lambda event: self.monexptransportation())
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
-        self.master.bind('<Control-F1>')
+        self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
         self.master.bind('<Alt-s>', lambda event: self.monexp())
         self.master.bind('<Alt-b>', lambda event: self.monexptaxes())
@@ -94,6 +97,9 @@ class Expenses():
         self.popupcatlistmenu.pack()
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp) 
         self.incomeb.pack()
+    def saveas(self):
+        pass
+
     def show_overview(self):
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
