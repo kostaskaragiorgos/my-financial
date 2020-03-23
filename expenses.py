@@ -54,7 +54,7 @@ class Expenses():
         self.show.add_command(label="Show Monthly Grocery", accelerator='Alt+G', command=self.monexpgrocery)
         self.show.add_command(label="Show Monthly Bills/Taxes", accelerator='Alt+B', command=self.monexptaxes)
         self.show.add_command(label='Show Monthly Expenses', accelerator='Alt+S', command=self.monexp)
-        self.show.add_command(label="Show Overview", command=self.show_overview)
+        self.show.add_command(label="Show Overview", accelerator='Ctrl+N', command=self.show_overview)
         self.menu.add_cascade(label="Show", menu=self.show)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
@@ -76,6 +76,7 @@ class Expenses():
         self.master.bind('<Alt-z>', lambda event: self.cleardes())
         self.master.bind('<Control-p>', lambda event: self.piechart())
         self.master.bind('<Control-b>', lambda event: self.barchart())
+        self.master.bind('<Control-n>', lambda event: self.show_overview())
         #basic gui
         self.amountl = Label(self.master,
                              text="Enter the amount")
@@ -95,8 +96,10 @@ class Expenses():
         self.incomeb.pack()
     def show_overview(self):
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
+        minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
+        maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
         msg.showinfo("Expenses Overview" ,"Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) + "\nTransportation:" + str(df[df['Category'] == "Transportation"]['Amount'].sum())+
-        "\nGrocery:" + str(df[df['Category'] == "Grocery"]['Amount'].sum()) + "\nBills/Taxes:" + str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())+ "\nTotal:"+str(df['Amount'].sum()))
+        "\nGrocery:" + str(df[df['Category'] == "Grocery"]['Amount'].sum()) + "\nBills/Taxes:" + str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())+ "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
     def barchart(self):
         """ expenses bar chart"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
