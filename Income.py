@@ -64,10 +64,11 @@ class Income():
         self.editmenu.add_command(label="Clear Amount", accelerator='Ctrl+Z', command=self.clearamount)
         self.editmenu.add_command(label="Clear Description", accelerator='Alt+Z', command=self.cleardesc)
         self.menu.add_cascade(label="Edit", menu=self.editmenu)
-        self.charts = Menu(self.menu, tearoff=0)
-        self.charts.add_command(label="Show Bar chart", accelerator='Ctrl+B', command=self.barchart)
-        self.charts.add_command(label="Show Pie chart", accelerator='Ctrl+P', command=self.piechart)
-        self.menu.add_cascade(label="Show", menu=self.charts)
+        self.show = Menu(self.menu, tearoff=0)
+        self.show.add_command(label="Show Overview", accelerator='Ctrl+N', command=self.show_overview)
+        self.show.add_command(label="Show Bar chart", accelerator='Ctrl+B', command=self.barchart)
+        self.show.add_command(label="Show Pie chart", accelerator='Ctrl+P', command=self.piechart)
+        self.menu.add_cascade(label="Show", menu=self.show)
         self.showinc = Menu(self.menu, tearoff=0)
         self.showinc.add_command(label="Monthly Salary", accelerator='Alt+S', command=self.monsal)
         self.showinc.add_command(label="Monthly Other", accelerator='Alt+O', command=self.monoth)
@@ -91,6 +92,12 @@ class Income():
         self.master.bind('<Alt-z>', lambda event: self.cleardesc())
         self.master.bind('<Control-p>', lambda event: self.piechart())
         self.master.bind('<Control-b>', lambda event: self.barchart())
+        self.master.bind('<Control-n>', lambda event: self.show_overview())
+    def show_overview(self):
+        df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
+        minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
+        maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
+        msg.showinfo("Expenses Overview" ,"Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) +"\nSalary:" + str(df[df['Category'] == "Salary"]['Amount'].sum()) + "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
     def barchart(self):
         """ shows a bar chart of income"""
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
