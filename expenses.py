@@ -107,12 +107,12 @@ class Expenses():
         if  self.filenamesave.endswith(".txt"):
             f = open(str(self.filenamesave)+".txt", 'a')
             f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
-            f.write("Transportation:"+ str(df[df['Category'] == "Transportation"]['Amount'].sum()))
-            f.write("Grocery:"+ str(df[df['Category'] == "Grocery"]['Amount'].sum()))
-            f.write("Bills/Taxes:"+ str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum()))
-            f.write("Total:"+ str(df['Amount'].sum()))
-            f.write("Min:"+ str(minexp))
-            f.write("Max:"+ str(maxexp))
+            f.write("\nTransportation:"+ str(df[df['Category'] == "Transportation"]['Amount'].sum()))
+            f.write("\nGrocery:"+ str(df[df['Category'] == "Grocery"]['Amount'].sum()))
+            f.write("\nBills/Taxes:"+ str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum()))
+            f.write("\nTotal:"+ str(df['Amount'].sum()))
+            f.write("\nMin:"+ str(minexp))
+            f.write("\nMax:"+ str(maxexp))
             msg.showinfo("SUCCESS","Overview saved successfully")
         elif self.filenamesave.endswith(".csv"):
             with open(self.filenamesave+'.csv','a+') as f:
