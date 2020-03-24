@@ -1,6 +1,6 @@
 """ keep track of your income """
 from tkinter import Tk, Label, Text, Button, StringVar, Menu
-from tkinter import messagebox as msg, OptionMenu, END
+from tkinter import messagebox as msg, OptionMenu, END, filedialog
 import datetime
 import os
 import csv
@@ -58,6 +58,7 @@ class Income():
         self.menu = Menu(self.master)
         self.file_menu = Menu(self.menu, tearoff=0)
         self.file_menu.add_command(label="Add Income", accelerator='Ctrl+O', command=self.addinc)
+        self.file_menu.add_command(label="Save Overview as", command=self.saveas)
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.editmenu = Menu(self.menu, tearoff=0)
@@ -93,6 +94,30 @@ class Income():
         self.master.bind('<Control-p>', lambda event: self.piechart())
         self.master.bind('<Control-b>', lambda event: self.barchart())
         self.master.bind('<Control-n>', lambda event: self.show_overview())
+    def saveas(self):
+        df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
+        minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
+        maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
+        self.filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"),("csv files", "*.csv"), ("all files", "*.*")))
+        if  self.filenamesave.endswith(".txt"):
+            f = open(str(self.filenamesave)+".txt", 'a')
+            f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
+            f.write("\nSalary:"+ str(df[df['Category'] == "Salary"]['Amount'].sum()) )
+            f.write("\nTotal:"+ str(df['Amount'].sum()))
+            f.write("\nMin:"+ str(minexp))
+            f.write("\nMax:"+ str(maxexp))
+            msg.showinfo("SUCCESS","Overview saved successfully")
+        elif self.filenamesave.endswith(".csv"):
+            with open(self.filenamesave+'.csv','a+') as f:
+                thewriter = csv.writer(f)
+                thewriter.writerow(["Other:", str(df[df['Category'] == "Other"]['Amount'].sum())])
+                thewriter.writerow(["Salary:", str(df[df['Category'] == "Salary"]['Amount'].sum())])
+                thewriter.writerow(["Total:", str(df['Amount'].sum())])
+                thewriter.writerow(["Min:", str(minexp)])
+                thewriter.writerow(["Max:", str(maxexp)])
+            msg.showinfo("SUCCESS","Overview saved successfully")
+        else:
+            msg.showerror("Abort", "Abort")
     def show_overview(self):
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
