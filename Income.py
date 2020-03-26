@@ -7,6 +7,7 @@ import csv
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import plotly.express as px
 def aboutmenu():
     """ about menu function """
     msg.showinfo("About Income ", "Income\nVersion 1.0")
@@ -18,7 +19,7 @@ class Income():
     def __init__(self, master):
         self.master = master
         self.master.title("Income")
-        self.master.geometry("250x160")
+        self.master.geometry("250x170")
         self.master.resizable(False, False)
        # folders 
         if not os.path.exists("income"):
@@ -37,7 +38,7 @@ class Income():
         if not os.path.exists('income'+str(self.nowmonth)+'.csv'):
             with open('income'+str(self.nowmonth)+'.csv', 'a+') as f:
                 thewriter = csv.writer(f)
-                thewriter.writerow(['Amount', 'Description', 'Category'])
+                thewriter.writerow(['Date','Amount', 'Description', 'Category'])
         #basic gui
         self.amountl = Label(self.master,
                              text="Enter the amount")
@@ -69,6 +70,7 @@ class Income():
         self.show.add_command(label="Show Overview", accelerator='Ctrl+N', command=self.show_overview)
         self.show.add_command(label="Show Bar chart", accelerator='Ctrl+B', command=self.barchart)
         self.show.add_command(label="Show Pie chart", accelerator='Ctrl+P', command=self.piechart)
+        self.show.add_command(label="Show time series m", command=self.timeseriesmonth)
         self.menu.add_cascade(label="Show", menu=self.show)
         self.showinc = Menu(self.menu, tearoff=0)
         self.showinc.add_command(label="Monthly Salary", accelerator='Alt+S', command=self.monsal)
@@ -94,6 +96,11 @@ class Income():
         self.master.bind('<Control-p>', lambda event: self.piechart())
         self.master.bind('<Control-b>', lambda event: self.barchart())
         self.master.bind('<Control-n>', lambda event: self.show_overview())
+    def timeseriesmonth(self):
+        df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
+        fig = px.line(df, x='Date', y='Amount')
+        fig.show()
+
     def saveas(self):
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
@@ -164,7 +171,7 @@ class Income():
             if float(self.textamount.get(1.0, END)) > 0 and (not self.textdes.count(1.0, END) == (1, )):
                 with open('income'+str(self.nowmonth)+'.csv', 'a+') as f:
                     thewriter = csv.writer(f)
-                    thewriter.writerow([str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
+                    thewriter.writerow([str(datetime.date.today()),str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
                 msg.showinfo("Income info", "Amount: "+str(self.textamount.get(1.0, END))+"Description: "+self.textdes.get(1.0, END) +"Category: "+ str(self.var_cat_list.get()))
             else:
                 msg.showerror("Value Error", "Enter a number higher than zero \nEnter a description")
