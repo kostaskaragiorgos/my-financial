@@ -7,7 +7,6 @@ import csv
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import plotly.express as px
 def aboutmenu():
     """ about menu function """
     msg.showinfo("About Income ", "Income\nVersion 1.0")
@@ -98,9 +97,8 @@ class Income():
         self.master.bind('<Control-n>', lambda event: self.show_overview())
     def timeseriesmonth(self):
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        fig = px.line(df, x='Date', y='Amount')
-        fig.show()
-
+        plt.plot(df['Date'],df['Amount'])
+        plt.show()
     def saveas(self):
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
