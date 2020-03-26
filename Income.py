@@ -97,7 +97,7 @@ class Income():
         self.master.bind('<Control-n>', lambda event: self.show_overview())
     def timeseriesmonth(self):
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        plt.plot(df['Date'],df['Amount'])
+        plt.plot(df['Date'], df['Amount'])
         plt.show()
     def saveas(self):
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
