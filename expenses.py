@@ -38,7 +38,7 @@ class Expenses():
         if not os.path.exists('expenses'+str(self.nowmonth)+'.csv'):
             with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
                 thewriter = csv.writer(f)
-                thewriter.writerow(['Day', 'Amount', 'Description', 'Category']) 
+                thewriter.writerow(['Date', 'Amount', 'Description', 'Category']) 
         self.menu = Menu(self.master)
         self.file_menu = Menu(self.menu, tearoff=0)
         self.file_menu.add_command(label="Add Expense", accelerator='Ctrl+T', command=self.addexp)
@@ -52,6 +52,7 @@ class Expenses():
         self.charts = Menu(self.menu, tearoff=0)
         self.charts.add_command(label="Bar Chart", accelerator='Ctrl+B', command=self.barchart)
         self.charts.add_command(label="Pie Chart", accelerator='Ctrl+P', command=self.piechart)
+        self.charts.add_command(label="Show time series m", command=self.timeseriesmonth)
         self.menu.add_cascade(label="Charts", menu=self.charts)
         self.show = Menu(self.menu, tearoff=0)
         self.show.add_command(label="Show Monthly Other", accelerator='Alt+O', command=self.monexpother)
@@ -99,6 +100,11 @@ class Expenses():
         self.popupcatlistmenu.pack()
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp) 
         self.incomeb.pack()
+    def timeseriesmonth(self):
+        df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
+        plt.plot(df['Amount'])
+        plt.xticks(df['Date'])
+        plt.show()
     def saveas(self):
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
@@ -182,7 +188,7 @@ class Expenses():
                 with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
                     thewriter = csv.writer(f)
                     thewriter.writerow([str(datetime.date.today().day), str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
-                msg.showinfo("Expanse", "Day:"+str(datetime.date.today().day) +"\nAmount:"+str(self.textamount.get(1.0, END)) +"\nDescription:" + self.textdes.get(1.0, END) + "\nCategory:"+str(self.var_cat_list.get()))
+                msg.showinfo("Expanse", "Date:"+str(datetime.date.today()) +"\nAmount:"+str(self.textamount.get(1.0, END)) +"\nDescription:" + self.textdes.get(1.0, END) + "\nCategory:"+str(self.var_cat_list.get()))
             else:
                 msg.showerror("Value Error", "Enter a number higher than zero\nEnter a description")
         except:
