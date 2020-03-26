@@ -102,8 +102,7 @@ class Expenses():
         self.incomeb.pack()
     def timeseriesmonth(self):
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        plt.plot(df['Amount'])
-        plt.xticks(df['Date'])
+        plt.plot(df['Date'], df['Amount'])
         plt.show()
     def saveas(self):
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
