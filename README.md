@@ -70,6 +70,7 @@
 
  <ul>
   <li> Add Expense(Ctrl+T) </li>
+  <li> Save Overview as(Ctrl+S) </li>
   <li> Exit(Alt+F4) </li>
   <li> Clear Amount(Ctrl+Z) </li>
   <li> Clear Description(Alt+Z) </li>
@@ -128,6 +129,7 @@
 
 <ul>
   <li> Add Income(Ctrl+O) </li>
+  <li> Save Overview as(Ctrl+S) </li>
   <li> Exit(Alt+F4) </li>
   <li> Clear Amount(Ctrl+Z) </li>
   <li> Clear Description(Alt+Z) </li>
