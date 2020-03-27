@@ -9,7 +9,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 def helpmenu():
-    msg.showinfo("Help","You can keep track of your expenses")
+    """ help menu """
+    msg.showinfo("Help", "You can keep track of your expenses")
 def aboutmenu():
     """ about menu class """
     msg.showinfo("About", "Expenses\nVersion 1.0")
@@ -42,7 +43,7 @@ class Expenses():
         self.menu = Menu(self.master)
         self.file_menu = Menu(self.menu, tearoff=0)
         self.file_menu.add_command(label="Add Expense", accelerator='Ctrl+T', command=self.addexp)
-        self.file_menu.add_command(label="Save Overview as",accelerator='Ctrl+S', command=self.saveas)
+        self.file_menu.add_command(label="Save Overview as", accelerator='Ctrl+S', command=self.saveas)
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.edit_menu = Menu(self.menu, tearoff=0)
@@ -106,10 +107,11 @@ class Expenses():
         plt.plot(df['Date'], df['Amount'])
         plt.show()
     def saveas(self):
+        """ saves overview as """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
+        minexp = min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
         maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
-        self.filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"),("csv files", "*.csv"), ("all files", "*.*")))
+        self.filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"), ("csv files", "*.csv"), ("all files", "*.*")))
         if  self.filenamesave.endswith(".txt"):
             f = open(str(self.filenamesave)+".txt", 'a')
             f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
@@ -119,9 +121,9 @@ class Expenses():
             f.write("\nTotal:"+ str(df['Amount'].sum()))
             f.write("\nMin:"+ str(minexp))
             f.write("\nMax:"+ str(maxexp))
-            msg.showinfo("SUCCESS","Overview saved successfully")
+            msg.showinfo("SUCCESS", "Overview saved successfully")
         elif self.filenamesave.endswith(".csv"):
-            with open(self.filenamesave+'.csv','a+') as f:
+            with open(self.filenamesave+'.csv', 'a+') as f:
                 thewriter = csv.writer(f)
                 thewriter.writerow(["Other:", str(df[df['Category'] == "Other"]['Amount'].sum())])
                 thewriter.writerow(["Transportation:", str(df[df['Category'] == "Transportation"]['Amount'].sum())])
@@ -136,7 +138,7 @@ class Expenses():
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
         maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
-        msg.showinfo("Expenses Overview" ,"Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) + "\nTransportation:" + str(df[df['Category'] == "Transportation"]['Amount'].sum())+
+        msg.showinfo("Expenses Overview", "Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) + "\nTransportation:" + str(df[df['Category'] == "Transportation"]['Amount'].sum())+
         "\nGrocery:" + str(df[df['Category'] == "Grocery"]['Amount'].sum()) + "\nBills/Taxes:" + str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())+ "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
     def barchart(self):
         """ expenses bar chart"""
