@@ -98,54 +98,69 @@ class Income():
         self.master.bind('<Control-n>', lambda event: self.show_overview())
     def timeseriesmonth(self):
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        plt.plot(df['Date'], df['Amount'])
-        plt.show()
+        if df['Amount'].sum() == 0:
+            msg.showerror("ERROR","NO INCOME")
+        else:
+            plt.plot(df['Date'], df['Amount'])
+            plt.show()
     def saveas(self):
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
-        maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
-        self.filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"),("csv files", "*.csv"), ("all files", "*.*")))
-        if  self.filenamesave.endswith(".txt"):
-            f = open(str(self.filenamesave)+".txt", 'a')
-            f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
-            f.write("\nSalary:"+ str(df[df['Category'] == "Salary"]['Amount'].sum()) )
-            f.write("\nTotal:"+ str(df['Amount'].sum()))
-            f.write("\nMin:"+ str(minexp))
-            f.write("\nMax:"+ str(maxexp))
-            msg.showinfo("SUCCESS","Overview saved successfully")
-        elif self.filenamesave.endswith(".csv"):
-            with open(self.filenamesave+'.csv','a+') as f:
-                thewriter = csv.writer(f)
-                thewriter.writerow(["Other:", str(df[df['Category'] == "Other"]['Amount'].sum())])
-                thewriter.writerow(["Salary:", str(df[df['Category'] == "Salary"]['Amount'].sum())])
-                thewriter.writerow(["Total:", str(df['Amount'].sum())])
-                thewriter.writerow(["Min:", str(minexp)])
-                thewriter.writerow(["Max:", str(maxexp)])
-            msg.showinfo("SUCCESS","Overview saved successfully")
+        if df['Amount'].sum() == 0:
+            msg.showerror("ERROR","NO INCOME")
         else:
-            msg.showerror("Abort", "Abort")
+            minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
+            maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
+            self.filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"),("csv files", "*.csv"), ("all files", "*.*")))
+            if  self.filenamesave.endswith(".txt"):
+                f = open(str(self.filenamesave)+".txt", 'a')
+                f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
+                f.write("\nSalary:"+ str(df[df['Category'] == "Salary"]['Amount'].sum()) )
+                f.write("\nTotal:"+ str(df['Amount'].sum()))
+                f.write("\nMin:"+ str(minexp))
+                f.write("\nMax:"+ str(maxexp))
+                msg.showinfo("SUCCESS","Overview saved successfully")
+            elif self.filenamesave.endswith(".csv"):
+                with open(self.filenamesave+'.csv','a+') as f:
+                    thewriter = csv.writer(f)
+                    thewriter.writerow(["Other:", str(df[df['Category'] == "Other"]['Amount'].sum())])
+                    thewriter.writerow(["Salary:", str(df[df['Category'] == "Salary"]['Amount'].sum())])
+                    thewriter.writerow(["Total:", str(df['Amount'].sum())])
+                    thewriter.writerow(["Min:", str(minexp)])
+                    thewriter.writerow(["Max:", str(maxexp)])
+                msg.showinfo("SUCCESS","Overview saved successfully")
+            else:
+                msg.showerror("Abort", "Abort")
     def show_overview(self):
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
-        maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
-        msg.showinfo("Expenses Overview" ,"Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) +"\nSalary:" + str(df[df['Category'] == "Salary"]['Amount'].sum()) + "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
+        if df['Amount'].sum() == 0:
+            msg.showerror("ERROR","NO INCOME")
+        else:
+            minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
+            maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
+            msg.showinfo("Expenses Overview" ,"Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) +"\nSalary:" + str(df[df['Category'] == "Salary"]['Amount'].sum()) + "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
     def barchart(self):
         """ shows a bar chart of income"""
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]
-        plt.bar(np.arange(2), data)
-        plt.xticks(np.arange(2), ('Other', 'Salary'))
-        plt.title("Bar Chart of Income")
-        plt.show()
+        if df['Amount'].sum() == 0:
+            msg.showerror("ERROR","NO INCOME")
+        else:
+            data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]
+            plt.bar(np.arange(2), data)
+            plt.xticks(np.arange(2), ('Other', 'Salary'))
+            plt.title("Bar Chart of Income")
+            plt.show()
     def piechart(self):
         """ shows a pie chart of income"""
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        slices = [df[df['Category'] == "Salary"]['Amount'].sum(), df[df['Category'] == "Other"]['Amount'].sum()]
-        cat = ['Salary', 'Other']
-        col = ['red', 'green']
-        plt.pie(slices, labels=cat, colors=col, startangle=90, autopct='%1.1f%%')
-        plt.title("Pie Chart of Income")
-        plt.show()
+        if df['Amount'].sum() == 0:
+            msg.showerror("ERROR","NO INCOME")
+        else:
+            slices = [df[df['Category'] == "Salary"]['Amount'].sum(), df[df['Category'] == "Other"]['Amount'].sum()]
+            cat = ['Salary', 'Other']
+            col = ['red', 'green']
+            plt.pie(slices, labels=cat, colors=col, startangle=90, autopct='%1.1f%%')
+            plt.title("Pie Chart of Income")
+            plt.show()
     def clearamount(self):
         """ clears amount text field """
         self.textamount.delete(1.0, END)
@@ -155,15 +170,24 @@ class Income():
     def monsal(self):
         """ monthly income from salary """
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        msg.showinfo("Monthly income from Salay", "Monthly Income from salary for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == "Salary"]['Amount'].sum()))
+        if df['Amount'].sum() == 0:
+            msg.showerror("ERROR","NO INCOME")
+        else:
+            msg.showinfo("Monthly income from Salay", "Monthly Income from salary for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == "Salary"]['Amount'].sum()))
     def monoth(self):
         """ monthly income from other ways except salary """
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        msg.showinfo("Monthly income from other", "Monthly Income from other for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == "Other"]['Amount'].sum()))
+        if df['Amount'].sum() == 0:
+            msg.showerror("ERROR","NO INCOME")
+        else:
+            msg.showinfo("Monthly income from other", "Monthly Income from other for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == "Other"]['Amount'].sum()))
     def moninc(self):
         """ total monthly income """
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        msg.showinfo("Montly Income", "YOUR INCOME FOR THE "+str(self.nowmonth)+" MONTH IS "+str(df['Amount'].sum()))
+        if df['Amount'].sum() == 0:
+            msg.showerror("ERROR","NO INCOME")
+        else:
+            msg.showinfo("Montly Income", "YOUR INCOME FOR THE "+str(self.nowmonth)+" MONTH IS "+str(df['Amount'].sum()))
     def addinc(self):
         """ adds an income"""
         try:
