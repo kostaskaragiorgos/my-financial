@@ -104,60 +104,75 @@ class Expenses():
         self.incomeb.pack()
     def timeseriesmonth(self):
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        plt.plot(df['Date'], df['Amount'])
-        plt.show()
+         if df['Amount'].sum() == 0:
+            msg.showerror("No Expenses","No Expenses")
+        else:
+            plt.plot(df['Date'], df['Amount'])
+            plt.show()
     def saveas(self):
         """ saves overview as """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        minexp = min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
-        maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
-        self.filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"), ("csv files", "*.csv"), ("all files", "*.*")))
-        if  self.filenamesave.endswith(".txt"):
-            f = open(str(self.filenamesave)+".txt", 'a')
-            f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
-            f.write("\nTransportation:"+ str(df[df['Category'] == "Transportation"]['Amount'].sum()))
-            f.write("\nGrocery:"+ str(df[df['Category'] == "Grocery"]['Amount'].sum()))
-            f.write("\nBills/Taxes:"+ str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum()))
-            f.write("\nTotal:"+ str(df['Amount'].sum()))
-            f.write("\nMin:"+ str(minexp))
-            f.write("\nMax:"+ str(maxexp))
-            msg.showinfo("SUCCESS", "Overview saved successfully")
-        elif self.filenamesave.endswith(".csv"):
-            with open(self.filenamesave+'.csv', 'a+') as f:
-                thewriter = csv.writer(f)
-                thewriter.writerow(["Other:", str(df[df['Category'] == "Other"]['Amount'].sum())])
-                thewriter.writerow(["Transportation:", str(df[df['Category'] == "Transportation"]['Amount'].sum())])
-                thewriter.writerow(["Grocery:", str(df[df['Category'] == "Grocery"]['Amount'].sum())])
-                thewriter.writerow(["Bills/Taxes:", str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())])
-                thewriter.writerow(["Total:", str(df['Amount'].sum())])
-                thewriter.writerow(["Min:", str(minexp)])
-                thewriter.writerow(["Max:", str(maxexp)])
+        if df['Amount'].sum() == 0:
+            msg.showerror("No Expenses","No Expenses")
         else:
-            msg.showerror("Abort", "Abort")
+            minexp = min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
+            maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
+            self.filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"), ("csv files", "*.csv"), ("all files", "*.*")))
+            if  self.filenamesave.endswith(".txt"):
+                f = open(str(self.filenamesave)+".txt", 'a')
+                f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
+                f.write("\nTransportation:"+ str(df[df['Category'] == "Transportation"]['Amount'].sum()))
+                f.write("\nGrocery:"+ str(df[df['Category'] == "Grocery"]['Amount'].sum()))
+                f.write("\nBills/Taxes:"+ str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum()))
+                f.write("\nTotal:"+ str(df['Amount'].sum()))
+                f.write("\nMin:"+ str(minexp))
+                f.write("\nMax:"+ str(maxexp))
+                msg.showinfo("SUCCESS", "Overview saved successfully")
+            elif self.filenamesave.endswith(".csv"):
+                with open(self.filenamesave+'.csv', 'a+') as f:
+                    thewriter = csv.writer(f)
+                    thewriter.writerow(["Other:", str(df[df['Category'] == "Other"]['Amount'].sum())])
+                    thewriter.writerow(["Transportation:", str(df[df['Category'] == "Transportation"]['Amount'].sum())])
+                    thewriter.writerow(["Grocery:", str(df[df['Category'] == "Grocery"]['Amount'].sum())])
+                    thewriter.writerow(["Bills/Taxes:", str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())])
+                    thewriter.writerow(["Total:", str(df['Amount'].sum())])
+                    thewriter.writerow(["Min:", str(minexp)])
+                    thewriter.writerow(["Max:", str(maxexp)])
+            else:
+                msg.showerror("Abort", "Abort")
     def show_overview(self):
         """ shows overview """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
-        maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
-        msg.showinfo("Expenses Overview", "Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) + "\nTransportation:" + str(df[df['Category'] == "Transportation"]['Amount'].sum())+
-        "\nGrocery:" + str(df[df['Category'] == "Grocery"]['Amount'].sum()) + "\nBills/Taxes:" + str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())+ "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
+        if df['Amount'].sum() == 0:
+            msg.showerror("No Expenses","No Expenses")
+        else:
+            minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
+            maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
+            msg.showinfo("Expenses Overview", "Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) + "\nTransportation:" + str(df[df['Category'] == "Transportation"]['Amount'].sum())+
+            "\nGrocery:" + str(df[df['Category'] == "Grocery"]['Amount'].sum()) + "\nBills/Taxes:" + str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())+ "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
     def barchart(self):
         """ expenses bar chart"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
-        plt.bar(np.arange(4), data)
-        plt.xticks(np.arange(4), ('Other', 'Transportation', 'Grocery', 'Bills/Taxes'))
-        plt.title("Bar Chart of Expenses")
-        plt.show()
+        if df['Amount'].sum() == 0:
+            msg.showerror("No Expenses","No Expenses")
+        else:
+            data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
+            plt.bar(np.arange(4), data)
+            plt.xticks(np.arange(4), ('Other', 'Transportation', 'Grocery', 'Bills/Taxes'))
+            plt.title("Bar Chart of Expenses")
+            plt.show()
     def piechart(self):
         """ expenses bar chart"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        slices = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
-        cat = ["Other", "Transportation", "Grocery", "Bills/Taxes"]
-        col = ['r', 'g', 'w', 'b']
-        plt.pie(slices, labels=cat, colors=col, startangle=90, autopct='%1.1f%%')
-        plt.title("Pie Chart of Expenses")
-        plt.show()
+        if df['Amount'].sum() == 0:
+            msg.showerror("No Expenses","No Expenses")
+        else:
+            slices = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
+            cat = ["Other", "Transportation", "Grocery", "Bills/Taxes"]
+            col = ['r', 'g', 'w', 'b']
+            plt.pie(slices, labels=cat, colors=col, startangle=90, autopct='%1.1f%%')
+            plt.title("Pie Chart of Expenses")
+            plt.show()
     def clearamount(self):
         """ clears amount text field """
         self.textamount.delete(1.0, END)
@@ -167,19 +182,31 @@ class Expenses():
     def monexpother(self):
         """ calculates the other monthly expenses """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        msg.showinfo("Monthly Expenses for other", "Monthly Expenses for other for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == "Other"]['Amount'].sum()))
+        if df['Amount'].sum() == 0:
+            msg.showerror("No Expenses","No Expenses")
+        else:
+            msg.showinfo("Monthly Expenses for other", "Monthly Expenses for other for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == "Other"]['Amount'].sum()))
     def monexptransportation(self):
         """ shows monthly expenses for transportation"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        msg.showinfo("Monthly Expenses for transportation", "Monthly Expenses for Transportation for the "+str(self.nowmonth)+ " month is "+ str(df[df['Category'] == "Transportation"]['Amount'].sum()))
+        if df['Amount'].sum() == 0:
+            msg.showerror("No Expenses","No Expenses")
+        else:
+            msg.showinfo("Monthly Expenses for transportation", "Monthly Expenses for Transportation for the "+str(self.nowmonth)+ " month is "+ str(df[df['Category'] == "Transportation"]['Amount'].sum()))
     def monexpgrocery(self):
         """ shows expenses for grocery"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        msg.showinfo("Monthly Expenses for Grocery", "Monthly Expenses for Grocery for the "+str(self.nowmonth)+" month is " +str(df[df['Category'] == "Grocery"]['Amount'].sum()))
+        if df['Amount'].sum() == 0:
+            msg.showerror("No Expenses","No Expenses")
+        else:
+            msg.showinfo("Monthly Expenses for Grocery", "Monthly Expenses for Grocery for the "+str(self.nowmonth)+" month is " +str(df[df['Category'] == "Grocery"]['Amount'].sum()))
     def monexptaxes(self):
         """ shows expenses for bills/Taxes """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        msg.showinfo("Monthly Expenses for Bills/Taxes", "Monthly Expenses for Bills/Taxes for the "+str(self.nowmonth)+" month is "+str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum()))
+        if df['Amount'].sum() == 0:
+            msg.showerror("No Expenses","No Expenses")
+        else:
+            msg.showinfo("Monthly Expenses for Bills/Taxes", "Monthly Expenses for Bills/Taxes for the "+str(self.nowmonth)+" month is "+str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum()))
     def monexp(self):
         """ shows montly Expenses"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
