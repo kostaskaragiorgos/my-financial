@@ -210,7 +210,10 @@ class Expenses():
     def monexp(self):
         """ shows montly Expenses"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        msg.showinfo("Montly Expenses", "YOUR EXPENSES FOR THE "+str(self.nowmonth)+" MONTH IS "+str(df['Amount'].sum()))
+        if df['Amount'].sum() == 0:
+            msg.showerror("No Expenses","No Expenses")
+        else:
+            msg.showinfo("Montly Expenses", "YOUR EXPENSES FOR THE "+str(self.nowmonth)+" MONTH IS "+str(df['Amount'].sum()))
     def addexp(self):
         """ adds an expense"""
         try:
