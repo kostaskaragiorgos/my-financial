@@ -104,9 +104,10 @@ class Income():
             plt.plot(df['Date'], df['Amount'])
             plt.show()
     def saveas(self):
+        """ Saves overview to a .txt or .csv file"""
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
-            msg.showerror("ERROR","NO INCOME")
+            msg.showerror("ERROR","NO INCOME TO SAVE")
         else:
             minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
             maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
@@ -131,6 +132,7 @@ class Income():
             else:
                 msg.showerror("Abort", "Abort")
     def show_overview(self):
+        """ shows_overview"""
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
             msg.showerror("ERROR","NO INCOME")
