@@ -104,7 +104,7 @@ class Expenses():
         self.incomeb.pack()
     def timeseriesmonth(self):
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-         if df['Amount'].sum() == 0:
+        if df['Amount'].sum() == 0:
             msg.showerror("No Expenses","No Expenses")
         else:
             plt.plot(df['Date'], df['Amount'])
