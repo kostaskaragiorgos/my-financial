@@ -135,6 +135,7 @@ class Expenses():
         else:
             msg.showerror("Abort", "Abort")
     def show_overview(self):
+        """ shows overview """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
         maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
