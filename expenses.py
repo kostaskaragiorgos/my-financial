@@ -110,7 +110,7 @@ class Expenses():
             plt.plot(df['Date'], df['Amount'])
             plt.show()
     def saveas(self):
-        """ saves overview as """
+        """ saves overview to a .txt or a .csv file"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
             msg.showerror("No Expenses","No Expenses")
