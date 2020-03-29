@@ -7,6 +7,7 @@ import csv
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import re
 def aboutmenu():
     """ about menu function """
     msg.showinfo("About Income ", "Income\nVersion 1.0")
@@ -70,6 +71,7 @@ class Income():
         self.show.add_command(label="Show Bar chart", accelerator='Ctrl+B', command=self.barchart)
         self.show.add_command(label="Show Pie chart", accelerator='Ctrl+P', command=self.piechart)
         self.show.add_command(label="Show time series m", accelerator='Ctrl+T', command=self.timeseriesmonth)
+        self.show.add_command(label="Show income info", accelerator='Alt+N', command=self.show_income_info)
         self.menu.add_cascade(label="Show", menu=self.show)
         self.showinc = Menu(self.menu, tearoff=0)
         self.showinc.add_command(label="Monthly Salary", accelerator='Alt+S', command=self.monsal)
@@ -97,6 +99,15 @@ class Income():
         self.master.bind('<Control-p>', lambda event: self.piechart())
         self.master.bind('<Control-b>', lambda event: self.barchart())
         self.master.bind('<Control-n>', lambda event: self.show_overview())
+        self.master.bind('<Alt-n>', lambda event: self.show_income_info())
+    def show_income_info(self):
+        """ shows income info """
+        df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
+        if df['Amount'].sum() == 0:
+            msg.showerror("ERROR", "NO TRANSACTIONS")
+        else:
+            df = df.replace(r'\r\n',' ', regex=True)
+            msg.showinfo("TRANSACTIONS", df.to_string())
     def timeseriesmonth(self):
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
