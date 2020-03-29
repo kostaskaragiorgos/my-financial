@@ -1,13 +1,21 @@
 File menu
-=======================
+=========================
 Add Income Ctrl + O
+Save Overview as Ctrl + S
 Exit Alt + F4
 =======================
 Edit menu
 =========================
 Clear Amount Ctrl +Z
 Clear Description Alt + Z
-========================= 
+=========================
+Show menu
+=========================
+Show Overview Ctrl + N
+Show Bar Chart Ctrl + B
+Show Pie chart Ctrl + P
+Show time series m Ctrl + T
+============================ 
 Total income menu
 ========================
 Monthly Salary Alt + S

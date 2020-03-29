@@ -138,6 +138,8 @@
   <li> Clear Description(Alt+Z) </li>
   <li> Show Bar chart(Ctrl+B) </li>
   <li> Show Pie chart(Ctrl+P) </li>
+  <li> Show time series m(Ctrl+T) </li>
+  <li> Show income info(Alt+N) </li>
   <li> Monthly Salary(Alt+S) </li>
   <li> Monthly Other(Alt+O) </li>
   <li> Monthly Income(Alt+M) </li>
