@@ -62,6 +62,7 @@ class Expenses():
         self.show.add_command(label="Show Monthly Bills/Taxes", accelerator='Alt+B', command=self.monexptaxes)
         self.show.add_command(label='Show Monthly Expenses', accelerator='Alt+S', command=self.monexp)
         self.show.add_command(label="Show Overview", accelerator='Ctrl+N', command=self.show_overview)
+        self.show.add_command(label="Show Expenses Info",accelerator='Alt-N',command=self.show_expenses_info)
         self.menu.add_cascade(label="Show", menu=self.show)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
@@ -86,6 +87,7 @@ class Expenses():
         self.master.bind('<Control-p>', lambda event: self.piechart())
         self.master.bind('<Control-b>', lambda event: self.barchart())
         self.master.bind('<Control-n>', lambda event: self.show_overview())
+        self.master.bind('<Alt-n>', lambda event: self.show_expenses_info())
         #basic gui
         self.amountl = Label(self.master,
                              text="Enter the amount")
@@ -103,6 +105,14 @@ class Expenses():
         self.popupcatlistmenu.pack()
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp) 
         self.incomeb.pack()
+    def show_expenses_info(self):
+        """ shows expenses info """
+        df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
+        if df['Amount'].sum() == 0:
+            msg.showerror("ERROR", "NO EXPENSES INFO")
+        else:
+            df = df.replace(r'\r\n',' ', regex=True)
+            msg.showinfo("EXPENSES INFO", df.to_string())
     def timeseriesmonth(self):
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
