@@ -76,12 +76,15 @@
   <li> Clear Description(Alt+Z) </li>
   <li> Bar Chart(Ctrl+B) </li>
   <li> Pie Chart(Ctrl+P) </li>
+  <li> Show time series m(Ctrl+T) </li>
   <li> Show Monthly Other(Alt+O) </li>
   <li> Show Monthly Transportation(Alt+T) </li>
   <li> Show Monthly Grocery(Alt+G) </li>
   <li> Show Monthly Bills/Taxes(Alt+B) </li>
-  <li> Monthly Expenses(Ctrl+S) </li>
-  <li> Abput(Ctrl+I) </li>
+  <li> Show Monthly Expenses(Ctrl+S) </li>
+  <li> Show Overview(Ctrl+N) </li>
+  <li> Show Expenses Info(Alt+N) </li>
+  <li> About(Ctrl+I) </li>
   <li> Help(Ctrl+F1) </li>
 </ul>
 

@@ -62,7 +62,7 @@ class Expenses():
         self.show.add_command(label="Show Monthly Bills/Taxes", accelerator='Alt+B', command=self.monexptaxes)
         self.show.add_command(label='Show Monthly Expenses', accelerator='Alt+S', command=self.monexp)
         self.show.add_command(label="Show Overview", accelerator='Ctrl+N', command=self.show_overview)
-        self.show.add_command(label="Show Expenses Info",accelerator='Alt-N',command=self.show_expenses_info)
+        self.show.add_command(label="Show Expenses Info",accelerator='Alt+N',command=self.show_expenses_info)
         self.menu.add_cascade(label="Show", menu=self.show)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)

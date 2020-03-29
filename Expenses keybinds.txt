@@ -8,13 +8,21 @@ Edit menu
 Clear Amount Ctrl + Z
 Clear Description Alt + Z
 =========================
+Charts menu
+==================
+Bar Chart Ctrl + B
+Pie Chart Ctrl + P
+Show time series m Ctrl + T
+===========================
 Show menu
 ===================================
 Show Monthly Other Alt + O
 Show Monthly Transportation Alt + T
 Show Monthly Grocery Alt + G
 Show Monthly Bills/Taxes Alt + B
-Monthly Expenses Ctrl + S
+Show Monthly Expenses Ctrl + S
+Show Overview Ctrl + N
+Show Expenses Info Alt + N
 ===================================
 About menu
 ==============
