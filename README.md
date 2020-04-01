@@ -57,14 +57,14 @@
 
 ## Expenses_Current_Version
 
-<p><img src ="Expenses.png" title = "Expenses Version"/> </p>
+<p><img src ="images/Expenses.png" title = "Expenses Version"/> </p>
 
 ## Expenses_Radon
 
-<p><img src="expenses radon cc.png" title="Expenses Radon cc"/> </p>
-<p><img src="expenses radon hal.png" title="Expenses Radon hal"/> </p>
-<p><img src="expenses radon mi.png" title="Expenses Radon mi"/> </p>
-<p><img src="expenses radon raw.png" title="Expenses Radon raw"/> </p>
+<p><img src="images/expenses radon cc.png" title="Expenses Radon cc"/> </p>
+<p><img src="images/expenses radon hal.png" title="Expenses Radon hal"/> </p>
+<p><img src="images/expenses radon mi.png" title="Expenses Radon mi"/> </p>
+<p><img src="images/expenses radon raw.png" title="Expenses Radon raw"/> </p>
 
 ## Expenses_Keybinds 
 
@@ -93,14 +93,14 @@
 
  ## Emergency_fund_Current_Version
 
-<p><img src ="em fund.png" title = "em fund Version"/> </p>
+<p><img src ="images/em fund.png" title = "em fund Version"/> </p>
 
 ## Emergency_fund_Radon
 
-<p><img src="emf radon cc.png" title = "emf radon cc"/> </p>
-<p><img src="emf radon hal.png" title ="emf radon hal"/> </p>
-<p><img src="emf radon mi.png" title ="emf radon mi"/></p>
-<p><img src="emf radon raw.png" title="emf radon raw"/></p>
+<p><img src="images/emf radon cc.png" title = "emf radon cc"/> </p>
+<p><img src="images/emf radon hal.png" title ="emf radon hal"/> </p>
+<p><img src="images/emf radon mi.png" title ="emf radon mi"/></p>
+<p><img src="images/emf radon raw.png" title="emf radon raw"/></p>
 
 ## Emergency_fund_Keybinds
 
@@ -118,14 +118,14 @@
  
  ## Income_Current_Version
 
-<p><img src ="income.png" title = " income Version"/> </p>
+<p><img src ="images/income.png" title = " income Version"/> </p>
 
 ## Income_Radon
 
-<p><img src="income radon cc.png" title = "income radon cc"/> </p>
-<p><img src="income radon hal.png" title ="income radon hal"/> </p>
-<p><img src="income radon mi.png" title ="income radon mi"/></p>
-<p><img src="income radon raw.png" title="income radon raw"/></p>
+<p><img src="images/income radon cc.png" title = "income radon cc"/> </p>
+<p><img src="images/income radon hal.png" title ="income radon hal"/> </p>
+<p><img src="images/income radon mi.png" title ="income radon mi"/></p>
+<p><img src="images/income radon raw.png" title="income radon raw"/></p>
 
 
 ## Income_Keybinds
@@ -153,7 +153,7 @@
 
  ## Saving_game_Current_Version
 
-<p> <img src = "game.png" title = "Game Version"/> </p>
+<p> <img src = "images/game.png" title = "Game Version"/> </p>
 
 ## Saving_game_Keybinds
 
