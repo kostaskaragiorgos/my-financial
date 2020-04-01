@@ -62,7 +62,7 @@ class Expenses():
         self.show.add_command(label="Show Monthly Bills/Taxes", accelerator='Alt+B', command=self.monexptaxes)
         self.show.add_command(label='Show Monthly Expenses', accelerator='Alt+S', command=self.monexp)
         self.show.add_command(label="Show Overview", accelerator='Ctrl+N', command=self.show_overview)
-        self.show.add_command(label="Show Expenses Info",accelerator='Alt+N',command=self.show_expenses_info)
+        self.show.add_command(label="Show Expenses Info", accelerator='Alt+N', command=self.show_expenses_info)
         self.menu.add_cascade(label="Show", menu=self.show)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
@@ -111,12 +111,12 @@ class Expenses():
         if df['Amount'].sum() == 0:
             msg.showerror("ERROR", "NO EXPENSES INFO")
         else:
-            df = df.replace(r'\r\n',' ', regex=True)
+            df = df.replace(r'\r\n', ' ', regex=True)
             msg.showinfo("EXPENSES INFO", df.to_string())
     def timeseriesmonth(self):
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
-            msg.showerror("No Expenses","No Expenses")
+            msg.showerror("No Expenses", "No Expenses")
         else:
             plt.plot(df['Date'], df['Amount'])
             plt.show()
@@ -124,7 +124,7 @@ class Expenses():
         """ saves overview to a .txt or a .csv file"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
-            msg.showerror("No Expenses","No Expenses")
+            msg.showerror("No Expenses", "No Expenses")
         else:
             minexp = min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
             maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
@@ -155,9 +155,9 @@ class Expenses():
         """ shows overview """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
-            msg.showerror("No Expenses","No Expenses")
+            msg.showerror("No Expenses", "No Expenses")
         else:
-            minexp =  min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
+            minexp = min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
             maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
             msg.showinfo("Expenses Overview", "Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) + "\nTransportation:" + str(df[df['Category'] == "Transportation"]['Amount'].sum())+
             "\nGrocery:" + str(df[df['Category'] == "Grocery"]['Amount'].sum()) + "\nBills/Taxes:" + str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())+ "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
@@ -165,7 +165,7 @@ class Expenses():
         """ expenses bar chart"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
-            msg.showerror("No Expenses","No Expenses")
+            msg.showerror("No Expenses", "No Expenses")
         else:
             data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
             plt.bar(np.arange(4), data)
@@ -176,7 +176,7 @@ class Expenses():
         """ expenses bar chart"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
-            msg.showerror("No Expenses","No Expenses")
+            msg.showerror("No Expenses", "No Expenses")
         else:
             slices = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
             cat = ["Other", "Transportation", "Grocery", "Bills/Taxes"]
@@ -194,35 +194,35 @@ class Expenses():
         """ calculates the other monthly expenses """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
-            msg.showerror("No Expenses","No Expenses")
+            msg.showerror("No Expenses", "No Expenses")
         else:
             msg.showinfo("Monthly Expenses for other", "Monthly Expenses for other for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == "Other"]['Amount'].sum()))
     def monexptransportation(self):
         """ shows monthly expenses for transportation"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
-            msg.showerror("No Expenses","No Expenses")
+            msg.showerror("No Expenses", "No Expenses")
         else:
             msg.showinfo("Monthly Expenses for transportation", "Monthly Expenses for Transportation for the "+str(self.nowmonth)+ " month is "+ str(df[df['Category'] == "Transportation"]['Amount'].sum()))
     def monexpgrocery(self):
         """ shows expenses for grocery"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
-            msg.showerror("No Expenses","No Expenses")
+            msg.showerror("No Expenses", "No Expenses")
         else:
             msg.showinfo("Monthly Expenses for Grocery", "Monthly Expenses for Grocery for the "+str(self.nowmonth)+" month is " +str(df[df['Category'] == "Grocery"]['Amount'].sum()))
     def monexptaxes(self):
         """ shows expenses for bills/Taxes """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
-            msg.showerror("No Expenses","No Expenses")
+            msg.showerror("No Expenses", "No Expenses")
         else:
             msg.showinfo("Monthly Expenses for Bills/Taxes", "Monthly Expenses for Bills/Taxes for the "+str(self.nowmonth)+" month is "+str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum()))
     def monexp(self):
         """ shows montly Expenses"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
-            msg.showerror("No Expenses","No Expenses")
+            msg.showerror("No Expenses", "No Expenses")
         else:
             msg.showinfo("Montly Expenses", "YOUR EXPENSES FOR THE "+str(self.nowmonth)+" MONTH IS "+str(df['Amount'].sum()))
     def addexp(self):
