@@ -19,7 +19,7 @@ class Expenses():
     def __init__(self, master):
         self.master = master
         self.master.title("Expenses")
-        self.master.geometry("250x140")
+        self.master.geometry("250x160")
         self.master.resizable(False, False)
        # folders 
         if not os.path.exists("expenses"):
@@ -50,6 +50,8 @@ class Expenses():
         self.edit_menu.add_command(label="Clear Amount", accelerator='Ctrl+Z', command=self.clearamount)
         self.edit_menu.add_command(label="Clear Description", accelerator='Alt+Z', command=self.cleardes)
         self.menu.add_cascade(label="Edit", menu=self.edit_menu)
+        self.budget_menu = Menu(self.menu, tearoff=0)
+        self.menu.add_cascade(label="Budget", menu=self.budget_menu)
         self.charts = Menu(self.menu, tearoff=0)
         self.charts.add_command(label="Bar Chart", accelerator='Ctrl+B', command=self.barchart)
         self.charts.add_command(label="Pie Chart", accelerator='Ctrl+P', command=self.piechart)
