@@ -115,18 +115,22 @@ class Expenses():
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp) 
         self.incomeb.pack()
     def setbillsortaxesbudget(self):
+        """ sets a bills/taxes budget """
         self.billsortaxes_budget = simpledialog.askfloat("Bills/Taxes Budget", "Enter your bills/taxes budget", parent=self.master, minvalue= 1.0 , maxvalue= 10_000.00)
         while self.billsortaxes_budget is None:
             self.billsortaxes_budget = simpledialog.askfloat("Bills/Taxes Budget", "Enter your bills/taxes budget", parent=self.master, minvalue= 1.0 , maxvalue= 10_000.00)
     def settransportationbudget(self):
+        """ sets a transportation budget"""
         self.transportation_budget = simpledialog.askfloat("Transportation Budget", "Enter your transportation budget", parent=self.master, minvalue= 1.0 , maxvalue= 10_000.00)
         while self.transportation_budget is None:
             self.transportation_budget = simpledialog.askfloat("Transportation Budget", "Enter your transportation budget", parent=self.master, minvalue= 1.0 , maxvalue= 10_000.00)
     def setotherbudget(self):
+        """ sets other budget"""
         self.other_budget = simpledialog.askfloat("Other Budget", "Enter your other budget", parent=self.master, minvalue= 1.0 , maxvalue= 10_000.00)
         while self.other_budget is None:
             self.other_budget = simpledialog.askfloat("Other Budget", "Enter your other budget", parent=self.master, minvalue= 1.0 , maxvalue= 10_000.00)
     def setgrocerybudget(self):
+        """ sets a grocery budget """
         self.grocery_budeget = simpledialog.askfloat("Grocery Budget", "Enter your gorcery budget", parent=self.master, minvalue= 1.0 , maxvalue= 10_000.00)
         while self.grocery_budeget is None:
             self.grocery_budeget = simpledialog.askfloat("Grocery Budget", "Enter your gorcery budget", parent=self.master, minvalue= 1.0 , maxvalue= 10_000.00)
