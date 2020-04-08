@@ -19,7 +19,7 @@ class Expenses():
     def __init__(self, master):
         self.master = master
         self.master.title("Expenses")
-        self.master.geometry("250x160")
+        self.master.geometry("250x170")
         self.master.resizable(False, False)
        # folders 
         if not os.path.exists("expenses"):
@@ -52,10 +52,10 @@ class Expenses():
         self.menu.add_cascade(label="Edit", menu=self.edit_menu)
         self.budget_menu = Menu(self.menu, tearoff=0)
         self.submenu = Menu(self.budget_menu, tearoff=0)
-        self.submenu.add_command(label="Set Grocery budget", command=self.setgrocerybudget)
-        self.submenu.add_command(label="Set Other budget", command=self.setotherbudget)
-        self.submenu.add_command(label="Set Transportation budget", command=self.settransportationbudget)
-        self.submenu.add_command(label="Bills/Taxes", command=self.setbillsortaxesbudget)
+        self.submenu.add_command(label="Set Grocery budget", accelerator='Alt+P', command=self.setgrocerybudget)
+        self.submenu.add_command(label="Set Other budget", accelerator='Alt+Q', command=self.setotherbudget)
+        self.submenu.add_command(label="Set Transportation budget", accelerator='Ctrl+Q', command=self.settransportationbudget)
+        self.submenu.add_command(label="Set Bills/Taxes",accelerator='Ctrl+W', command=self.setbillsortaxesbudget)
         self.budget_menu.add_cascade(label="Set budget", menu=self.submenu, underline=0)
         self.budget_menu.add_command(label="Show budget")
         self.menu.add_cascade(label="Budget", menu=self.budget_menu)
@@ -80,6 +80,10 @@ class Expenses():
         self.help_menu.add_command(label="Help", accelerator='Ctrl+F1', command=helpmenu)
         self.menu.add_cascade(label="Help", menu=self.help_menu)
         self.master.config(menu=self.menu)
+        self.master.bind('<Alt-p>', lambda event: self.setgrocerybudget())
+        self.master.bind('<Alt-q>', lambda event: self.setotherbudget())
+        self.master.bind('<Control-q>', lambda event: self.settransportationbudget())
+        self.master.bind('<Control-w>', lambda event: self.setbillsortaxesbudget())
         self.master.bind('<Control-t>', lambda event: self.timeseriesmonth())
         self.master.bind('<Control-s>', lambda event: self.saveas())
         self.master.bind('<Control-o>', lambda event: self.addexp())
