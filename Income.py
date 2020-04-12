@@ -105,7 +105,7 @@ class Income():
         if df['Amount'].sum() == 0:
             msg.showerror("ERROR", "NO INCOME INFO")
         else:
-            df = df.replace(r'\r\n', ' ', regex=True)
+            df.replace(r'\r\n', ' ', regex=True, inplace=True)
             msg.showinfo("INCOME INFO", df.to_string())
     def timeseriesmonth(self):
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
