@@ -144,7 +144,7 @@ class Expenses():
         if df['Amount'].sum() == 0:
             msg.showerror("ERROR", "NO EXPENSES INFO")
         else:
-            df = df.replace(r'\r\n', ' ', regex=True)
+            df.replace(r'\r\n', ' ', regex=True,inplace=True)
             msg.showinfo("EXPENSES INFO", df.to_string())
     def timeseriesmonth(self):
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
