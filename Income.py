@@ -107,6 +107,7 @@ class Income():
             thewriter.writerow(["Total:", str(df['Amount'].sum())])
             thewriter.writerow(["Min:", str(min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]))])
             thewriter.writerow(["Max:", str(max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]))])
+        msg.showinfo("SUCCESS", "Overview saved successfully")
     def savetxt(self,filename, df):
         f = open(str(filename)+".txt", 'a')
         f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
@@ -115,6 +116,7 @@ class Income():
         f.write("\nMin:"+ str(min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])))
         f.write("\nMax:"+ str(max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])))
         f.close()
+        msg.showinfo("SUCCESS", "Overview saved successfully")
     def show_income_info(self):
         """ shows income info """
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
@@ -139,10 +141,8 @@ class Income():
             self.filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"), ("csv files", "*.csv"), ("all files", "*.*")))
             if  self.filenamesave.endswith(".txt"):
                 self.savetxt(self.filenamesave, df)
-                msg.showinfo("SUCCESS", "Overview saved successfully")
             elif self.filenamesave.endswith(".csv"):
                 self.savecsv(self.filenamesave, df)
-                msg.showinfo("SUCCESS", "Overview saved successfully")
             else:
                 msg.showerror("Abort", "Abort")
     def show_overview(self):
