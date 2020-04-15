@@ -139,6 +139,7 @@ class Income():
             self.filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"), ("csv files", "*.csv"), ("all files", "*.*")))
             if  self.filenamesave.endswith(".txt"):
                 self.savetxt(self.filenamesave, df)
+                msg.showinfo("SUCCESS", "Overview saved successfully")
             elif self.filenamesave.endswith(".csv"):
                 self.savecsv(self.filenamesave, df)
                 msg.showinfo("SUCCESS", "Overview saved successfully")
