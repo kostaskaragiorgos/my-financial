@@ -100,6 +100,7 @@ class Income():
         self.master.bind('<Control-n>', lambda event: self.show_overview())
         self.master.bind('<Alt-n>', lambda event: self.show_income_info())
     def savecsv(self,filename, df):
+        """ saves overview  to a csv """
         with open(filename+'.csv', 'a+') as f:
             thewriter = csv.writer(f)
             thewriter.writerow(["Other:", str(df[df['Category'] == "Other"]['Amount'].sum())])
@@ -109,6 +110,7 @@ class Income():
             thewriter.writerow(["Max:", str(max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]))])
         msg.showinfo("SUCCESS", "Overview saved successfully")
     def savetxt(self,filename, df):
+        """ saves overview to a txt """
         f = open(str(filename)+".txt", 'a')
         f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
         f.write("\nSalary:"+ str(df[df['Category'] == "Salary"]['Amount'].sum()))
