@@ -153,8 +153,29 @@ class Expenses():
         else:
             plt.plot(df['Date'], df['Amount'])
             plt.show()
+    def savetxt(self, filename, df, minexp, maxexp):
+        f = open(str(self.filenamesave)+".txt", 'a')
+        f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
+        f.write("\nTransportation:"+ str(df[df['Category'] == "Transportation"]['Amount'].sum()))
+        f.write("\nGrocery:"+ str(df[df['Category'] == "Grocery"]['Amount'].sum()))
+        f.write("\nBills/Taxes:"+ str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum()))
+        f.write("\nTotal:"+ str(df['Amount'].sum()))
+        f.write("\nMin:"+ str(minexp))
+        f.write("\nMax:"+ str(maxexp))
+        msg.showinfo("SUCCESS", "Overview saved successfully")
+    def savecsv(self, filename, df, minexp, maxexp):
+        with open(self.filenamesave+'.csv', 'a+') as f:
+            thewriter = csv.writer(f)
+            thewriter.writerow(["Other:", str(df[df['Category'] == "Other"]['Amount'].sum())])
+            thewriter.writerow(["Transportation:", str(df[df['Category'] == "Transportation"]['Amount'].sum())])
+            thewriter.writerow(["Grocery:", str(df[df['Category'] == "Grocery"]['Amount'].sum())])
+            thewriter.writerow(["Bills/Taxes:", str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())])
+            thewriter.writerow(["Total:", str(df['Amount'].sum())])
+            thewriter.writerow(["Min:", str(minexp)])
+            thewriter.writerow(["Max:", str(maxexp)])
+        msg.showinfo("SUCCESS", "Overview saved successfully")
     def saveas(self):
-        """ saves overview to a .txt or a .csv file"""
+        """ saves overview """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
             msg.showerror("No Expenses", "No Expenses")
@@ -163,25 +184,9 @@ class Expenses():
             maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
             self.filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"), ("csv files", "*.csv"), ("all files", "*.*")))
             if  self.filenamesave.endswith(".txt"):
-                f = open(str(self.filenamesave)+".txt", 'a')
-                f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
-                f.write("\nTransportation:"+ str(df[df['Category'] == "Transportation"]['Amount'].sum()))
-                f.write("\nGrocery:"+ str(df[df['Category'] == "Grocery"]['Amount'].sum()))
-                f.write("\nBills/Taxes:"+ str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum()))
-                f.write("\nTotal:"+ str(df['Amount'].sum()))
-                f.write("\nMin:"+ str(minexp))
-                f.write("\nMax:"+ str(maxexp))
-                msg.showinfo("SUCCESS", "Overview saved successfully")
+                self.savetxt(self.filenamesave, df, minexp,maxexp)
             elif self.filenamesave.endswith(".csv"):
-                with open(self.filenamesave+'.csv', 'a+') as f:
-                    thewriter = csv.writer(f)
-                    thewriter.writerow(["Other:", str(df[df['Category'] == "Other"]['Amount'].sum())])
-                    thewriter.writerow(["Transportation:", str(df[df['Category'] == "Transportation"]['Amount'].sum())])
-                    thewriter.writerow(["Grocery:", str(df[df['Category'] == "Grocery"]['Amount'].sum())])
-                    thewriter.writerow(["Bills/Taxes:", str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())])
-                    thewriter.writerow(["Total:", str(df['Amount'].sum())])
-                    thewriter.writerow(["Min:", str(minexp)])
-                    thewriter.writerow(["Max:", str(maxexp)])
+                self.savecsv(self.filenamesave, df, minexp, maxexp)
             else:
                 msg.showerror("Abort", "Abort")
     def show_overview(self):
