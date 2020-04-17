@@ -99,7 +99,7 @@ class Income():
         self.master.bind('<Control-b>', lambda event: self.barchart())
         self.master.bind('<Control-n>', lambda event: self.show_overview())
         self.master.bind('<Alt-n>', lambda event: self.show_income_info())
-    def savecsv(self,filename, df):
+    def savecsv(self, filename, df):
         """ saves  to csv """
         with open(filename+'.csv', 'a+') as f:
             thewriter = csv.writer(f)
@@ -109,7 +109,7 @@ class Income():
             thewriter.writerow(["Min:", str(min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]))])
             thewriter.writerow(["Max:", str(max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]))])
         msg.showinfo("SUCCESS", "Overview saved successfully")
-    def savetxt(self,filename, df):
+    def savetxt(self, filename, df):
         """ saves to txt """
         f = open(str(filename)+".txt", 'a')
         f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
