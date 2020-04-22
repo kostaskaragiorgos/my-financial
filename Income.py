@@ -185,7 +185,7 @@ class Income():
     def cleardesc(self):
         """ clears description text field """
         self.textdes.delete(1.0, END)
-    def monthlyincome(self,category):
+    def monthlyincome(self, category):
         """ monthly income from salary """
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
