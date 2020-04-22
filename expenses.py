@@ -229,7 +229,7 @@ class Expenses():
         """ clears description text field """
         self.textdes.delete(1.0, END)
     def monthlyexpenses(self, category):
-        """ calculates the other monthly expenses """
+        """ calculates the monthly expenses by category """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
             msg.showerror("No Expenses", "No Expenses")
