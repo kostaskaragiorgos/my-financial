@@ -73,9 +73,9 @@ class Income():
         self.show.add_command(label="Show income info", accelerator='Alt+N', command=self.show_income_info)
         self.menu.add_cascade(label="Show", menu=self.show)
         self.showinc = Menu(self.menu, tearoff=0)
-        self.showinc.add_command(label="Monthly Salary", accelerator='Alt+S', command=self.monsal)
-        self.showinc.add_command(label="Monthly Other", accelerator='Alt+O', command=self.monoth)
-        self.showinc.add_command(label="Monthly Income", accelerator='Alt+M', command=self.moninc)
+        self.showinc.add_command(label="Monthly Salary", accelerator='Alt+S', command=lambda: self.monthlyincome('Salary'))
+        self.showinc.add_command(label="Monthly Other", accelerator='Alt+O', command=lambda: self.monthlyincome('Other'))
+        self.showinc.add_command(label="Monthly Income", accelerator='Alt+M', command=lambda: self.monthlyincome(None))
         self.menu.add_cascade(label="Total Income", menu=self.showinc)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
@@ -86,12 +86,12 @@ class Income():
         self.master.config(menu=self.menu)
         self.master.bind('<Control-t>', lambda event: self.timeseriesmonth())
         self.master.bind('<Control-s>', lambda event: self.saveas())
-        self.master.bind('<Alt-o>', lambda event: self.monoth())
-        self.master.bind('<Alt-s>', lambda event: self.monsal())
+        self.master.bind('<Alt-o>', lambda event: self.monthlyincome('Other'))
+        self.master.bind('<Alt-s>', lambda event: self.monthlyincome('Salary'))
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
-        self.master.bind('<Alt-m>', lambda event: self.moninc())
+        self.master.bind('<Alt-m>', lambda event: self.monthlyincome(None))
         self.master.bind('<Control-o>', lambda event: self.addinc())
         self.master.bind('<Control-z>', lambda event: self.clearamount())
         self.master.bind('<Alt-z>', lambda event: self.cleardesc())
@@ -185,27 +185,15 @@ class Income():
     def cleardesc(self):
         """ clears description text field """
         self.textdes.delete(1.0, END)
-    def monsal(self):
+    def monthlyincome(self,category):
         """ monthly income from salary """
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
             msg.showerror("ERROR", "NO INCOME")
-        else:
-            msg.showinfo("Monthly income from Salay", "Monthly Income from salary for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == "Salary"]['Amount'].sum()))
-    def monoth(self):
-        """ monthly income from other ways except salary """
-        df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        if df['Amount'].sum() == 0:
-            msg.showerror("ERROR", "NO INCOME")
-        else:
-            msg.showinfo("Monthly income from other", "Monthly Income from other for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == "Other"]['Amount'].sum()))
-    def moninc(self):
-        """ total monthly income """
-        df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        if df['Amount'].sum() == 0:
-            msg.showerror("ERROR", "NO INCOME")
-        else:
+        elif category is None:
             msg.showinfo("Montly Income", "YOUR INCOME FOR THE "+str(self.nowmonth)+" MONTH IS "+str(df['Amount'].sum()))
+        else:
+            msg.showinfo("Monthly income from "+str(category), "Monthly Income from "+str(category)+" for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == category]['Amount'].sum()))
     def addinc(self):
         """ adds an income"""
         try:
