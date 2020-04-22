@@ -65,10 +65,10 @@ class Expenses():
         self.charts.add_command(label="Show time series m", accelerator='Ctrl+T', command=self.timeseriesmonth)
         self.menu.add_cascade(label="Charts", menu=self.charts)
         self.show = Menu(self.menu, tearoff=0)
-        self.show.add_command(label="Show Monthly Other", accelerator='Alt+O', command=self.monexpother)
-        self.show.add_command(label="Show Monthly Transportation", accelerator='Alt+T', command=self.monexptransportation)
-        self.show.add_command(label="Show Monthly Grocery", accelerator='Alt+G', command=self.monexpgrocery)
-        self.show.add_command(label="Show Monthly Bills/Taxes", accelerator='Alt+B', command=self.monexptaxes)
+        self.show.add_command(label="Show Monthly Other", accelerator='Alt+O', command=lambda: self.monthlyexpensesbycategory('Other'))
+        self.show.add_command(label="Show Monthly Transportation", accelerator='Alt+T', command=lambda: self.monthlyexpensesbycategory('Transportation'))
+        self.show.add_command(label="Show Monthly Grocery", accelerator='Alt+G', command=lambda: self.monthlyexpensesbycategory('Grocery'))
+        self.show.add_command(label="Show Monthly Bills/Taxes", accelerator='Alt+B', command=lambda: self.monthlyexpensesbycategory('Bills/Taxes'))
         self.show.add_command(label='Show Monthly Expenses', accelerator='Alt+S', command=self.monexp)
         self.show.add_command(label="Show Overview", accelerator='Ctrl+N', command=self.show_overview)
         self.show.add_command(label="Show Expenses Info", accelerator='Alt+N', command=self.show_expenses_info)
@@ -87,14 +87,14 @@ class Expenses():
         self.master.bind('<Control-t>', lambda event: self.timeseriesmonth())
         self.master.bind('<Control-s>', lambda event: self.saveas())
         self.master.bind('<Control-o>', lambda event: self.addexp())
-        self.master.bind('<Alt-o>', lambda event: self.monexpother())
-        self.master.bind('<Alt-t>', lambda event: self.monexptransportation())
+        self.master.bind('<Alt-o>', lambda event: self.monthlyexpensesbycategory('Other'))
+        self.master.bind('<Alt-t>', lambda event: self.monthlyexpensesbycategory('Transportation'))
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
         self.master.bind('<Alt-s>', lambda event: self.monexp())
-        self.master.bind('<Alt-b>', lambda event: self.monexptaxes())
-        self.master.bind('<Alt-g>', lambda event: self.monexpgrocery())
+        self.master.bind('<Alt-b>', lambda event: self.monthlyexpensesbycategory('Bills/Taxes'))
+        self.master.bind('<Alt-g>', lambda event: self.monthlyexpensesbycategory('Grocery'))
         self.master.bind('<Control-z>', lambda event: self.clearamount())
         self.master.bind('<Alt-z>', lambda event: self.cleardes())
         self.master.bind('<Control-p>', lambda event: self.piechart())
@@ -228,34 +228,13 @@ class Expenses():
     def cleardes(self):
         """ clears description text field """
         self.textdes.delete(1.0, END)
-    def monexpother(self):
+    def monthlyexpensesbycategory(self, category):
         """ calculates the other monthly expenses """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
             msg.showerror("No Expenses", "No Expenses")
         else:
-            msg.showinfo("Monthly Expenses for other", "Monthly Expenses for other for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == "Other"]['Amount'].sum()))
-    def monexptransportation(self):
-        """ shows monthly expenses for transportation"""
-        df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        if df['Amount'].sum() == 0:
-            msg.showerror("No Expenses", "No Expenses")
-        else:
-            msg.showinfo("Monthly Expenses for transportation", "Monthly Expenses for Transportation for the "+str(self.nowmonth)+ " month is "+ str(df[df['Category'] == "Transportation"]['Amount'].sum()))
-    def monexpgrocery(self):
-        """ shows expenses for grocery"""
-        df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        if df['Amount'].sum() == 0:
-            msg.showerror("No Expenses", "No Expenses")
-        else:
-            msg.showinfo("Monthly Expenses for Grocery", "Monthly Expenses for Grocery for the "+str(self.nowmonth)+" month is " +str(df[df['Category'] == "Grocery"]['Amount'].sum()))
-    def monexptaxes(self):
-        """ shows expenses for bills/Taxes """
-        df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        if df['Amount'].sum() == 0:
-            msg.showerror("No Expenses", "No Expenses")
-        else:
-            msg.showinfo("Monthly Expenses for Bills/Taxes", "Monthly Expenses for Bills/Taxes for the "+str(self.nowmonth)+" month is "+str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum()))
+            msg.showinfo("Monthly Expenses for"+str(category), "Monthly Expenses for"+str(category)+" for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == category]['Amount'].sum()))
     def monexp(self):
         """ shows montly Expenses"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
