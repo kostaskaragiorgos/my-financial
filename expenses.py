@@ -55,13 +55,13 @@ class Expenses():
         self.submenu.add_command(label="Set Grocery budget", accelerator='Alt+P', command=self.setgrocerybudget)
         self.submenu.add_command(label="Set Other budget", accelerator='Alt+Q', command=self.setotherbudget)
         self.submenu.add_command(label="Set Transportation budget", accelerator='Ctrl+Q', command=self.settransportationbudget)
-        self.submenu.add_command(label="Set Bills/Taxes",accelerator='Ctrl+W', command=self.setbillsortaxesbudget)
+        self.submenu.add_command(label="Set Bills/Taxes", accelerator='Ctrl+W', command=self.setbillsortaxesbudget)
         self.budget_menu.add_cascade(label="Set budget", menu=self.submenu, underline=0)
         self.budget_menu.add_command(label="Show budget")
         self.menu.add_cascade(label="Budget", menu=self.budget_menu)
         self.charts = Menu(self.menu, tearoff=0)
-        self.charts.add_command(label="Bar Chart", accelerator='Ctrl+B', command=lambda: self.Charts("Bar Chart of Expenses",["Other", "Transportation", "Grocery", "Bills/Taxes"], 'bar', ['r', 'g', 'y', 'b']))
-        self.charts.add_command(label="Pie Chart", accelerator='Ctrl+P', command=lambda: self.Charts("Pie Chart of Expenses",["Other", "Transportation", "Grocery", "Bills/Taxes"], 'pie',['r', 'g', 'y', 'b'] ))
+        self.charts.add_command(label="Bar Chart", accelerator='Ctrl+B', command=lambda: self.Charts("Bar Chart of Expenses", ["Other", "Transportation", "Grocery", "Bills/Taxes"], 'bar', ['r', 'g', 'y', 'b']))
+        self.charts.add_command(label="Pie Chart", accelerator='Ctrl+P', command=lambda: self.Charts("Pie Chart of Expenses", ["Other", "Transportation", "Grocery", "Bills/Taxes"], 'pie', ['r', 'g', 'y', 'b']))
         self.charts.add_command(label="Show time series m", accelerator='Ctrl+T', command=self.timeseriesmonth)
         self.menu.add_cascade(label="Charts", menu=self.charts)
         self.show = Menu(self.menu, tearoff=0)
@@ -97,8 +97,8 @@ class Expenses():
         self.master.bind('<Alt-g>', lambda event: self.monthlyexpenses('Grocery'))
         self.master.bind('<Control-z>', lambda event: self.clearamount())
         self.master.bind('<Alt-z>', lambda event: self.cleardes())
-        self.master.bind('<Control-p>', lambda event: self.Charts("Pie Chart of Expenses",["Other", "Transportation", "Grocery", "Bills/Taxes"], 'pie',['r', 'g', 'y', 'b']))
-        self.master.bind('<Control-b>', lambda event: self.Charts("Bar Chart of Expenses",["Other", "Transportation", "Grocery", "Bills/Taxes"], 'bar', ['r', 'g', 'y', 'b']))
+        self.master.bind('<Control-p>', lambda event: self.Charts("Pie Chart of Expenses", ["Other", "Transportation", "Grocery", "Bills/Taxes"], 'pie', ['r', 'g', 'y', 'b']))
+        self.master.bind('<Control-b>', lambda event: self.Charts("Bar Chart of Expenses", ["Other", "Transportation", "Grocery", "Bills/Taxes"], 'bar', ['r', 'g', 'y', 'b']))
         self.master.bind('<Control-n>', lambda event: self.show_overview())
         self.master.bind('<Alt-n>', lambda event: self.show_expenses_info())
         #basic gui
@@ -120,31 +120,31 @@ class Expenses():
         self.incomeb.pack()
     def setbillsortaxesbudget(self):
         """ sets a bills/taxes budget """
-        self.billsortaxes_budget = simpledialog.askfloat("Bills/Taxes Budget", "Enter your bills/taxes budget", parent=self.master, minvalue= 1.0 , maxvalue= 10_000.00)
+        self.billsortaxes_budget = simpledialog.askfloat("Bills/Taxes Budget", "Enter your bills/taxes budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
         while self.billsortaxes_budget is None:
-            self.billsortaxes_budget = simpledialog.askfloat("Bills/Taxes Budget", "Enter your bills/taxes budget", parent=self.master, minvalue= 1.0 , maxvalue= 10_000.00)
+            self.billsortaxes_budget = simpledialog.askfloat("Bills/Taxes Budget", "Enter your bills/taxes budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
     def settransportationbudget(self):
         """ sets a transportation budget"""
-        self.transportation_budget = simpledialog.askfloat("Transportation Budget", "Enter your transportation budget", parent=self.master, minvalue= 1.0 , maxvalue= 10_000.00)
+        self.transportation_budget = simpledialog.askfloat("Transportation Budget", "Enter your transportation budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
         while self.transportation_budget is None:
-            self.transportation_budget = simpledialog.askfloat("Transportation Budget", "Enter your transportation budget", parent=self.master, minvalue= 1.0 , maxvalue= 10_000.00)
+            self.transportation_budget = simpledialog.askfloat("Transportation Budget", "Enter your transportation budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
     def setotherbudget(self):
         """ sets other budget"""
-        self.other_budget = simpledialog.askfloat("Other Budget", "Enter your other budget", parent=self.master, minvalue= 1.0 , maxvalue= 10_000.00)
+        self.other_budget = simpledialog.askfloat("Other Budget", "Enter your other budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
         while self.other_budget is None:
-            self.other_budget = simpledialog.askfloat("Other Budget", "Enter your other budget", parent=self.master, minvalue= 1.0 , maxvalue= 10_000.00)
+            self.other_budget = simpledialog.askfloat("Other Budget", "Enter your other budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
     def setgrocerybudget(self):
         """ sets a grocery budget """
-        self.grocery_budeget = simpledialog.askfloat("Grocery Budget", "Enter your gorcery budget", parent=self.master, minvalue= 1.0 , maxvalue= 10_000.00)
+        self.grocery_budeget = simpledialog.askfloat("Grocery Budget", "Enter your gorcery budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
         while self.grocery_budeget is None:
-            self.grocery_budeget = simpledialog.askfloat("Grocery Budget", "Enter your gorcery budget", parent=self.master, minvalue= 1.0 , maxvalue= 10_000.00)
+            self.grocery_budeget = simpledialog.askfloat("Grocery Budget", "Enter your gorcery budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
     def show_expenses_info(self):
         """ shows expenses info """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
             msg.showerror("ERROR", "NO EXPENSES INFO")
         else:
-            df.replace(r'\r\n', ' ', regex=True,inplace=True)
+            df.replace(r'\r\n', ' ', regex=True, inplace=True)
             msg.showinfo("EXPENSES INFO", df.to_string())
     def timeseriesmonth(self):
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
@@ -154,7 +154,7 @@ class Expenses():
             plt.plot(df['Date'], df['Amount'])
             plt.show()
     def savetxt(self, filename, df, minexp, maxexp):
-        f = open(str(self.filenamesave)+".txt", 'a')
+        f = open(str(filename)+".txt", 'a')
         f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
         f.write("\nTransportation:"+ str(df[df['Category'] == "Transportation"]['Amount'].sum()))
         f.write("\nGrocery:"+ str(df[df['Category'] == "Grocery"]['Amount'].sum()))
@@ -164,7 +164,7 @@ class Expenses():
         f.write("\nMax:"+ str(maxexp))
         msg.showinfo("SUCCESS", "Overview saved successfully")
     def savecsv(self, filename, df, minexp, maxexp):
-        with open(self.filenamesave+'.csv', 'a+') as f:
+        with open(filename+'.csv', 'a+') as f:
             thewriter = csv.writer(f)
             thewriter.writerow(["Other:", str(df[df['Category'] == "Other"]['Amount'].sum())])
             thewriter.writerow(["Transportation:", str(df[df['Category'] == "Transportation"]['Amount'].sum())])
@@ -184,7 +184,7 @@ class Expenses():
             maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
             self.filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"), ("csv files", "*.csv"), ("all files", "*.*")))
             if  self.filenamesave.endswith(".txt"):
-                self.savetxt(self.filenamesave, df, minexp,maxexp)
+                self.savetxt(self.filenamesave, df, minexp, maxexp)
             elif self.filenamesave.endswith(".csv"):
                 self.savecsv(self.filenamesave, df, minexp, maxexp)
             else:
