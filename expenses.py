@@ -60,8 +60,8 @@ class Expenses():
         self.budget_menu.add_command(label="Show budget")
         self.menu.add_cascade(label="Budget", menu=self.budget_menu)
         self.charts = Menu(self.menu, tearoff=0)
-        self.charts.add_command(label="Bar Chart", accelerator='Ctrl+B', command=self.barchart)
-        self.charts.add_command(label="Pie Chart", accelerator='Ctrl+P', command=self.piechart)
+        self.charts.add_command(label="Bar Chart", accelerator='Ctrl+B', command=lambda: self.Charts("Bar Chart of Expenses",["Other", "Transportation", "Grocery", "Bills/Taxes"], 'bar', ['r', 'g', 'y', 'b']))
+        self.charts.add_command(label="Pie Chart", accelerator='Ctrl+P', command=lambda: self.Charts("Pie Chart of Expenses",["Other", "Transportation", "Grocery", "Bills/Taxes"], 'pie',['r', 'g', 'y', 'b'] ))
         self.charts.add_command(label="Show time series m", accelerator='Ctrl+T', command=self.timeseriesmonth)
         self.menu.add_cascade(label="Charts", menu=self.charts)
         self.show = Menu(self.menu, tearoff=0)
@@ -97,8 +97,8 @@ class Expenses():
         self.master.bind('<Alt-g>', lambda event: self.monthlyexpenses('Grocery'))
         self.master.bind('<Control-z>', lambda event: self.clearamount())
         self.master.bind('<Alt-z>', lambda event: self.cleardes())
-        self.master.bind('<Control-p>', lambda event: self.piechart())
-        self.master.bind('<Control-b>', lambda event: self.barchart())
+        self.master.bind('<Control-p>', lambda event: self.Charts("Pie Chart of Expenses",["Other", "Transportation", "Grocery", "Bills/Taxes"], 'pie',['r', 'g', 'y', 'b']))
+        self.master.bind('<Control-b>', lambda event: self.Charts("Bar Chart of Expenses",["Other", "Transportation", "Grocery", "Bills/Taxes"], 'bar', ['r', 'g', 'y', 'b']))
         self.master.bind('<Control-n>', lambda event: self.show_overview())
         self.master.bind('<Alt-n>', lambda event: self.show_expenses_info())
         #basic gui
@@ -199,28 +199,19 @@ class Expenses():
             maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
             msg.showinfo("Expenses Overview", "Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) + "\nTransportation:" + str(df[df['Category'] == "Transportation"]['Amount'].sum())+
             "\nGrocery:" + str(df[df['Category'] == "Grocery"]['Amount'].sum()) + "\nBills/Taxes:" + str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())+ "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
-    def barchart(self):
-        """ expenses bar chart"""
+    def Charts(self, title, categories, type, color):
+        """ expenses  charts by type"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
+        data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
         if df['Amount'].sum() == 0:
             msg.showerror("No Expenses", "No Expenses")
         else:
-            data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
-            plt.bar(np.arange(4), data)
-            plt.xticks(np.arange(4), ('Other', 'Transportation', 'Grocery', 'Bills/Taxes'))
-            plt.title("Bar Chart of Expenses")
-            plt.show()
-    def piechart(self):
-        """ expenses bar chart"""
-        df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        if df['Amount'].sum() == 0:
-            msg.showerror("No Expenses", "No Expenses")
-        else:
-            slices = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
-            cat = ["Other", "Transportation", "Grocery", "Bills/Taxes"]
-            col = ['r', 'g', 'w', 'b']
-            plt.pie(slices, labels=cat, colors=col, startangle=90, autopct='%1.1f%%')
-            plt.title("Pie Chart of Expenses")
+            if type == 'bar':
+                plt.bar(np.arange(4), data, color=color)
+                plt.xticks(np.arange(4), categories)
+            else:
+                plt.pie(data, labels=categories, colors=color, startangle=90, autopct='%1.1f%%')
+            plt.title(title)
             plt.show()
     def clearamount(self):
         """ clears amount text field """
