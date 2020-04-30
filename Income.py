@@ -67,8 +67,8 @@ class Income():
         self.menu.add_cascade(label="Edit", menu=self.editmenu)
         self.show = Menu(self.menu, tearoff=0)
         self.show.add_command(label="Show Overview", accelerator='Ctrl+N', command=self.show_overview)
-        self.show.add_command(label="Show Bar chart", accelerator='Ctrl+B', command=self.barchart)
-        self.show.add_command(label="Show Pie chart", accelerator='Ctrl+P', command=self.piechart)
+        self.show.add_command(label="Show Bar chart", accelerator='Ctrl+B', command=lambda: self.Charts("Bar Chart of Income", ["Other", "Salary"], 'bar',['r', 'g']))
+        self.show.add_command(label="Show Pie chart", accelerator='Ctrl+P', command=lambda: self.Charts("Pie Chart of Income", ["Other", "Salary"], 'pie',['r', 'g']))
         self.show.add_command(label="Show time series m", accelerator='Ctrl+T', command=self.timeseriesmonth)
         self.show.add_command(label="Show income info", accelerator='Alt+N', command=self.show_income_info)
         self.menu.add_cascade(label="Show", menu=self.show)
@@ -95,8 +95,8 @@ class Income():
         self.master.bind('<Control-o>', lambda event: self.addinc())
         self.master.bind('<Control-z>', lambda event: self.clearamount())
         self.master.bind('<Alt-z>', lambda event: self.cleardesc())
-        self.master.bind('<Control-p>', lambda event: self.piechart())
-        self.master.bind('<Control-b>', lambda event: self.barchart())
+        self.master.bind('<Control-p>', lambda event: self.Charts("Pie Chart of Income", ["Other", "Salary"], 'pie',['r', 'g']))
+        self.master.bind('<Control-b>', lambda event: self.Charts("Bar Chart of Income", ["Other", "Salary"], 'bar',['r', 'g']))
         self.master.bind('<Control-n>', lambda event: self.show_overview())
         self.master.bind('<Alt-n>', lambda event: self.show_income_info())
     def savecsv(self, filename, df):
@@ -156,28 +156,19 @@ class Income():
             minexp = min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
             maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
             msg.showinfo("Expenses Overview", "Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) +"\nSalary:" + str(df[df['Category'] == "Salary"]['Amount'].sum()) + "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
-    def barchart(self):
+    def Charts(self, title, categories, type, color):
         """ shows a bar chart of income"""
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
+        data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]
         if df['Amount'].sum() == 0:
             msg.showerror("ERROR", "NO INCOME")
         else:
-            data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]
-            plt.bar(np.arange(2), data)
-            plt.xticks(np.arange(2), ('Other', 'Salary'))
-            plt.title("Bar Chart of Income")
-            plt.show()
-    def piechart(self):
-        """ shows a pie chart of income"""
-        df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        if df['Amount'].sum() == 0:
-            msg.showerror("ERROR", "NO INCOME")
-        else:
-            slices = [df[df['Category'] == "Salary"]['Amount'].sum(), df[df['Category'] == "Other"]['Amount'].sum()]
-            cat = ['Salary', 'Other']
-            col = ['red', 'green']
-            plt.pie(slices, labels=cat, colors=col, startangle=90, autopct='%1.1f%%')
-            plt.title("Pie Chart of Income")
+            if type == 'bar':
+                plt.bar(np.arange(2), data, color=color)
+                plt.xticks(np.arange(2), categories)
+            else:
+                plt.pie(data, labels=categories, colors=color, startangle=90, autopct='%1.1f%%')
+            plt.title(title)
             plt.show()
     def clearamount(self):
         """ clears amount text field """
