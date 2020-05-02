@@ -98,6 +98,10 @@
   <li> Exit(Alt+F4) </li>
   <li> Clear Amount(Ctrl+Z) </li>
   <li> Clear Description(Alt+Z) </li>
+  <li> Set Grocery budget(Alt+P) </li>
+  <li> Set Other budget(Alt+Q) </li>
+  <li> Set Transportation budget(Ctrl+Q) </li>
+  <li> Set Bills/Taxes(Ctrl+W) </li>
   <li> Bar Chart(Ctrl+B) </li>
   <li> Pie Chart(Ctrl+P) </li>
   <li> Show time series m(Ctrl+T) </li>
@@ -182,6 +186,7 @@
   <li> Exit(Alt+F4) </li>
   <li> Clear Amount(Ctrl+Z) </li>
   <li> Clear Description(Alt+Z) </li>
+  <li> Show Overview(Ctrl+N) </li>
   <li> Show Bar chart(Ctrl+B) </li>
   <li> Show Pie chart(Ctrl+P) </li>
   <li> Show time series m(Ctrl+T) </li>
