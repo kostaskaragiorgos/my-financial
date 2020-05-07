@@ -154,11 +154,10 @@ class Expenses():
             plt.plot(df['Date'], df['Amount'])
             plt.show()
     def savetxt(self, filename, df, minexp, maxexp):
+        cat = ['Other', 'Transportation', 'Grocery', 'Bills/Taxes']
         f = open(str(filename)+".txt", 'a')
-        f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
-        f.write("\nTransportation:"+ str(df[df['Category'] == "Transportation"]['Amount'].sum()))
-        f.write("\nGrocery:"+ str(df[df['Category'] == "Grocery"]['Amount'].sum()))
-        f.write("\nBills/Taxes:"+ str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum()))
+        for i in cat:
+            f.write(str(i)+"\n" + str(df[df['Category']== i]['Amount'].sum()))
         f.write("\nTotal:"+ str(df['Amount'].sum()))
         f.write("\nMin:"+ str(minexp))
         f.write("\nMax:"+ str(maxexp))
@@ -236,12 +235,12 @@ class Expenses():
     def addexp(self):
         """ adds an expense"""
         try:
-            if float(self.textamount.get(1.0, END)) > 0 and (not self.textdes.count(1.0, END) == (1, )):
-                self.save_exp_tocsv()
+            if float(self.textamount.get(1.0, END)) >= 0 and (not self.textdes.count(1.0, END) == (1, )):
+                self.save_exp_to_csv()
                 msg.showinfo("Expanse", "Date:"+str(datetime.date.today()) +"\nAmount:"+str(self.textamount.get(1.0, END)) +"\nDescription:" + self.textdes.get(1.0, END) + "\nCategory:"+str(self.var_cat_list.get()))
             else:
                 msg.showerror("Value Error", "Enter a number higher than zero\nEnter a description")
-        except:
+        except ValueError:
             msg.showerror("Value Error", "Enter a number higher than zero\nEnter a description")
         self.textamount.delete(1.0, END)
         self.textdes.delete(1.0, END)
