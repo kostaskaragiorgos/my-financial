@@ -76,19 +76,19 @@
 
 ### Expenses_Radon_cc
 
-<p><img src="images/expenses radon cc.png" title="Expenses Radon cc"/> </p>
+<p><img src="images/radon/expenses/expenses radon cc.png" title="Expenses Radon cc"/> </p>
 
 ### Expenses_Radon_hal
 
-<p><img src="images/expenses radon hal.png" title="Expenses Radon hal"/> </p>
+<p><img src="images/radon/expenses/expenses radon hal.png" title="Expenses Radon hal"/> </p>
 
 ### Expenses_Radon_mi
 
-<p><img src="images/expenses radon mi.png" title="Expenses Radon mi"/> </p>
+<p><img src="images/radon/expenses/expenses radon mi.png" title="Expenses Radon mi"/> </p>
 
 ### Expenses_Radon_raw
 
-<p><img src="images/expenses radon raw.png" title="Expenses Radon raw"/> </p>
+<p><img src="images/radon/expenses/expenses radon raw.png" title="Expenses Radon raw"/> </p>
 
 ## Expenses_Keybinds 
 
@@ -127,19 +127,19 @@
 
 ### Emergency_fund_Radon_cc
 
-<p><img src="images/emf radon cc.png" title = "emf radon cc"/> </p>
+<p><img src="images/radon/emf/emf radon cc.png" title = "emf radon cc"/> </p>
 
 ### Emergency_fund_Radon_hal
 
-<p><img src="images/emf radon hal.png" title ="emf radon hal"/> </p>
+<p><img src="images/radon/emf/emf radon hal.png" title ="emf radon hal"/> </p>
 
 ### Emergency_fund_Radon_mi
 
-<p><img src="images/emf radon mi.png" title ="emf radon mi"/></p>
+<p><img src="images/radon/emf/emf radon mi.png" title ="emf radon mi"/></p>
 
 ### Emergency_fund_Radon_raw
 
-<p><img src="images/emf radon raw.png" title="emf radon raw"/></p>
+<p><img src="images/radon/emf/emf radon raw.png" title="emf radon raw"/></p>
 
 ## Emergency_fund_Keybinds
 
@@ -163,19 +163,19 @@
 
 ### Income_Radon_cc
 
-<p><img src="images/income radon cc.png" title = "income radon cc"/> </p>
+<p><img src="images/radon/income/income radon cc.png" title = "income radon cc"/> </p>
 
 ### Income_Radon_hal
 
-<p><img src="images/income radon hal.png" title ="income radon hal"/> </p>
+<p><img src="images/radon/income/income radon hal.png" title ="income radon hal"/> </p>
 
 ### Income_Radon_mi
 
-<p><img src="images/income radon mi.png" title ="income radon mi"/></p>
+<p><img src="images/radon/income/income radon mi.png" title ="income radon mi"/></p>
 
 ### Income_Radon_raw
 
-<p><img src="images/income radon raw.png" title="income radon raw"/></p>
+<p><img src="images/radon/income/income radon raw.png" title="income radon raw"/></p>
 
 
 ## Income_Keybinds
