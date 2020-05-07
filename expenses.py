@@ -163,12 +163,11 @@ class Expenses():
         f.write("\nMax:"+ str(maxexp))
         msg.showinfo("SUCCESS", "Overview saved successfully")
     def savecsv(self, filename, df, minexp, maxexp):
+        cat = ['Other', 'Transportation', 'Grocery', 'Bills/Taxes']
         with open(filename+'.csv', 'a+') as f:
             thewriter = csv.writer(f)
-            thewriter.writerow(["Other:", str(df[df['Category'] == "Other"]['Amount'].sum())])
-            thewriter.writerow(["Transportation:", str(df[df['Category'] == "Transportation"]['Amount'].sum())])
-            thewriter.writerow(["Grocery:", str(df[df['Category'] == "Grocery"]['Amount'].sum())])
-            thewriter.writerow(["Bills/Taxes:", str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())])
+            for i in cat:
+                thewriter.writerow([i, str(df[df['Category'] == i]['Amount'].sum())])
             thewriter.writerow(["Total:", str(df['Amount'].sum())])
             thewriter.writerow(["Min:", str(minexp)])
             thewriter.writerow(["Max:", str(maxexp)])
