@@ -228,13 +228,16 @@ class Expenses():
             msg.showinfo("Montly Expenses", "YOUR EXPENSES FOR THE "+str(self.nowmonth)+" MONTH IS "+str(df['Amount'].sum()))
         else:
             msg.showinfo("Monthly Expenses for "+str(category), "Monthly Expenses for "+str(category)+" for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == category]['Amount'].sum()))
+    def save_exp_to_csv(self):
+        with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
+                thewriter = csv.writer(f)
+                thewriter.writerow([str(datetime.date.today().day), str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
+
     def addexp(self):
         """ adds an expense"""
         try:
             if float(self.textamount.get(1.0, END)) > 0 and (not self.textdes.count(1.0, END) == (1, )):
-                with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
-                    thewriter = csv.writer(f)
-                    thewriter.writerow([str(datetime.date.today().day), str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
+                self.save_exp_tocsv()
                 msg.showinfo("Expanse", "Date:"+str(datetime.date.today()) +"\nAmount:"+str(self.textamount.get(1.0, END)) +"\nDescription:" + self.textdes.get(1.0, END) + "\nCategory:"+str(self.var_cat_list.get()))
             else:
                 msg.showerror("Value Error", "Enter a number higher than zero\nEnter a description")
