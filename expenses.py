@@ -230,8 +230,8 @@ class Expenses():
             msg.showinfo("Monthly Expenses for "+str(category), "Monthly Expenses for "+str(category)+" for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == category]['Amount'].sum()))
     def save_exp_to_csv(self):
         with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
-                thewriter = csv.writer(f)
-                thewriter.writerow([str(datetime.date.today().day), str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
+            thewriter = csv.writer(f)
+            thewriter.writerow([str(datetime.date.today().day), str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
 
     def addexp(self):
         """ adds an expense"""
