@@ -185,17 +185,19 @@ class Income():
             msg.showinfo("Montly Income", "YOUR INCOME FOR THE "+str(self.nowmonth)+" MONTH IS "+str(df['Amount'].sum()))
         else:
             msg.showinfo("Monthly income from "+str(category), "Monthly Income from "+str(category)+" for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == category]['Amount'].sum()))
+    def add_values_to_csv(self):
+        with open('income'+str(self.nowmonth)+'.csv', 'a+') as f:
+            thewriter = csv.writer(f)
+            thewriter.writerow([str(datetime.date.today()), str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
     def addinc(self):
         """ adds an income"""
         try:
             if float(self.textamount.get(1.0, END)) > 0 and (not self.textdes.count(1.0, END) == (1, )):
-                with open('income'+str(self.nowmonth)+'.csv', 'a+') as f:
-                    thewriter = csv.writer(f)
-                    thewriter.writerow([str(datetime.date.today()), str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
+                self.add_values_to_csv()
                 msg.showinfo("Income info", "Amount: "+str(self.textamount.get(1.0, END))+"Description: "+self.textdes.get(1.0, END) +"Category: "+ str(self.var_cat_list.get()))
             else:
                 msg.showerror("Value Error", "Enter a number higher than zero \nEnter a description")
-        except:
+        except ValueError:
             msg.showerror("Value Error", "Enter a number higher than zero \nEnter a description")
         self.textamount.delete(1.0, END)
         self.textdes.delete(1.0, END)
