@@ -234,7 +234,7 @@ class Expenses():
     def addexp(self):
         """ adds an expense"""
         try:
-            if float(self.textamount.get(1.0, END)) >= 0 and (not self.textdes.count(1.0, END) == (1, )):
+            if float(self.textamount.get(1.0, END)) >= 0 and (self.textdes.count(1.0, END) != (1, )):
                 self.save_exp_to_csv()
                 msg.showinfo("Expanse", "Date:"+str(datetime.date.today()) +"\nAmount:"+str(self.textamount.get(1.0, END)) +"\nDescription:" + self.textdes.get(1.0, END) + "\nCategory:"+str(self.var_cat_list.get()))
             else:
