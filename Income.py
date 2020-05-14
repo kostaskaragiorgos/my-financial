@@ -192,7 +192,7 @@ class Income():
     def addinc(self):
         """ adds an income"""
         try:
-            if float(self.textamount.get(1.0, END)) > 0 and (not self.textdes.count(1.0, END) == (1, )):
+            if float(self.textamount.get(1.0, END)) > 0 and (self.textdes.count(1.0, END) != (1, )):
                 self.add_values_to_csv()
                 msg.showinfo("Income info", "Amount: "+str(self.textamount.get(1.0, END))+"Description: "+self.textdes.get(1.0, END) +"Category: "+ str(self.var_cat_list.get()))
             else:
