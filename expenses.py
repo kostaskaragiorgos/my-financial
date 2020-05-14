@@ -157,7 +157,7 @@ class Expenses():
         cat = ['Other', 'Transportation', 'Grocery', 'Bills/Taxes']
         f = open(str(filename)+".txt", 'a')
         for i in cat:
-            f.write(str(i)+"\n" + str(df[df['Category']== i]['Amount'].sum()))
+            f.write(str(i)+"\n" + str(df[df['Category'] == i]['Amount'].sum()))
         f.write("\nTotal:"+ str(df['Amount'].sum()))
         f.write("\nMin:"+ str(minexp))
         f.write("\nMax:"+ str(maxexp))
@@ -196,15 +196,15 @@ class Expenses():
             minexp = min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
             maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
             msg.showinfo("Expenses Overview", "Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) + "\nTransportation:" + str(df[df['Category'] == "Transportation"]['Amount'].sum())+
-            "\nGrocery:" + str(df[df['Category'] == "Grocery"]['Amount'].sum()) + "\nBills/Taxes:" + str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())+ "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
-    def Charts(self, title, categories, type, color):
-        """ expenses  charts by type"""
+                         "\nGrocery:" + str(df[df['Category'] == "Grocery"]['Amount'].sum()) + "\nBills/Taxes:" + str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())+ "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
+    def Charts(self, title, categories, ctype, color):
+        """ expenses  charts by ctype"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
         if df['Amount'].sum() == 0:
             msg.showerror("No Expenses", "No Expenses")
         else:
-            if type == 'bar':
+            if ctype == 'bar':
                 plt.bar(np.arange(4), data, color=color)
                 plt.xticks(np.arange(4), categories)
             else:
@@ -254,3 +254,4 @@ def main():
     root.mainloop()
 if __name__ == '__main__':
     main()
+    
