@@ -187,6 +187,17 @@ class Expenses():
                 self.savecsv(self.filenamesave, df, minexp, maxexp)
             else:
                 msg.showerror("Abort", "Abort")
+    def chart_save_user_verification(self):
+        self.filechartname = simpledialog.askstring("CHART NAME", "Enter chart name", parent=self.master)
+        while self.filechartname is None or (not self.filechartname.strip()):
+            self.filechartname = simpledialog.askstring("CHART NAME", "Enter chart name", parent=self.master)
+        return self.filechartname
+    def savechartfunction(self, save):
+        if save:
+            fname = self.chart_save_user_verification()
+            plt.savefig(fname+'.png', dpi=100)
+        else:
+            msg.showinfo("NO FILE SAVED", "NO FILE SAVED")
     def show_overview(self):
         """ shows overview """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
@@ -210,7 +221,10 @@ class Expenses():
             else:
                 plt.pie(data, labels=categories, colors=color, startangle=90, autopct='%1.1f%%')
             plt.title(title)
+            save = msg.askyesno("SAVE CHART", "DO YOU WANT TO SAVE THE CHART")
+            self.savechartfunction(save)
             plt.show()
+            plt.draw()
     def clearamount(self):
         """ clears amount text field """
         self.textamount.delete(1.0, END)
