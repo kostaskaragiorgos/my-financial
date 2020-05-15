@@ -154,6 +154,7 @@ class Expenses():
             plt.plot(df['Date'], df['Amount'])
             plt.show()
     def savetxt(self, filename, df, minexp, maxexp):
+        """ save overview to a .txt file """
         cat = ['Other', 'Transportation', 'Grocery', 'Bills/Taxes']
         f = open(str(filename)+".txt", 'a')
         for i in cat:
@@ -163,6 +164,7 @@ class Expenses():
         f.write("\nMax:"+ str(maxexp))
         msg.showinfo("SUCCESS", "Overview saved successfully")
     def savecsv(self, filename, df, minexp, maxexp):
+        """ save overview to a .csv file """
         cat = ['Other', 'Transportation', 'Grocery', 'Bills/Taxes']
         with open(filename+'.csv', 'a+') as f:
             thewriter = csv.writer(f)
@@ -188,11 +190,13 @@ class Expenses():
             else:
                 msg.showerror("Abort", "Abort")
     def chart_save_user_verification(self):
+        """ user enters the name of the file """
         self.filechartname = simpledialog.askstring("CHART NAME", "Enter chart name", parent=self.master)
         while self.filechartname is None or (not self.filechartname.strip()):
             self.filechartname = simpledialog.askstring("CHART NAME", "Enter chart name", parent=self.master)
         return self.filechartname
     def savechartfunction(self, save):
+        """ saves the chart to an image file """
         if save:
             fname = self.chart_save_user_verification()
             plt.savefig(fname+'.png', dpi=100)
@@ -241,6 +245,7 @@ class Expenses():
         else:
             msg.showinfo("Monthly Expenses for "+str(category), "Monthly Expenses for "+str(category)+" for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == category]['Amount'].sum()))
     def save_exp_to_csv(self):
+        """ saves expenses to a csv file """
         with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
             thewriter = csv.writer(f)
             thewriter.writerow([str(datetime.date.today().day), str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
