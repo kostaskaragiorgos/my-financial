@@ -1,5 +1,5 @@
 """ keep track of your income """
-from tkinter import Tk, Label, Text, Button, StringVar, Menu
+from tkinter import Tk, Label, Text, Button, StringVar, Menu, simpledialog
 from tkinter import messagebox as msg, OptionMenu, END, filedialog
 import datetime
 import os
@@ -156,6 +156,12 @@ class Income():
             minexp = min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
             maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
             msg.showinfo("Expenses Overview", "Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) +"\nSalary:" + str(df[df['Category'] == "Salary"]['Amount'].sum()) + "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
+    
+    def chart_save_user_verification(self):
+        self.filechartname = simpledialog.askstring("CHART NAME","Enter chart name", parent=self.master)
+        while self.filechartname is None or (not self.filechartname.strip()):
+            self.filechartname = simpledialog.askstring("CHART NAME","Enter chart name", parent=self.master)
+            
     def Charts(self, title, categories, type, color):
         """ shows a bar chart of income"""
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
@@ -170,6 +176,8 @@ class Income():
                 plt.pie(data, labels=categories, colors=color, startangle=90, autopct='%1.1f%%')
             plt.title(title)
             plt.show()
+            self.chart_save_user_verification()
+            
     def clearamount(self):
         """ clears amount text field """
         self.textamount.delete(1.0, END)
