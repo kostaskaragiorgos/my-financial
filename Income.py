@@ -158,30 +158,30 @@ class Income():
             msg.showinfo("Expenses Overview", "Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) +"\nSalary:" + str(df[df['Category'] == "Salary"]['Amount'].sum()) + "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
     
     def chart_save_user_verification(self):
-        self.filechartname = simpledialog.askstring("CHART NAME","Enter chart name", parent=self.master)
+        self.filechartname = simpledialog.askstring("CHART NAME", "Enter chart name", parent=self.master)
         while self.filechartname is None or (not self.filechartname.strip()):
-            self.filechartname = simpledialog.askstring("CHART NAME","Enter chart name", parent=self.master)
+            self.filechartname = simpledialog.askstring("CHART NAME", "Enter chart name", parent=self.master)
         return self.filechartname
     def savechartfunction(self, save):
         if save:
             fname = self.chart_save_user_verification()
             plt.savefig(fname+'.png', dpi=100)
         else:
-            msg.showinfo("NO FILE SAVED","NO FILE SAVED")
-    def Charts(self, title, categories, type, color):
+            msg.showinfo("NO FILE SAVED", "NO FILE SAVED")
+    def Charts(self, title, categories, types, color):
         """ shows a bar chart of income"""
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]
         if df['Amount'].sum() == 0:
             msg.showerror("ERROR", "NO INCOME")
         else:
-            if type == 'bar':
+            if types == 'bar':
                 plt.bar(np.arange(2), data, color=color)
                 plt.xticks(np.arange(2), categories)
             else:
                 plt.pie(data, labels=categories, colors=color, startangle=90, autopct='%1.1f%%')
             plt.title(title)
-            save = msg.askyesno("SAVE CHART","DO YOU WANT TO SAVE THE CHART")
+            save = msg.askyesno("SAVE CHART", "DO YOU WANT TO SAVE THE CHART")
             self.savechartfunction(save)
             plt.show()
             plt.draw()
