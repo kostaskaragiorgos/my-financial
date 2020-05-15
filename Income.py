@@ -7,6 +7,26 @@ import csv
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+def savecsv(filename, df):
+    """ saves  to csv """
+    with open(filename+'.csv', 'a+') as f:
+        thewriter = csv.writer(f)
+        thewriter.writerow(["Other:", str(df[df['Category'] == "Other"]['Amount'].sum())])
+        thewriter.writerow(["Salary:", str(df[df['Category'] == "Salary"]['Amount'].sum())])
+        thewriter.writerow(["Total:", str(df['Amount'].sum())])
+        thewriter.writerow(["Min:", str(min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]))])
+        thewriter.writerow(["Max:", str(max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]))])
+    msg.showinfo("SUCCESS", "Overview saved successfully")
+def savetxt(filename, df):
+    """ saves to txt """
+    f = open(str(filename)+".txt", 'a')
+    f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
+    f.write("\nSalary:"+ str(df[df['Category'] == "Salary"]['Amount'].sum()))
+    f.write("\nTotal:"+ str(df['Amount'].sum()))
+    f.write("\nMin:"+ str(min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])))
+    f.write("\nMax:"+ str(max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])))
+    f.close()
+    msg.showinfo("SUCCESS", "Overview saved successfully")
 def aboutmenu():
     """ about menu function """
     msg.showinfo("About Income ", "Income\nVersion 1.0")
@@ -99,26 +119,6 @@ class Income():
         self.master.bind('<Control-b>', lambda event: self.Charts("Bar Chart of Income", ["Other", "Salary"], 'bar', ['r', 'g']))
         self.master.bind('<Control-n>', lambda event: self.show_overview())
         self.master.bind('<Alt-n>', lambda event: self.show_income_info())
-    def savecsv(self, filename, df):
-        """ saves  to csv """
-        with open(filename+'.csv', 'a+') as f:
-            thewriter = csv.writer(f)
-            thewriter.writerow(["Other:", str(df[df['Category'] == "Other"]['Amount'].sum())])
-            thewriter.writerow(["Salary:", str(df[df['Category'] == "Salary"]['Amount'].sum())])
-            thewriter.writerow(["Total:", str(df['Amount'].sum())])
-            thewriter.writerow(["Min:", str(min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]))])
-            thewriter.writerow(["Max:", str(max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]))])
-        msg.showinfo("SUCCESS", "Overview saved successfully")
-    def savetxt(self, filename, df):
-        """ saves to txt """
-        f = open(str(filename)+".txt", 'a')
-        f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
-        f.write("\nSalary:"+ str(df[df['Category'] == "Salary"]['Amount'].sum()))
-        f.write("\nTotal:"+ str(df['Amount'].sum()))
-        f.write("\nMin:"+ str(min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])))
-        f.write("\nMax:"+ str(max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])))
-        f.close()
-        msg.showinfo("SUCCESS", "Overview saved successfully")
     def show_income_info(self):
         """ shows income info """
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
@@ -140,11 +140,11 @@ class Income():
         if df['Amount'].sum() == 0:
             msg.showerror("ERROR", "NO INCOME TO SAVE")
         else:
-            self.filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"), ("csv files", "*.csv"), ("all files", "*.*")))
-            if  self.filenamesave.endswith(".txt"):
-                self.savetxt(self.filenamesave, df)
-            elif self.filenamesave.endswith(".csv"):
-                self.savecsv(self.filenamesave, df)
+            filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"), ("csv files", "*.csv"), ("all files", "*.*")))
+            if  filenamesave.endswith(".txt"):
+                savetxt(filenamesave, df)
+            elif filenamesave.endswith(".csv"):
+                savecsv(filenamesave, df)
             else:
                 msg.showerror("Abort", "Abort")
     def show_overview(self):
