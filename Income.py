@@ -162,6 +162,12 @@ class Income():
         while self.filechartname is None or (not self.filechartname.strip()):
             self.filechartname = simpledialog.askstring("CHART NAME","Enter chart name", parent=self.master)
         return self.filechartname
+    def savechartfunction(self, save):
+        if save:
+            fname = self.chart_save_user_verification()
+            plt.savefig(fname+'.png', dpi=100)
+        else:
+            msg.showinfo("NO FILE SAVED","NO FILE SAVED")
     def Charts(self, title, categories, type, color):
         """ shows a bar chart of income"""
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
@@ -176,11 +182,7 @@ class Income():
                 plt.pie(data, labels=categories, colors=color, startangle=90, autopct='%1.1f%%')
             plt.title(title)
             save = msg.askyesno("SAVE CHART","DO YOU WANT TO SAVE THE CHART")
-            if save:
-                fname = self.chart_save_user_verification()
-                plt.savefig(fname+'.png', dpi=100)
-            else:
-                msg.showinfo("NO FILE SAVED","NO FILE SAVED")
+            self.savechartfunction(save)
             plt.show()
             plt.draw()
     def clearamount(self):
