@@ -158,11 +158,13 @@ class Income():
             msg.showinfo("Expenses Overview", "Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) +"\nSalary:" + str(df[df['Category'] == "Salary"]['Amount'].sum()) + "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
     
     def chart_save_user_verification(self):
+        """ user set an image file name """
         self.filechartname = simpledialog.askstring("CHART NAME", "Enter chart name", parent=self.master)
         while self.filechartname is None or (not self.filechartname.strip()):
             self.filechartname = simpledialog.askstring("CHART NAME", "Enter chart name", parent=self.master)
         return self.filechartname
     def savechartfunction(self, save):
+        """ saves chart to an image file """
         if save:
             fname = self.chart_save_user_verification()
             plt.savefig(fname+'.png', dpi=100)
@@ -201,6 +203,7 @@ class Income():
         else:
             msg.showinfo("Monthly income from "+str(category), "Monthly Income from "+str(category)+" for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == category]['Amount'].sum()))
     def add_values_to_csv(self):
+        """ adds income to a csv file """
         with open('income'+str(self.nowmonth)+'.csv', 'a+') as f:
             thewriter = csv.writer(f)
             thewriter.writerow([str(datetime.date.today()), str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
