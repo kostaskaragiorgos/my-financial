@@ -7,6 +7,13 @@ import csv
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+def check_save(filename, df):
+    if  filename.endswith(".txt"):
+        savetxt(filename, df)
+    elif filename.endswith(".csv"):
+        savecsv(filename, df)
+    else:
+        msg.showerror("Abort", "Abort")
 def savecsv(filename, df):
     """ saves  to csv """
     with open(filename+'.csv', 'a+') as f:
@@ -141,12 +148,7 @@ class Income():
             msg.showerror("ERROR", "NO INCOME TO SAVE")
         else:
             filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"), ("csv files", "*.csv"), ("all files", "*.*")))
-            if  filenamesave.endswith(".txt"):
-                savetxt(filenamesave, df)
-            elif filenamesave.endswith(".csv"):
-                savecsv(filenamesave, df)
-            else:
-                msg.showerror("Abort", "Abort")
+            check_save(filenamesave, df)
     def show_overview(self):
         """ shows_overview"""
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
