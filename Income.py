@@ -37,6 +37,12 @@ def savetxt(filename, df):
 def aboutmenu():
     """ about menu function """
     msg.showinfo("About Income ", "Income\nVersion 1.0")
+def foldercreate(foldername):
+    if not os.path.exists(foldername):
+        os.mkdir(foldername)
+        os.chdir(foldername)
+    else:
+        os.chdir(foldername)
 def helpmenu():
     """ help menu function """
     msg.showinfo("Help", "Enter an amount, a description, choose a category and press the add income button")
@@ -47,18 +53,10 @@ class Income():
         self.master.title("Income")
         self.master.geometry("250x170")
         self.master.resizable(False, False)
-       # folders 
-        if not os.path.exists("income"):
-            os.mkdir("income")
-            os.chdir("income")
-        else:
-            os.chdir("income")
+        # folders
+        foldercreate('income')
         nowyear = datetime.date.today().year
-        if not os.path.exists(str(nowyear)):
-            os.mkdir(str(nowyear))
-            os.chdir(str(nowyear))
-        else:
-            os.chdir(str(nowyear))
+        foldercreate(str(nowyear))
         #csv file
         self.nowmonth = datetime.date.today().month
         if not os.path.exists('income'+str(self.nowmonth)+'.csv'):

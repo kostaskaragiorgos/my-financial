@@ -56,7 +56,7 @@ class Expenses():
         self.master.geometry("250x170")
         self.master.resizable(False, False)
        # folders
-       foldercreate("expenses")
+        foldercreate("expenses")
         nowyear = datetime.date.today().year
         foldercreate(str(nowyear))
         #csv file
