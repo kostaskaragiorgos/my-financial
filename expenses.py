@@ -8,6 +8,34 @@ import datetime
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+def savetxt(filename, df, minexp, maxexp):
+    """ save overview to a .txt file """
+    cat = ['Other', 'Transportation', 'Grocery', 'Bills/Taxes']
+    f = open(str(filename)+".txt", 'a')
+    for i in cat:
+        f.write(str(i)+"\n" + str(df[df['Category'] == i]['Amount'].sum()))
+    f.write("\nTotal:"+ str(df['Amount'].sum()))
+    f.write("\nMin:"+ str(minexp))
+    f.write("\nMax:"+ str(maxexp))
+    msg.showinfo("SUCCESS", "Overview saved successfully")
+def savecsv( filename, df, minexp, maxexp):
+    """ save overview to a .csv file """
+    cat = ['Other', 'Transportation', 'Grocery', 'Bills/Taxes']
+    with open(filename+'.csv', 'a+') as f:
+        thewriter = csv.writer(f)
+        for i in cat:
+            thewriter.writerow([i, str(df[df['Category'] == i]['Amount'].sum())])
+        thewriter.writerow(["Total:", str(df['Amount'].sum())])
+        thewriter.writerow(["Min:", str(minexp)])
+        thewriter.writerow(["Max:", str(maxexp)])
+    msg.showinfo("SUCCESS", "Overview saved successfully")
+def check_save(filenamesave, df, minexp, maxexp):
+    if  filenamesave.endswith(".txt"):
+        savetxt(filenamesave, df, minexp, maxexp)
+    elif filenamesave.endswith(".csv"):
+        savecsv(filenamesave, df, minexp, maxexp)
+    else:
+        msg.showerror("Abort", "Abort")
 def helpmenu():
     """ help menu """
     msg.showinfo("Help", "You can keep track of your expenses")
@@ -153,27 +181,6 @@ class Expenses():
         else:
             plt.plot(df['Date'], df['Amount'])
             plt.show()
-    def savetxt(self, filename, df, minexp, maxexp):
-        """ save overview to a .txt file """
-        cat = ['Other', 'Transportation', 'Grocery', 'Bills/Taxes']
-        f = open(str(filename)+".txt", 'a')
-        for i in cat:
-            f.write(str(i)+"\n" + str(df[df['Category'] == i]['Amount'].sum()))
-        f.write("\nTotal:"+ str(df['Amount'].sum()))
-        f.write("\nMin:"+ str(minexp))
-        f.write("\nMax:"+ str(maxexp))
-        msg.showinfo("SUCCESS", "Overview saved successfully")
-    def savecsv(self, filename, df, minexp, maxexp):
-        """ save overview to a .csv file """
-        cat = ['Other', 'Transportation', 'Grocery', 'Bills/Taxes']
-        with open(filename+'.csv', 'a+') as f:
-            thewriter = csv.writer(f)
-            for i in cat:
-                thewriter.writerow([i, str(df[df['Category'] == i]['Amount'].sum())])
-            thewriter.writerow(["Total:", str(df['Amount'].sum())])
-            thewriter.writerow(["Min:", str(minexp)])
-            thewriter.writerow(["Max:", str(maxexp)])
-        msg.showinfo("SUCCESS", "Overview saved successfully")
     def saveas(self):
         """ saves overview """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
@@ -182,13 +189,8 @@ class Expenses():
         else:
             minexp = min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
             maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
-            self.filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"), ("csv files", "*.csv"), ("all files", "*.*")))
-            if  self.filenamesave.endswith(".txt"):
-                self.savetxt(self.filenamesave, df, minexp, maxexp)
-            elif self.filenamesave.endswith(".csv"):
-                self.savecsv(self.filenamesave, df, minexp, maxexp)
-            else:
-                msg.showerror("Abort", "Abort")
+            filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"), ("csv files", "*.csv"), ("all files", "*.*")))
+            check_save(filenamesave, df,minexp, maxexp)
     def chart_save_user_verification(self):
         """ user enters the name of the file """
         self.filechartname = simpledialog.askstring("CHART NAME", "Enter chart name", parent=self.master)
