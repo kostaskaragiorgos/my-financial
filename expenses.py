@@ -42,6 +42,12 @@ def helpmenu():
 def aboutmenu():
     """ about menu class """
     msg.showinfo("About", "Expenses\nVersion 1.0")
+def foldercreate(foldername):
+    if not os.path.exists(foldername):
+        os.mkdir(foldername)
+        os.chdir(foldername)
+    else:
+        os.chdir(foldername)
 class Expenses():
     """ expenses class """
     def __init__(self, master):
@@ -49,18 +55,10 @@ class Expenses():
         self.master.title("Expenses")
         self.master.geometry("250x170")
         self.master.resizable(False, False)
-       # folders 
-        if not os.path.exists("expenses"):
-            os.mkdir("expenses")
-            os.chdir("expenses")
-        else:
-            os.chdir("expenses")
+       # folders
+       foldercreate("expenses")
         nowyear = datetime.date.today().year
-        if not os.path.exists(str(nowyear)):
-            os.mkdir(str(nowyear))
-            os.chdir(str(nowyear))
-        else:
-            os.chdir(str(nowyear))
+        foldercreate(str(nowyear))
         #csv file
         self.nowmonth = datetime.date.today().month
         self.filenamesave = ""
