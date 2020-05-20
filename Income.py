@@ -40,9 +40,7 @@ def aboutmenu():
 def foldercreate(foldername):
     if not os.path.exists(foldername):
         os.mkdir(foldername)
-        os.chdir(foldername)
-    else:
-        os.chdir(foldername)
+    os.chdir(foldername)
 def helpmenu():
     """ help menu function """
     msg.showinfo("Help", "Enter an amount, a description, choose a category and press the add income button")

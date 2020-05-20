@@ -45,9 +45,7 @@ def aboutmenu():
 def foldercreate(foldername):
     if not os.path.exists(foldername):
         os.mkdir(foldername)
-        os.chdir(foldername)
-    else:
-        os.chdir(foldername)
+    os.chdir(foldername)
 class Expenses():
     """ expenses class """
     def __init__(self, master):
