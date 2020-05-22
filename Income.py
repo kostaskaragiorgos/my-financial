@@ -8,6 +8,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 def check_save(filename, df):
+    """ checks the file type """
     if  filename.endswith(".txt"):
         savetxt(filename, df)
     elif filename.endswith(".csv"):
@@ -38,6 +39,7 @@ def aboutmenu():
     """ about menu function """
     msg.showinfo("About Income ", "Income\nVersion 1.0")
 def foldercreate(foldername):
+    """ creates folders and changes the current directory """
     if not os.path.exists(foldername):
         os.mkdir(foldername)
     os.chdir(foldername)
