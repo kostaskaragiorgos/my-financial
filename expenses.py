@@ -186,7 +186,7 @@ class Expenses():
             minexp = min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
             maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
             filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"), ("csv files", "*.csv"), ("all files", "*.*")))
-            check_save(filenamesave, df,minexp, maxexp)
+            check_save(filenamesave, df, minexp, maxexp)
     def chart_save_user_verification(self):
         """ user enters the name of the file """
         self.filechartname = simpledialog.askstring("CHART NAME", "Enter chart name", parent=self.master)
