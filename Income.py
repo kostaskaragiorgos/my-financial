@@ -22,8 +22,12 @@ def savecsv(filename, df):
         thewriter.writerow(["Other:", str(df[df['Category'] == "Other"]['Amount'].sum())])
         thewriter.writerow(["Salary:", str(df[df['Category'] == "Salary"]['Amount'].sum())])
         thewriter.writerow(["Total:", str(df['Amount'].sum())])
-        thewriter.writerow(["Min:", str(min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]))])
-        thewriter.writerow(["Max:", str(max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]))])
+        thewriter.writerow(["Min:",
+                            str(min([df[df['Category'] == "Other"]['Amount'].sum(),
+                                     df[df['Category'] == "Salary"]['Amount'].sum()]))])
+        thewriter.writerow(["Max:",
+                            str(max([df[df['Category'] == "Other"]['Amount'].sum(),
+                                     df[df['Category'] == "Salary"]['Amount'].sum()]))])
     msg.showinfo("SUCCESS", "Overview saved successfully")
 def savetxt(filename, df):
     """ saves to txt """
@@ -31,8 +35,10 @@ def savetxt(filename, df):
     f.write("Other:"+ str(df[df['Category'] == "Other"]['Amount'].sum()))
     f.write("\nSalary:"+ str(df[df['Category'] == "Salary"]['Amount'].sum()))
     f.write("\nTotal:"+ str(df['Amount'].sum()))
-    f.write("\nMin:"+ str(min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])))
-    f.write("\nMax:"+ str(max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])))
+    f.write("\nMin:"+ str(min([df[df['Category'] == "Other"]['Amount'].sum(),
+                               df[df['Category'] == "Salary"]['Amount'].sum()])))
+    f.write("\nMax:"+ str(max([df[df['Category'] == "Other"]['Amount'].sum(),
+                               df[df['Category'] == "Salary"]['Amount'].sum()])))
     f.close()
     msg.showinfo("SUCCESS", "Overview saved successfully")
 def aboutmenu():
@@ -45,7 +51,8 @@ def foldercreate(foldername):
     os.chdir(foldername)
 def helpmenu():
     """ help menu function """
-    msg.showinfo("Help", "Enter an amount, a description, choose a category and press the add income button")
+    msg.showinfo("Help", "Enter an amount, a description,"+
+                 "choose a category and press the add income button")
 class Income():
     """ income class """
     def __init__(self, master):
@@ -78,22 +85,36 @@ class Income():
         self.var_cat_list.set(category_list[0])
         self.popupcatlistmenu = OptionMenu(self.master, self.var_cat_list, *category_list)
         self.popupcatlistmenu.pack()
-        self.incomeb = Button(self.master, text="Add Income", command=self.addinc) 
+        self.incomeb = Button(self.master, text="Add Income", command=self.addinc)
         self.incomeb.pack()
         self.menu = Menu(self.master)
         self.file_menu = Menu(self.menu, tearoff=0)
         self.file_menu.add_command(label="Add Income", accelerator='Ctrl+O', command=self.addinc)
-        self.file_menu.add_command(label="Save Overview as", accelerator='Ctrl+S', command=self.saveas)
+        self.file_menu.add_command(label="Save Overview as",
+                                   accelerator='Ctrl+S', command=self.saveas)
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.editmenu = Menu(self.menu, tearoff=0)
-        self.editmenu.add_command(label="Clear Amount", accelerator='Ctrl+Z', command=self.clearamount)
-        self.editmenu.add_command(label="Clear Description", accelerator='Alt+Z', command=self.cleardesc)
+        self.editmenu.add_command(label="Clear Amount",
+                                  accelerator='Ctrl+Z', command=self.clearamount)
+        self.editmenu.add_command(label="Clear Description",
+                                  accelerator='Alt+Z', command=self.cleardesc)
         self.menu.add_cascade(label="Edit", menu=self.editmenu)
         self.show = Menu(self.menu, tearoff=0)
-        self.show.add_command(label="Show Overview", accelerator='Ctrl+N', command=self.show_overview)
-        self.show.add_command(label="Show Bar chart", accelerator='Ctrl+B', command=lambda: self.Charts("Bar Chart of Income", ["Other", "Salary"], 'bar', ['r', 'g']))
-        self.show.add_command(label="Show Pie chart", accelerator='Ctrl+P', command=lambda: self.Charts("Pie Chart of Income", ["Other", "Salary"], 'pie', ['r', 'g']))
+        self.show.add_command(label="Show Overview",
+                              accelerator='Ctrl+N', command=self.show_overview)
+        self.show.add_command(label="Show Bar chart",
+                              accelerator='Ctrl+B',
+                              command=lambda: self.Charts("Bar Chart of Income",
+                                                          ["Other", "Salary"],
+                                                          'bar',
+                                                          ['r', 'g']))
+        self.show.add_command(label="Show Pie chart",
+                              accelerator='Ctrl+P',
+                              command=lambda: self.Charts("Pie Chart of Income",
+                                                          ["Other", "Salary"],
+                                                          'pie',
+                                                          ['r', 'g']))
         self.show.add_command(label="Show time series m", accelerator='Ctrl+T', command=self.timeseriesmonth)
         self.show.add_command(label="Show income info", accelerator='Alt+N', command=self.show_income_info)
         self.menu.add_cascade(label="Show", menu=self.show)
@@ -120,8 +141,16 @@ class Income():
         self.master.bind('<Control-o>', lambda event: self.addinc())
         self.master.bind('<Control-z>', lambda event: self.clearamount())
         self.master.bind('<Alt-z>', lambda event: self.cleardesc())
-        self.master.bind('<Control-p>', lambda event: self.Charts("Pie Chart of Income", ["Other", "Salary"], 'pie', ['r', 'g']))
-        self.master.bind('<Control-b>', lambda event: self.Charts("Bar Chart of Income", ["Other", "Salary"], 'bar', ['r', 'g']))
+        self.master.bind('<Control-p>',
+                         lambda event: self.Charts("Pie Chart of Income",
+                                                   ["Other", "Salary"],
+                                                   'pie',
+                                                   ['r', 'g']))
+        self.master.bind('<Control-b>',
+                         lambda event: self.Charts("Bar Chart of Income",
+                                                   ["Other", "Salary"],
+                                                   'bar',
+                                                   ['r', 'g']))
         self.master.bind('<Control-n>', lambda event: self.show_overview())
         self.master.bind('<Alt-n>', lambda event: self.show_income_info())
     def show_income_info(self):
