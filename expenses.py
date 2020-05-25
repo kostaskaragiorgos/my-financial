@@ -2,7 +2,7 @@
 from tkinter import Tk, Button, Menu, Label, Text, OptionMenu, StringVar, END
 from tkinter import messagebox as msg, simpledialog
 from tkinter import filedialog
-import os 
+import os
 import csv
 import datetime
 import numpy as np
@@ -18,7 +18,7 @@ def savetxt(filename, df, minexp, maxexp):
     f.write("\nMin:"+ str(minexp))
     f.write("\nMax:"+ str(maxexp))
     msg.showinfo("SUCCESS", "Overview saved successfully")
-def savecsv( filename, df, minexp, maxexp):
+def savecsv(filename, df, minexp, maxexp):
     """ save overview to a .csv file """
     cat = ['Other', 'Transportation', 'Grocery', 'Bills/Taxes']
     with open(filename+'.csv', 'a+') as f:
@@ -30,6 +30,7 @@ def savecsv( filename, df, minexp, maxexp):
         thewriter.writerow(["Max:", str(maxexp)])
     msg.showinfo("SUCCESS", "Overview saved successfully")
 def check_save(filenamesave, df, minexp, maxexp):
+    """ saves the overview by type """
     if  filenamesave.endswith(".txt"):
         savetxt(filenamesave, df, minexp, maxexp)
     elif filenamesave.endswith(".csv"):
@@ -43,6 +44,7 @@ def aboutmenu():
     """ about menu class """
     msg.showinfo("About", "Expenses\nVersion 1.0")
 def foldercreate(foldername):
+    """ creates a folder and sets it as current directory """
     if not os.path.exists(foldername):
         os.mkdir(foldername)
     os.chdir(foldername)
@@ -63,42 +65,71 @@ class Expenses():
         if not os.path.exists('expenses'+str(self.nowmonth)+'.csv'):
             with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
                 thewriter = csv.writer(f)
-                thewriter.writerow(['Date', 'Amount', 'Description', 'Category']) 
+                thewriter.writerow(['Date', 'Amount', 'Description', 'Category'])
         self.menu = Menu(self.master)
         self.file_menu = Menu(self.menu, tearoff=0)
-        self.file_menu.add_command(label="Add Expense", accelerator='Ctrl+O', command=self.addexp)
-        self.file_menu.add_command(label="Save Overview as", accelerator='Ctrl+S', command=self.saveas)
-        self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
+        self.file_menu.add_command(label="Add Expense",
+                                   accelerator='Ctrl+O', command=self.addexp)
+        self.file_menu.add_command(label="Save Overview as",
+                                   accelerator='Ctrl+S', command=self.saveas)
+        self.file_menu.add_command(label="Exit",
+                                   accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.edit_menu = Menu(self.menu, tearoff=0)
-        self.edit_menu.add_command(label="Clear Amount", accelerator='Ctrl+Z', command=self.clearamount)
-        self.edit_menu.add_command(label="Clear Description", accelerator='Alt+Z', command=self.cleardes)
+        self.edit_menu.add_command(label="Clear Amount",
+                                   accelerator='Ctrl+Z', command=self.clearamount)
+        self.edit_menu.add_command(label="Clear Description",
+                                   accelerator='Alt+Z', command=self.cleardes)
         self.menu.add_cascade(label="Edit", menu=self.edit_menu)
         self.budget_menu = Menu(self.menu, tearoff=0)
         self.submenu = Menu(self.budget_menu, tearoff=0)
-        self.submenu.add_command(label="Set Grocery budget", accelerator='Alt+P', command=self.setgrocerybudget)
-        self.submenu.add_command(label="Set Other budget", accelerator='Alt+Q', command=self.setotherbudget)
-        self.submenu.add_command(label="Set Transportation budget", accelerator='Ctrl+Q', command=self.settransportationbudget)
-        self.submenu.add_command(label="Set Bills/Taxes", accelerator='Ctrl+W', command=self.setbillsortaxesbudget)
+        self.submenu.add_command(label="Set Grocery budget",
+                                 accelerator='Alt+P', command=self.setgrocerybudget)
+        self.submenu.add_command(label="Set Other budget",
+                                 accelerator='Alt+Q', command=self.setotherbudget)
+        self.submenu.add_command(label="Set Transportation budget",
+                                 accelerator='Ctrl+Q', command=self.settransportationbudget)
+        self.submenu.add_command(label="Set Bills/Taxes",
+                                 accelerator='Ctrl+W', command=self.setbillsortaxesbudget)
         self.budget_menu.add_cascade(label="Set budget", menu=self.submenu, underline=0)
         self.budget_menu.add_command(label="Show budget")
         self.menu.add_cascade(label="Budget", menu=self.budget_menu)
         self.charts = Menu(self.menu, tearoff=0)
-        self.charts.add_command(label="Bar Chart", accelerator='Ctrl+B', command=lambda: self.Charts("Bar Chart of Expenses", ["Other", "Transportation", "Grocery", "Bills/Taxes"], 'bar', ['r', 'g', 'y', 'b']))
+        self.charts.add_command(label="Bar Chart", accelerator='Ctrl+B',
+                                command=lambda: self.Charts("Bar Chart of Expenses",
+                                                            ["Other", "Transportation", "Grocery", "Bills/Taxes"],
+                                                            'bar', ['r', 'g', 'y', 'b']))
         self.charts.add_command(label="Pie Chart", accelerator='Ctrl+P', command=lambda: self.Charts("Pie Chart of Expenses", ["Other", "Transportation", "Grocery", "Bills/Taxes"], 'pie', ['r', 'g', 'y', 'b']))
-        self.charts.add_command(label="Show time series m", accelerator='Ctrl+T', command=self.timeseriesmonth)
+        self.charts.add_command(label="Show time series m",
+                                accelerator='Ctrl+T', command=self.timeseriesmonth)
         self.menu.add_cascade(label="Charts", menu=self.charts)
         self.show = Menu(self.menu, tearoff=0)
-        self.show.add_command(label="Show Monthly Other", accelerator='Alt+O', command=lambda: self.monthlyexpenses('Other'))
-        self.show.add_command(label="Show Monthly Transportation", accelerator='Alt+T', command=lambda: self.monthlyexpenses('Transportation'))
-        self.show.add_command(label="Show Monthly Grocery", accelerator='Alt+G', command=lambda: self.monthlyexpenses('Grocery'))
-        self.show.add_command(label="Show Monthly Bills/Taxes", accelerator='Alt+B', command=lambda: self.monthlyexpenses('Bills/Taxes'))
-        self.show.add_command(label='Show Monthly Expenses', accelerator='Alt+S', command=lambda: self.monthlyexpenses(None))
-        self.show.add_command(label="Show Overview", accelerator='Ctrl+N', command=self.show_overview)
-        self.show.add_command(label="Show Expenses Info", accelerator='Alt+N', command=self.show_expenses_info)
+        self.show.add_command(label="Show Monthly Other",
+                              accelerator='Alt+O',
+                              command=lambda: self.monthlyexpenses('Other'))
+        self.show.add_command(label="Show Monthly Transportation",
+                              accelerator='Alt+T',
+                              command=lambda: self.monthlyexpenses('Transportation'))
+        self.show.add_command(label="Show Monthly Grocery",
+                              accelerator='Alt+G',
+                              command=lambda: self.monthlyexpenses('Grocery'))
+        self.show.add_command(label="Show Monthly Bills/Taxes",
+                              accelerator='Alt+B',
+                              command=lambda: self.monthlyexpenses('Bills/Taxes'))
+        self.show.add_command(label='Show Monthly Expenses',
+                              accelerator='Alt+S',
+                              command=lambda: self.monthlyexpenses(None))
+        self.show.add_command(label="Show Overview",
+                              accelerator='Ctrl+N',
+                              command=self.show_overview)
+        self.show.add_command(label="Show Expenses Info",
+                              accelerator='Alt+N',
+                              command=self.show_expenses_info)
         self.menu.add_cascade(label="Show", menu=self.show)
         self.about_menu = Menu(self.menu, tearoff=0)
-        self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
+        self.about_menu.add_command(label="About",
+                                    accelerator='Ctrl+I',
+                                    command=aboutmenu)
         self.menu.add_cascade(label="About", menu=self.about_menu)
         self.help_menu = Menu(self.menu, tearoff=0)
         self.help_menu.add_command(label="Help", accelerator='Ctrl+F1', command=helpmenu)
@@ -239,9 +270,20 @@ class Expenses():
         if df['Amount'].sum() == 0:
             msg.showerror("No Expenses", "No Expenses")
         elif category is None:
-            msg.showinfo("Montly Expenses", "YOUR EXPENSES FOR THE "+str(self.nowmonth)+" MONTH IS "+str(df['Amount'].sum()))
+            msg.showinfo("Montly Expenses",
+                         "YOUR EXPENSES FOR THE "+
+                         str(self.nowmonth)+
+                         " MONTH IS "+
+                         str(df['Amount'].sum()))
         else:
-            msg.showinfo("Monthly Expenses for "+str(category), "Monthly Expenses for "+str(category)+" for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == category]['Amount'].sum()))
+            msg.showinfo("Monthly Expenses for "+
+                         str(category),
+                         "Monthly Expenses for "+
+                         str(category)+
+                         " for the "+
+                         str(self.nowmonth)+
+                         " month is "+
+                         str(df[df['Category'] == category]['Amount'].sum()))
     def save_exp_to_csv(self):
         """ saves expenses to a csv file """
         with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
