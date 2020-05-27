@@ -115,13 +115,18 @@ class Income():
                                                           ["Other", "Salary"],
                                                           'pie',
                                                           ['r', 'g']))
-        self.show.add_command(label="Show time series m", accelerator='Ctrl+T', command=self.timeseriesmonth)
-        self.show.add_command(label="Show income info", accelerator='Alt+N', command=self.show_income_info)
+        self.show.add_command(label="Show time series m",
+                              accelerator='Ctrl+T', command=self.timeseriesmonth)
+        self.show.add_command(label="Show income info",
+                              accelerator='Alt+N', command=self.show_income_info)
         self.menu.add_cascade(label="Show", menu=self.show)
         self.showinc = Menu(self.menu, tearoff=0)
-        self.showinc.add_command(label="Monthly Salary", accelerator='Alt+S', command=lambda: self.monthlyincome('Salary'))
-        self.showinc.add_command(label="Monthly Other", accelerator='Alt+O', command=lambda: self.monthlyincome('Other'))
-        self.showinc.add_command(label="Monthly Income", accelerator='Alt+M', command=lambda: self.monthlyincome(None))
+        self.showinc.add_command(label="Monthly Salary",
+                                 accelerator='Alt+S', command=lambda: self.monthlyincome('Salary'))
+        self.showinc.add_command(label="Monthly Other",
+                                 accelerator='Alt+O', command=lambda: self.monthlyincome('Other'))
+        self.showinc.add_command(label="Monthly Income",
+                                 accelerator='Alt+M', command=lambda: self.monthlyincome(None))
         self.menu.add_cascade(label="Total Income", menu=self.showinc)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
@@ -162,6 +167,7 @@ class Income():
             df.replace(r'\r\n', ' ', regex=True, inplace=True)
             msg.showinfo("INCOME INFO", df.to_string())
     def timeseriesmonth(self):
+        """ time series """
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
             msg.showerror("ERROR", "NO INCOME")
@@ -174,7 +180,11 @@ class Income():
         if df['Amount'].sum() == 0:
             msg.showerror("ERROR", "NO INCOME TO SAVE")
         else:
-            filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"), ("csv files", "*.csv"), ("all files", "*.*")))
+            filenamesave = filedialog.asksaveasfilename(initialdir="/",
+                                                        title="Select file",
+                                                        filetypes=(("txt files", "*.txt"),
+                                                                   ("csv files", "*.csv"),
+                                                                   ("all files", "*.*")))
             check_save(filenamesave, df)
     def show_overview(self):
         """ shows_overview"""
@@ -182,15 +192,26 @@ class Income():
         if df['Amount'].sum() == 0:
             msg.showerror("ERROR", "NO INCOME")
         else:
-            minexp = min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
-            maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()])
-            msg.showinfo("Expenses Overview", "Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) +"\nSalary:" + str(df[df['Category'] == "Salary"]['Amount'].sum()) + "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
-    
+            minexp = min([df[df['Category'] == "Other"]['Amount'].sum(),
+                          df[df['Category'] == "Salary"]['Amount'].sum()])
+            maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(),
+                          df[df['Category'] == "Salary"]['Amount'].sum()])
+            msg.showinfo("Expenses Overview",
+                         "Other:" +
+                         str(df[df['Category'] == "Other"]['Amount'].sum()) +
+                         "\nSalary:" +
+                         str(df[df['Category'] == "Salary"]['Amount'].sum()) +
+                         "\nTotal:"+str(df['Amount'].sum())+
+                         "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
     def chart_save_user_verification(self):
         """ user set an image file name """
-        self.filechartname = simpledialog.askstring("CHART NAME", "Enter chart name", parent=self.master)
+        self.filechartname = simpledialog.askstring("CHART NAME",
+                                                    "Enter chart name",
+                                                    parent=self.master)
         while self.filechartname is None or (not self.filechartname.strip()):
-            self.filechartname = simpledialog.askstring("CHART NAME", "Enter chart name", parent=self.master)
+            self.filechartname = simpledialog.askstring("CHART NAME",
+                                                        "Enter chart name",
+                                                        parent=self.master)
         return self.filechartname
     def savechartfunction(self, save):
         """ saves chart to an image file """
@@ -202,7 +223,8 @@ class Income():
     def Charts(self, title, categories, types, color):
         """ shows a bar chart of income"""
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
-        data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Salary"]['Amount'].sum()]
+        data = [df[df['Category'] == "Other"]['Amount'].sum(),
+                df[df['Category'] == "Salary"]['Amount'].sum()]
         if df['Amount'].sum() == 0:
             msg.showerror("ERROR", "NO INCOME")
         else:
@@ -228,22 +250,42 @@ class Income():
         if df['Amount'].sum() == 0:
             msg.showerror("ERROR", "NO INCOME")
         elif category is None:
-            msg.showinfo("Montly Income", "YOUR INCOME FOR THE "+str(self.nowmonth)+" MONTH IS "+str(df['Amount'].sum()))
+            msg.showinfo("Montly Income",
+                         "YOUR INCOME FOR THE "+
+                         str(self.nowmonth)+
+                         " MONTH IS "+
+                         str(df['Amount'].sum()))
         else:
-            msg.showinfo("Monthly income from "+str(category), "Monthly Income from "+str(category)+" for the "+str(self.nowmonth)+" month is "+ str(df[df['Category'] == category]['Amount'].sum()))
+            msg.showinfo("Monthly income from "+
+                         str(category),
+                         "Monthly Income from "+
+                         str(category)+
+                         " for the "+
+                         str(self.nowmonth)+
+                         " month is "+
+                         str(df[df['Category'] == category]['Amount'].sum()))
     def add_values_to_csv(self):
         """ adds income to a csv file """
         with open('income'+str(self.nowmonth)+'.csv', 'a+') as f:
             thewriter = csv.writer(f)
-            thewriter.writerow([str(datetime.date.today()), str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
+            thewriter.writerow([str(datetime.date.today()),
+                                str(self.textamount.get(1.0, END)),
+                                self.textdes.get(1.0, END),
+                                str(self.var_cat_list.get())])
     def addinc(self):
         """ adds an income"""
         try:
             if float(self.textamount.get(1.0, END)) > 0 and (self.textdes.count(1.0, END) != (1, )):
                 self.add_values_to_csv()
-                msg.showinfo("Income info", "Amount: "+str(self.textamount.get(1.0, END))+"Description: "+self.textdes.get(1.0, END) +"Category: "+ str(self.var_cat_list.get()))
+                msg.showinfo("Income info", "Amount: "+
+                             str(self.textamount.get(1.0, END))+
+                             "Description: "+
+                             self.textdes.get(1.0, END) +
+                             "Category: "+
+                             str(self.var_cat_list.get()))
             else:
-                msg.showerror("Value Error", "Enter a number higher than zero \nEnter a description")
+                msg.showerror("Value Error",
+                              "Enter a number higher than zero \nEnter a description")
         except ValueError:
             msg.showerror("Value Error", "Enter a number higher than zero \nEnter a description")
         self.textamount.delete(1.0, END)
