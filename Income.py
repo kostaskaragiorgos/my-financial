@@ -173,6 +173,7 @@ class Income():
             msg.showerror("ERROR", "NO INCOME")
         else:
             plt.plot(df['Date'], df['Amount'])
+            plt.title("Time Series Graph of Income")
             plt.show()
     def saveas(self):
         """ Saves overview to a .txt or .csv file"""
