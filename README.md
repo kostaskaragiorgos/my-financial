@@ -56,6 +56,8 @@
 
 ## Dependencies
 
+To install the dependencies
+
 <ul>
   <li> matplotlib (conda install -c conda-forge matplotlib) </li>
   <li> second way to install matplotlib (pip install matplotlib) </li>
@@ -64,6 +66,13 @@
   <li> csv (conda install -c anaconda csvkit) </li>
   <li> second way to install csv ( pip install python-csv) </li>
 </ul>
+
+
+or run
+
+```shell
+pip install -r requirements.txt
+```
 
 ## Expenses
 <p> You can keep track of your expenses </p>
