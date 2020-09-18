@@ -81,6 +81,12 @@ pip install -r requirements.txt
 
 <p><img src ="images/Expenses.png" title = "Expenses Version"/> </p>
 
+## Expenses_Documentation
+
+
+All project documentation is located in the `./doc/expenses`  folder.
+
+
 ## Expenses_Radon
 
 ### Expenses_Radon_cc
