@@ -31,6 +31,13 @@ You can show the monthly expenses of transportation category by using menu Show 
 
 <p><img src ="Show menu/show monthly transportation.png" title="monthly transportation"/> </p>
 
+## Show Monthly Grocery
+
+You can show the monthly expenses of grocery category by using menu Show --> Show Monthly Grocery or by using Alt + g keybind
+
+<p><img src ="Show menu/show monthly grocery.png" title="monthly grocery"/> </p>
+
+
 # About menu
 
 You can show info about the app by using menu About --> About or using Ctrl+i keybind
