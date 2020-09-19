@@ -42,7 +42,7 @@ You can show the monthly expenses of grocery category by using menu Show --> Sho
 
 You can show the monthly expenses of bills/taxes category by using menu Show --> Show Monthly Bills/Taxes or by using Alt + b keybind
 
-<p><img src ="Show menu/show monthly bills/taxes.png" title="monthly bills/taxes"/> </p>
+<p><img src ="Show menu/show monthly billstaxes.png" title="monthly bills/taxes"/> </p>
 
 # About menu
 
