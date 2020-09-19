@@ -38,6 +38,12 @@ You can show the monthly expenses of grocery category by using menu Show --> Sho
 <p><img src ="Show menu/show monthly grocery.png" title="monthly grocery"/> </p>
 
 
+## Show Monthly Bills/Taxes
+
+You can show the monthly expenses of bills/taxes category by using menu Show --> Show Monthly Bills/Taxes or by using Alt + b keybind
+
+<p><img src ="Show menu/show monthly bills/taxes.png" title="monthly bills/taxes"/> </p>
+
 # About menu
 
 You can show info about the app by using menu About --> About or using Ctrl+i keybind
