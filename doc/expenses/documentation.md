@@ -16,6 +16,14 @@ An informative message pops up
 You press ok to close the app or cancel if you don't want
 
 
+# Show menu
+
+## Show Monthly Other
+
+You can show the monthly expenses of other category by using menu Show --> Show Monthly Other or by using Alt + o keybind
+
+<p><img src ="Show menu/show monthly other.png" title="monthly other"/> </p>
+
 # About menu
 
 You can show info about the app by using menu About --> About or using Ctrl+i keybind
