@@ -44,6 +44,12 @@ You can show the monthly expenses of bills/taxes category by using menu Show -->
 
 <p><img src ="Show menu/show monthly billstaxes.png" title="monthly bills/taxes"/> </p>
 
+## Show Monthly Expenses
+
+You can show the monthly expenses  by using menu Show --> Show Monthly Expenses or by using Alt + s keybind
+
+<p><img src ="Show menu/show monthly expenses.png" title="monthly expenses"/> </p>
+
 # About menu
 
 You can show info about the app by using menu About --> About or using Ctrl+i keybind
