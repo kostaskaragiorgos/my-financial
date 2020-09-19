@@ -24,6 +24,13 @@ You can show the monthly expenses of other category by using menu Show --> Show 
 
 <p><img src ="Show menu/show monthly other.png" title="monthly other"/> </p>
 
+
+## Show Monthly Transportation
+
+You can show the monthly expenses of transportation category by using menu Show --> Show Monthly Transportation or by using Alt + t keybind
+
+<p><img src ="Show menu/show monthly transportation.png" title="monthly transportation"/> </p>
+
 # About menu
 
 You can show info about the app by using menu About --> About or using Ctrl+i keybind
