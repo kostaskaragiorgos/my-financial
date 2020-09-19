@@ -50,6 +50,14 @@ You can show the monthly expenses  by using menu Show --> Show Monthly Expenses 
 
 <p><img src ="Show menu/show monthly expenses.png" title="monthly expenses"/> </p>
 
+
+
+## Show Overview
+
+You can show the overview  by using menu Show --> Show Overview or by using Alt + n keybind
+
+<p><img src ="Show menu/show overview.png" title="show overview"/> </p>
+
 # About menu
 
 You can show info about the app by using menu About --> About or using Ctrl+i keybind
