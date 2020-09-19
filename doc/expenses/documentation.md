@@ -20,7 +20,7 @@ You press ok to close the app or cancel if you don't want
 
 You can show info about the app by using menu About --> About or using Ctrl+i keybind
 
-<p><img src="doc images/About menu/about menu.png" title="about menu"/></p>
+<p><img src="About menu/about menu.png" title="about menu"/></p>
 
 An informative message pops up
 
