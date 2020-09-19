@@ -24,7 +24,7 @@ You can show info about the app by using menu About --> About or using Ctrl+i ke
 
 An informative message pops up
 
-<p><img src="doc images/About menu/about.png" title="about menu"/></p> 
+<p><img src="About menu/about.png" title="about menu"/></p> 
 
 # Help menu
 
