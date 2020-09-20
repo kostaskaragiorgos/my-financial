@@ -4,9 +4,13 @@
 
 ## Add Expense 
 
-You can add an epxense by using menu File --> Add Expense or using Ctrl+o keybind or by using the Add Expense button
+You can add an epxense by using menu File --> Add Expense or by using Ctrl+o keybind or by using the Add Expense button
 
 <p><img src="File menu/add expense.png" title="Add Expense"/></p>
+
+## Save Overview as
+
+You can save the overview to a .txt or .csv file by using File-->Save Overview as or by using Ctrl + s keybind
 
 
 ## Exit
