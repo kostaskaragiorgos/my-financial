@@ -2,12 +2,18 @@
 
 # File menu
 
+## Add Expense 
+
+You can add an epxense by using menu File --> Add Expense or using Ctrl+o keybind or by using the Add Expense button
+
+<p><img src="File menu/add expense.png" title="Add Expense"/></p>
+
 
 ## Exit
 
-You can close the app using menu File --> Exit or using Alt+F4 keybind
+You can close the app by using menu File --> Exit or using Alt+F4 keybind
 
-<p><img src = "File menu/close app.png" title="Close app">
+<p><img src = "File menu/close app.png" title="Close app"></p>
 
 An informative message pops up
 
