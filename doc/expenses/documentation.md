@@ -17,11 +17,18 @@ You press ok to close the app or cancel if you don't want
 
 # Charts menu
 
-# Bar chart
+# Bar Chart
 
 You can show a bar chart of your expenses by using menu Charts --> Bar Chart or by using Ctrl + b keybind
 
 <p><img src ="Charts menu/bar chart.png" title="bar chart"/></p>
+
+# Pie Chart
+
+
+You can show a pie chart of your expenses by using menu Charts --> Pie Chart or by using Ctrl + p keybind
+
+<p><img src ="Charts menu/pie chart.png" title="pie chart"/></p>
 
 # Show menu
 
