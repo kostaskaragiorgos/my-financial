@@ -17,11 +17,17 @@ You press ok to close the app or cancel if you don't want
 
 # Edit menu
 
-## Clear amount
+## Clear Amount
 
 You can clear the amount text field by using menu Edit --> Clear Amount or using Ctrl + z
 
 <p><img src = "Edit menu/clear amount.png" title = "clear amount"/></p>
+
+## Clear Description
+
+You can clear the description text field by using menu Edit --> Clear Description or using Alt + z
+
+<p><img src = "Edit menu/clear description.png" title = "clear description"/></p>
 
 # Charts menu
 
