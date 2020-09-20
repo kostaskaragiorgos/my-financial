@@ -15,6 +15,13 @@ An informative message pops up
 
 You press ok to close the app or cancel if you don't want
 
+# Charts menu
+
+# Bar chart
+
+You can show a bar chart of your expenses by using menu Charts --> Bar Chart or by using Ctrl + b keybind
+
+<p><img src ="Charts menu/bar chart.png" title="bar chart"/></p>
 
 # Show menu
 
