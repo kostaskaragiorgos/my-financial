@@ -12,6 +12,7 @@ You can add an epxense by using menu File --> Add Expense or by using Ctrl+o key
 
 You can save the overview to a .txt or .csv file by using File-->Save Overview as or by using Ctrl + s keybind
 
+<p><img src="File menu/save overview as.png" title="Save Overview as"/></p>
 
 ## Exit
 
