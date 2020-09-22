@@ -15,6 +15,14 @@ An informative message pops up
 
 You press ok to close the app or cancel if you don't want
 
+# Total Income menu
+
+## Monthly Salary
+
+You can show the monthly salary by using menu Total Income --> Monthly Salary or using Alt + s keybind
+
+<p><img src="Total Income/monthly salary.png" title="monthly salary"/></p>
+
 
 # About menu
 
