@@ -29,6 +29,12 @@ You can show the monthly other by using menu Total Income --> Monthly Other or u
 
 <p><img src="Total Income/monthly other.png" title="monthly other"/></p>
 
+## Monthly Income
+
+You can show the monthly income by using menu Total Income --> Monthly Income or using Alt + m keybind
+
+<p><img src="Total Income/monthly income.png" title="monthly income"/></p>
+
 # About menu
 
 You can show info about the app by using menu About --> About or using Ctrl+i keybind
