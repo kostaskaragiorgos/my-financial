@@ -23,6 +23,11 @@ You can show the monthly salary by using menu Total Income --> Monthly Salary or
 
 <p><img src="Total Income/monthly salary.png" title="monthly salary"/></p>
 
+## Monthly Other
+
+You can show the monthly other by using menu Total Income --> Monthly Other or using Alt + o keybind
+
+<p><img src="Total Income/monthly other.png" title="monthly other"/></p>
 
 # About menu
 
