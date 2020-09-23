@@ -29,6 +29,11 @@ You can show bar chart by using menu Show --> Show Bar chart or using ctrl + b k
 
 <p><img src="Show menu/show bar chart.png" title="Show bar chart"/></p>
 
+## Show Pie chart
+
+You can show pie chart by using menu Show --> Show Bar chart or using ctrl + p keybind
+
+<p><img src="Show menu/show pie chart.png" title="Show pie chart"/></p>
 
 # Total Income menu
 
