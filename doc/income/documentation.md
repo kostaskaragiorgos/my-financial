@@ -15,6 +15,14 @@ An informative message pops up
 
 You press ok to close the app or cancel if you don't want
 
+# Show Menu
+
+## Show Overview
+
+You can show overview by using menu Show --> Show Overview or using ctrl + n keybind
+
+<p><img src="Show menu/show overview.png" title="Show overview"/></p>
+
 # Total Income menu
 
 ## Monthly Salary
