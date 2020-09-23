@@ -23,6 +23,13 @@ You can show overview by using menu Show --> Show Overview or using ctrl + n key
 
 <p><img src="Show menu/show overview.png" title="Show overview"/></p>
 
+## Show Bar chart
+
+You can show bar chart by using menu Show --> Show Bar chart or using ctrl + b keybind
+
+<p><img src="Show menu/show bar chart.png" title="Show bar chart"/></p>
+
+
 # Total Income menu
 
 ## Monthly Salary
