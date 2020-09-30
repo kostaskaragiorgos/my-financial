@@ -15,6 +15,14 @@ An informative message pops up
 
 You press ok to close the app or cancel if you don't want
 
+# Edit Menu
+
+## Clear Amount
+
+You can clear the Amount text field by using menu Edit Clear Amount or using Ctrl + z keybind
+
+<p><img src="Edit menu/clear amount.png" title="clear amount"/></p>
+
 # Show Menu
 
 ## Show Overview
