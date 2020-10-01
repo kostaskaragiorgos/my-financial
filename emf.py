@@ -1,10 +1,17 @@
+""" creates an Emergency fund plan """
 from tkinter import Tk, Menu, Button
 from tkinter import messagebox as msg
 from tkinter import simpledialog as sd
-import os 
+import os
 import csv
 import pandas as pd
-def saveplan(mf , mongot, savam, mneeded):
+def showplan():
+    """ shows the emergency fund plans """
+    df = pd.read_csv('Emergency Fund.csv')
+    df = df.drop_duplicates(keep='first')
+    msg.showinfo("EMERGENCY FUND", str(df))
+def saveplan(mf, mongot, savam, mneeded):
+    """ saves a plan to a csv file"""
     with open('Emergency Fund.csv', 'a+') as g:
         thewriter = csv.writer(g)
         thewriter.writerow([str(mf), str(mongot), str(savam), str(mneeded)])
@@ -15,6 +22,7 @@ def helpmenu():
     """ help menu function """
     msg.showinfo("Help", "Press the button")
 class Emergency_Fund():
+    """ Emergency Fund class """
     def __init__(self, master):
         self.master = master
         self.master.title("Emergency Fund")
@@ -32,7 +40,7 @@ class Emergency_Fund():
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.showplans = Menu(self.menu, tearoff=0)
-        self.showplans.add_command(label="Show Plans", accelerator='Alt+P', command=self.showplan)
+        self.showplans.add_command(label="Show Plans", accelerator='Alt+P', command=showplan)
         self.menu.add_cascade(label="Show", menu=self.showplans)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
@@ -45,12 +53,9 @@ class Emergency_Fund():
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
         self.master.bind('<Control-p>', lambda event: self.plan())
-        self.master.bind('<Alt-p>', lambda event: self.showplan())
-    def showplan(self):
-        df = pd.read_csv('Emergency Fund.csv')
-        df = df.drop_duplicates(keep='first')
-        msg.showinfo("EMERGENCY FUND", str(df))
+        self.master.bind('<Alt-p>', lambda event: showplan())
     def plan(self):
+        """ creates an emergency fund plan """
         mf = sd.askfloat("Emergency Fund amount", "Enter the amount of the emergency fund", 
                          parent=self.master, minvalue=100, maxvalue=10000)
         while mf is None:
