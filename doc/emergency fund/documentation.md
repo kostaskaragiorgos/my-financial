@@ -22,6 +22,10 @@ You can show plans by using menu Show --> Show Plans or using Alt + p keybind
 
 <p><img src="Show menu/show plans menu.png" title="show plans menu"/></p>
 
+An informative window pops up
+
+<p><img src="Show menu/show plans.png" title="show plans"/></p>
+
 # About menu
 
 You can show info about the app by using menu About --> About or using Ctrl+i keybind
