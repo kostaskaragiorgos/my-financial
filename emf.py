@@ -4,6 +4,10 @@ from tkinter import simpledialog as sd
 import os 
 import csv
 import pandas as pd
+def saveplan(mf , mongot, savam, mneeded):
+    with open('Emergency Fund.csv', 'a+') as g:
+        thewriter = csv.writer(g)
+        thewriter.writerow([str(mf), str(mongot), str(savam), str(mneeded)])
 def aboutmenu():
     """ about function """
     msg.showinfo("About", "About Emergency Fund \nVersion 1.0")
@@ -66,9 +70,7 @@ class Emergency_Fund():
         dif = mf - mongot
         mneeded = dif // savam
         msg.showinfo("MONTHS YOU NEED", "YOU NEED "+str(int(mneeded))+" month(s) to get "+str(mf)+" having "+str(mongot)+" saving "+str(savam)+" per month ")
-        with open('Emergency Fund.csv', 'a+') as g:
-            thewriter = csv.writer(g)
-            thewriter.writerow([str(mf), str(mongot), str(savam), str(mneeded)])
+        saveplan(mf, mongot, savam, mneeded)
     def exitmenu(self):
         """ exit menu function"""
         if msg.askokcancel("Quit?", "Really quit?"):
