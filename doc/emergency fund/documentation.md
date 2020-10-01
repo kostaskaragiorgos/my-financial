@@ -14,6 +14,14 @@ An informative message pops up
 
 You press ok to close the app or cancel if you don't want
 
+# Show menu
+
+## Show plans
+
+You can show plans by using menu Show --> Show Plans or using Alt + p keybind
+
+<p><img src="Show menu/show plans menu.png" title="show plans menu"/></p>
+
 # About menu
 
 You can show info about the app by using menu About --> About or using Ctrl+i keybind
