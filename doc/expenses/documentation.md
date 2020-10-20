@@ -52,6 +52,10 @@ if there are no expenses an error message window pops up
 
 <p><img src ="Charts menu/bar chart error.png" title="bar chart error"/></p>
 
+bar chart
+
+<p><img src ="Charts menu/bar.png" title="bar chart"/></p>
+
 
 # Pie Chart
 
@@ -63,6 +67,10 @@ You can show a pie chart of your expenses by using menu Charts --> Pie Chart or 
 if there are no expenses an error message window pops up
 
 <p><img src ="Charts menu/pie chart error.png" title="pie chart error"/></p>
+
+pie chart
+
+<p><img src="Charts menu/pie.png" title="pie chart"/></p>
 
 
 # Show menu
