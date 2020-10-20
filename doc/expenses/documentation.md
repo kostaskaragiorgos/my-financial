@@ -85,6 +85,10 @@ if there are no expenses an error message window pops up
 
 <p><img src ="Show menu/show monthly other error.png" title="show monthly other error"/></p>
 
+show monthly other
+
+<p><img src ="Show menu/show monthly other info.png" title = "show monthly other"/></p>
+
 
 
 ## Show Monthly Transportation
@@ -97,6 +101,10 @@ if there are no expenses an error message window pops up
 
 <p><img src ="Show menu/show monthly transportation error.png" title="show monthly transportation error"/></p>
 
+show monthly transportation
+
+<p><img src ="Show menu/show monthly transportation info.png" title = "show monthly transportation"/></p>
+
 
 ## Show Monthly Grocery
 
@@ -107,6 +115,10 @@ You can show the monthly expenses of grocery category by using menu Show --> Sho
 if there are no expenses an error message window pops up
 
 <p><img src ="Show menu/show monthly grocery error.png" title="show monthly grocery error"/></p>
+
+show monthly grocery
+
+<p><img src ="Show menu/show monthly grocery info.png" title = "show monthly grocery"/></p>
 
 
 ## Show Monthly Bills/Taxes
@@ -119,6 +131,10 @@ if there are no expenses an error message window pops up
 
 <p><img src ="Show menu/show monthly billstaxes error.png" title="show monthly billstaxes error"/></p>
 
+show monthly bills/taxes
+
+<p><img src ="Show menu/show monthly billstaxes info.png" title = "show monthly billstaxes"/></p>
+
 
 ## Show Monthly Expenses
 
@@ -130,6 +146,9 @@ if there are no expenses an error message window pops up
 
 <p><img src ="Show menu/show monthly expenses error.png" title="show monthly expenses info error"/></p>
 
+show monthly expenses
+
+<p><img src ="Show menu/show monthly expenses info.png" title = "show monthly expenses"/></p>
 
 ## Show Overview
 
@@ -141,6 +160,10 @@ if there are no expenses an error message window pops up
 
 <p><img src ="Show menu/show overview error.png" title="show overview error"/></p>
 
+
+show overview
+
+<p><img src ="Show menu/show overview info.png" title = "show overview"/></p>
 
 ## Show Expenses Info
 
