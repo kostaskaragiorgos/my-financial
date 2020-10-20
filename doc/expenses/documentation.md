@@ -48,12 +48,22 @@ You can show a bar chart of your expenses by using menu Charts --> Bar Chart or 
 
 <p><img src ="Charts menu/bar chart.png" title="bar chart"/></p>
 
+if there are no expenses an error message window pops up
+
+<p><img src ="Charts menu/bar chart error.png" title="bar chart error"/></p>
+
+
 # Pie Chart
 
 
 You can show a pie chart of your expenses by using menu Charts --> Pie Chart or by using Ctrl + p keybind
 
 <p><img src ="Charts menu/pie chart.png" title="pie chart"/></p>
+
+if there are no expenses an error message window pops up
+
+<p><img src ="Charts menu/pie chart error.png" title="pie chart error"/></p>
+
 
 # Show menu
 
