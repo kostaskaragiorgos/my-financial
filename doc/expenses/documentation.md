@@ -63,6 +63,11 @@ You can show the monthly expenses of other category by using menu Show --> Show 
 
 <p><img src ="Show menu/show monthly other.png" title="monthly other"/> </p>
 
+if there are no expenses an error message window pops up
+
+<p><img src ="Show menu/show monthly other error.png" title="show monthly other error"/></p>
+
+
 
 ## Show Monthly Transportation
 
@@ -70,11 +75,20 @@ You can show the monthly expenses of transportation category by using menu Show 
 
 <p><img src ="Show menu/show monthly transportation.png" title="monthly transportation"/> </p>
 
+if there are no expenses an error message window pops up
+
+<p><img src ="Show menu/show monthly transportation error.png" title="show monthly transportation error"/></p>
+
+
 ## Show Monthly Grocery
 
 You can show the monthly expenses of grocery category by using menu Show --> Show Monthly Grocery or by using Alt + g keybind
 
 <p><img src ="Show menu/show monthly grocery.png" title="monthly grocery"/> </p>
+
+if there are no expenses an error message window pops up
+
+<p><img src ="Show menu/show monthly grocery error.png" title="show monthly grocery error"/></p>
 
 
 ## Show Monthly Bills/Taxes
@@ -83,17 +97,32 @@ You can show the monthly expenses of bills/taxes category by using menu Show -->
 
 <p><img src ="Show menu/show monthly billstaxes.png" title="monthly bills/taxes"/> </p>
 
+if there are no expenses an error message window pops up
+
+<p><img src ="Show menu/show monthly billstaxes error.png" title="show monthly billstaxes error"/></p>
+
+
 ## Show Monthly Expenses
 
 You can show the monthly expenses  by using menu Show --> Show Monthly Expenses or by using Alt + s keybind
 
 <p><img src ="Show menu/show monthly expenses.png" title="monthly expenses"/> </p>
 
+if there are no expenses an error message window pops up
+
+<p><img src ="Show menu/show monthly expenses error.png" title="show monthly expenses info error"/></p>
+
+
 ## Show Overview
 
 You can show the overview  by using menu Show --> Show Overview or by using ctrl + n keybind
 
 <p><img src ="Show menu/show overview.png" title="show overview"/> </p>
+
+if there are no expenses an error message window pops up
+
+<p><img src ="Show menu/show overview error.png" title="show overview error"/></p>
+
 
 ## Show Expenses Info
 
