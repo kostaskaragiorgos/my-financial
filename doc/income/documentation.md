@@ -38,17 +38,31 @@ You can show overview by using menu Show --> Show Overview or using ctrl + n key
 
 <p><img src="Show menu/show overview.png" title="Show overview"/></p>
 
+if there is no income an error window pops up
+
+<p><img src="Show menu/show overview error.png" title="Show overview error"/></p>
+
 ## Show Bar chart
 
 You can show bar chart by using menu Show --> Show Bar chart or using ctrl + b keybind
 
 <p><img src="Show menu/show bar chart.png" title="Show bar chart"/></p>
 
+
+if there is no income an error window pops up
+
+<p><img src="Show menu/show bar chart error.png" title="Show bar chart error"/></p>
+
 ## Show Pie chart
 
 You can show pie chart by using menu Show --> Show Bar chart or using ctrl + p keybind
 
 <p><img src="Show menu/show pie chart.png" title="Show pie chart"/></p>
+
+
+if there is no income an error window pops up
+
+<p><img src="Show menu/show pie chart error.png" title="Show pie chart error"/></p>
 
 # Total Income menu
 
