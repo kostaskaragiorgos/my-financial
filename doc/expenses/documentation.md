@@ -101,6 +101,15 @@ You can show the expenses info by using menu Show --> Show Show Expenses Info or
 
 <p><img src ="Show menu/show expenses info.png" title="show expenses info"/> </p>
 
+if there are no expenses an error message window pops up
+
+<p><img src ="Show menu/show expenses info error.png" title="show expenses info error"/></p>
+
+else an info message window pops up
+
+<p><img src= "Show menu/show expenses info corr.png" title="show expenses info"/></p>
+
+
 # About menu
 
 You can show info about the app by using menu About --> About or using Ctrl+i keybind
