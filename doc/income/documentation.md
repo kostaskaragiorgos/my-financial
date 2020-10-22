@@ -72,17 +72,31 @@ You can show the monthly salary by using menu Total Income --> Monthly Salary or
 
 <p><img src="Total Income/monthly salary.png" title="monthly salary"/></p>
 
+if there is no salary an error window pops up
+
+<p><img src="Total Income/monthly salary error.png" title="monthly salary error"/></p>
+
 ## Monthly Other
 
 You can show the monthly other by using menu Total Income --> Monthly Other or using Alt + o keybind
 
 <p><img src="Total Income/monthly other.png" title="monthly other"/></p>
 
+if there is no salary an error window pops up
+
+<p><img src="Total Income/monthly other error.png" title="monthly salary error"/></p>
+
+
 ## Monthly Income
 
 You can show the monthly income by using menu Total Income --> Monthly Income or using Alt + m keybind
 
 <p><img src="Total Income/monthly income.png" title="monthly income"/></p>
+
+if there is no salary an error window pops up
+
+<p><img src="Total Income/monthly income error.png" title="monthly salary error"/></p>
+
 
 # About menu
 
