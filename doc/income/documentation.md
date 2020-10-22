@@ -76,6 +76,11 @@ if there is no salary an error window pops up
 
 <p><img src="Total Income/monthly salary error.png" title="monthly salary error"/></p>
 
+Monthly Salary
+
+<p><img src="Total Income/monthly income sal.png" title="monthly salary total"/></p>
+
+
 ## Monthly Other
 
 You can show the monthly other by using menu Total Income --> Monthly Other or using Alt + o keybind
@@ -85,6 +90,10 @@ You can show the monthly other by using menu Total Income --> Monthly Other or u
 if there is no salary an error window pops up
 
 <p><img src="Total Income/monthly other error.png" title="monthly salary error"/></p>
+
+Monthly Other
+
+<p><img src="Total Income/monthly income ont.png" title="monthly salary other"/></p>
 
 
 ## Monthly Income
@@ -96,6 +105,11 @@ You can show the monthly income by using menu Total Income --> Monthly Income or
 if there is no salary an error window pops up
 
 <p><img src="Total Income/monthly income error.png" title="monthly salary error"/></p>
+
+
+Monthly Income
+
+<p><img src="Total Income/monthly salary tot.png" title="monthly salary total"/></p>
 
 
 # About menu
