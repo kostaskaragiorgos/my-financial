@@ -197,7 +197,7 @@ class Income():
                           df[df['Category'] == "Salary"]['Amount'].sum()])
             maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(),
                           df[df['Category'] == "Salary"]['Amount'].sum()])
-            msg.showinfo("Expenses Overview",
+            msg.showinfo("Income Overview",
                          "Other:" +
                          str(df[df['Category'] == "Other"]['Amount'].sum()) +
                          "\nSalary:" +
