@@ -42,6 +42,9 @@ if there is no income an error window pops up
 
 <p><img src="Show menu/show overview error.png" title="Show overview error"/></p>
 
+Show Overview 
+<p><img src="Show menu/show overview income.png" title="Show overview"/></p>
+
 ## Show Bar chart
 
 You can show bar chart by using menu Show --> Show Bar chart or using ctrl + b keybind
@@ -53,6 +56,10 @@ if there is no income an error window pops up
 
 <p><img src="Show menu/show bar chart error.png" title="Show bar chart error"/></p>
 
+Show Bar chart
+
+<p><img src="Show menu/show bar chart income.png" title="Show bar chart"/></p>
+
 ## Show Pie chart
 
 You can show pie chart by using menu Show --> Show Bar chart or using ctrl + p keybind
@@ -63,6 +70,10 @@ You can show pie chart by using menu Show --> Show Bar chart or using ctrl + p k
 if there is no income an error window pops up
 
 <p><img src="Show menu/show pie chart error.png" title="Show pie chart error"/></p>
+
+Show Pie chart
+
+<p><img src="Show menu/show pie chart income.png" title="Show pie chart income"/></p>
 
 # Total Income menu
 
