@@ -66,6 +66,10 @@ class Expenses():
             with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
                 thewriter = csv.writer(f)
                 thewriter.writerow(['Date', 'Amount', 'Description', 'Category'])
+        if not os.path.exists('expenses budget'+str(self.nowmonth)+'.csv'):
+            with open('expeses budget'+ str(self.nowmonth)+'.csv', 'a+') as f:
+                thewriter = csv.writer(f)
+                thewriter.writerow(['Grocery Budget', 'Other Budget', 'Transportation Budget', 'Bills/Taxes Budget'])
         self.menu = Menu(self.master)
         self.file_menu = Menu(self.menu, tearoff=0)
         self.file_menu.add_command(label="Add Expense",
