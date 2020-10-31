@@ -132,7 +132,7 @@ class Expenses():
         self.menu.add_cascade(label="Show", menu=self.show)
         self.showtrans = Menu(self.menu, tearoff=0)
         self.showtrans.add_command(label="Show Number of Total Transactions", command= lambda: self.monthlytransactions(None))
-        self.showtrans.add_command(label="Show Number of (Other) Transactions")
+        self.showtrans.add_command(label="Show Number of (Other) Transactions", command= lambda: self.monthlytransactions('Other'))
         self.showtrans.add_command(label="Show Number of (Transportation) Transactions")
         self.showtrans.add_command(label="Show Number of (Grocery) Transactions")
         self.showtrans.add_command(label="Show Number of (Bills/Taxes) Transactions")
@@ -281,6 +281,15 @@ class Expenses():
             msg.showerror("No Transactions", "No Transactions")
         elif category is None:
             msg.showinfo("Total Transactions", "The total transactions for the " + str(self.nowmonth) + " month are " + str(df.shape[0]))
+        else:
+            msg.showinfo("Monthly Transactions for "+
+                         str(category),
+                         "Monthly Transactrions for "+
+                         str(category)+
+                         " for the "+
+                         str(self.nowmonth)+
+                         " month are "+
+                         str(len([df['Category'] == category])))
 
     def monthlyexpenses(self, category):
         """ calculates the monthly expenses by category """
