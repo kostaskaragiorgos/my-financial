@@ -132,6 +132,7 @@ class Expenses():
         self.menu.add_cascade(label="Show", menu=self.show)
         self.showtrans = Menu(self.menu, tearoff=0)
         self.showtrans.add_command(label="Show Number of (Other) Transactions")
+        self.showtrans.add_command(label="Show Number of (Transportation) Transactions")
         self.menu.add_cascade(label="Transactions", menu=self.showtrans)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About",
