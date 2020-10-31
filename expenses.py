@@ -131,7 +131,7 @@ class Expenses():
                               command=self.show_expenses_info)
         self.menu.add_cascade(label="Show", menu=self.show)
         self.showtrans = Menu(self.menu, tearoff=0)
-        self.showtrans.add_command(label="Show Number of Total Transactions")
+        self.showtrans.add_command(label="Show Number of Total Transactions", command= lambda: self.monthlytransactions(None))
         self.showtrans.add_command(label="Show Number of (Other) Transactions")
         self.showtrans.add_command(label="Show Number of (Transportation) Transactions")
         self.showtrans.add_command(label="Show Number of (Grocery) Transactions")
@@ -275,6 +275,13 @@ class Expenses():
     def cleardes(self):
         """ clears description text field """
         self.textdes.delete(1.0, END)
+    def monthlytransactions(self, category):
+        df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
+        if df['Amount'].sum() == 0:
+            msg.showerror("No Transactions", "No Transactions")
+        elif category is None:
+            msg.showinfo("Total Transactions", "The total transactions for the " + str(self.nowmonth) + " month are " + str(df.shape[0]))
+
     def monthlyexpenses(self, category):
         """ calculates the monthly expenses by category """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
