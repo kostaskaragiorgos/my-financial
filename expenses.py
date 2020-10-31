@@ -130,6 +130,9 @@ class Expenses():
                               accelerator='Alt+N',
                               command=self.show_expenses_info)
         self.menu.add_cascade(label="Show", menu=self.show)
+        self.showtrans = Menu(self.menu, tearoff=0)
+        self.showtrans.add_command(label="Show Number of (Other) Transactions")
+        self.menu.add_cascade(label="Transactions", menu=self.showtrans)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About",
                                     accelerator='Ctrl+I',
@@ -293,7 +296,6 @@ class Expenses():
         with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
             thewriter = csv.writer(f)
             thewriter.writerow([str(datetime.date.today().day), str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
-
     def addexp(self):
         """ adds an expense"""
         try:
