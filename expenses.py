@@ -55,6 +55,7 @@ class Expenses():
         self.master.title("Expenses")
         self.master.geometry("250x170")
         self.master.resizable(False, False)
+        self.categories = list(["Bills/Taxes", "Grocery", "Transportation", "Other"])
        # folders
         foldercreate("expenses")
         nowyear = datetime.date.today().year
@@ -63,11 +64,11 @@ class Expenses():
         self.nowmonth = datetime.date.today().month
         self.filenamesave = ""
         if not os.path.exists('expenses'+str(self.nowmonth)+'.csv'):
-            with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
+            with open('expenses'+str(self.nowmonth)+'.csv', 'w') as f:
                 thewriter = csv.writer(f)
                 thewriter.writerow(['Date', 'Amount', 'Description', 'Category'])
         if not os.path.exists('expenses budget'+str(self.nowmonth)+'.csv'):
-            with open('expeses budget'+ str(self.nowmonth)+'.csv', 'a+') as f:
+            with open('expeses budget'+ str(self.nowmonth)+'.csv', 'w') as f:
                 thewriter = csv.writer(f)
                 thewriter.writerow(['Grocery Budget', 'Other Budget', 'Transportation Budget', 'Bills/Taxes Budget'])
         self.menu = Menu(self.master)
@@ -101,11 +102,11 @@ class Expenses():
         self.charts = Menu(self.menu, tearoff=0)
         self.charts.add_command(label="Bar Chart", accelerator='Ctrl+B',
                                 command=lambda: self.Charts("Bar Chart of Expenses",
-                                                            ["Other", "Transportation", "Grocery", "Bills/Taxes"],
+                                                            self.categories,
                                                             'bar', ['r', 'g', 'y', 'b']))
         self.charts.add_command(label="Pie Chart", accelerator='Ctrl+P',
                                 command=lambda: self.Charts("Pie Chart of Expenses",
-                                                            ["Other", "Transportation", "Grocery", "Bills/Taxes"],
+                                                            self.categories,
                                                             'pie', ['r', 'g', 'y', 'b']))
         self.charts.add_command(label="Show time series m",
                                 accelerator='Ctrl+T', command=self.timeseriesmonth)
@@ -182,8 +183,8 @@ class Expenses():
         self.master.bind('<Alt-g>', lambda event: self.monthlyexpenses('Grocery'))
         self.master.bind('<Control-z>', lambda event: self.clearamount())
         self.master.bind('<Alt-z>', lambda event: self.cleardes())
-        self.master.bind('<Control-p>', lambda event: self.Charts("Pie Chart of Expenses", ["Other", "Transportation", "Grocery", "Bills/Taxes"], 'pie', ['r', 'g', 'y', 'b']))
-        self.master.bind('<Control-b>', lambda event: self.Charts("Bar Chart of Expenses", ["Other", "Transportation", "Grocery", "Bills/Taxes"], 'bar', ['r', 'g', 'y', 'b']))
+        self.master.bind('<Control-p>', lambda event: self.Charts("Pie Chart of Expenses", self.categories, 'pie', ['r', 'g', 'y', 'b']))
+        self.master.bind('<Control-b>', lambda event: self.Charts("Bar Chart of Expenses", self.categories, 'bar', ['r', 'g', 'y', 'b']))
         self.master.bind('<Control-n>', lambda event: self.show_overview())
         self.master.bind('<Alt-n>', lambda event: self.show_expenses_info())
         #basic gui
@@ -196,7 +197,7 @@ class Expenses():
         self.desl.pack()
         self.textdes = Text(self.master, height=1)
         self.textdes.pack()
-        category_list = list(["Bills/Taxes", "Grocery", "Transportation", "Other"])
+        category_list = self.categories
         self.var_cat_list = StringVar(master)
         self.var_cat_list.set(category_list[0])
         self.popupcatlistmenu = OptionMenu(self.master, self.var_cat_list, *category_list)
