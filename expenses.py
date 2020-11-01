@@ -137,7 +137,9 @@ class Expenses():
         self.showtrans.add_command(label="Show Number of Total Transactions",
                                    accelerator='Alt+W',
                                    command= lambda: self.monthlytransactions(None))
-        self.showtrans.add_command(label="Show Number of (Other) Transactions", command= lambda: self.monthlytransactions('Other'))
+        self.showtrans.add_command(label="Show Number of (Other) Transactions",
+                                   accelerator='Alt+I',
+                                   command= lambda: self.monthlytransactions('Other'))
         self.showtrans.add_command(label="Show Number of (Transportation) Transactions", command= lambda: self.monthlytransactions('Transportation'))
         self.showtrans.add_command(label="Show Number of (Grocery) Transactions", command= lambda: self.monthlytransactions('Grocery'))
         self.showtrans.add_command(label="Show Number of (Bills/Taxes) Transactions", command= lambda: self.monthlytransactions('Bills/Taxes'))
@@ -152,6 +154,7 @@ class Expenses():
         self.menu.add_cascade(label="Help", menu=self.help_menu)
 
         self.master.config(menu=self.menu)
+        self.master.bind('<Alt-i>', lambda event: self.monthlytransactions('Other'))
         self.master.bind('<Alt-w>', lambda event: self.monthlytransactions(None))
         self.master.bind('<Alt-p>', lambda event: self.setgrocerybudget())
         self.master.bind('<Alt-q>', lambda event: self.setotherbudget())
