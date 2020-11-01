@@ -97,7 +97,7 @@ class Expenses():
         self.submenu.add_command(label="Set Bills/Taxes",
                                  accelerator='Ctrl+W', command=lambda: self.setbudget('Bills/Taxes'))
         self.budget_menu.add_cascade(label="Set budget", menu=self.submenu, underline=0)
-        self.budget_menu.add_command(label="Show budget")
+        self.budget_menu.add_command(label="Show budget", command= self.showbudget)
         self.menu.add_cascade(label="Budget", menu=self.budget_menu)
         self.charts = Menu(self.menu, tearoff=0)
         self.charts.add_command(label="Bar Chart", accelerator='Ctrl+B',
@@ -204,6 +204,8 @@ class Expenses():
         self.popupcatlistmenu.pack()
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp) 
         self.incomeb.pack()
+    def showbudget(self):
+        pass
     def setbudget(self, category):
         """ sets a budget  for the category"""
         self.budget = simpledialog.askfloat("Enter"+ str(category)+ "Budget", "Enter your" +str(category) +"budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
