@@ -133,9 +133,9 @@ class Expenses():
         self.showtrans = Menu(self.menu, tearoff=0)
         self.showtrans.add_command(label="Show Number of Total Transactions", command= lambda: self.monthlytransactions(None))
         self.showtrans.add_command(label="Show Number of (Other) Transactions", command= lambda: self.monthlytransactions('Other'))
-        self.showtrans.add_command(label="Show Number of (Transportation) Transactions")
-        self.showtrans.add_command(label="Show Number of (Grocery) Transactions")
-        self.showtrans.add_command(label="Show Number of (Bills/Taxes) Transactions")
+        self.showtrans.add_command(label="Show Number of (Transportation) Transactions", command= lambda: self.monthlytransactions('Transportation'))
+        self.showtrans.add_command(label="Show Number of (Grocery) Transactions", command= lambda: self.monthlytransactions('Grocery'))
+        self.showtrans.add_command(label="Show Number of (Bills/Taxes) Transactions", command= lambda: self.monthlytransactions('Bills/Taxes'))
         self.menu.add_cascade(label="Transactions", menu=self.showtrans)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About",
