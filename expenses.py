@@ -140,9 +140,15 @@ class Expenses():
         self.showtrans.add_command(label="Show Number of (Other) Transactions",
                                    accelerator='Alt+I',
                                    command= lambda: self.monthlytransactions('Other'))
-        self.showtrans.add_command(label="Show Number of (Transportation) Transactions", command= lambda: self.monthlytransactions('Transportation'))
-        self.showtrans.add_command(label="Show Number of (Grocery) Transactions", command= lambda: self.monthlytransactions('Grocery'))
-        self.showtrans.add_command(label="Show Number of (Bills/Taxes) Transactions", command= lambda: self.monthlytransactions('Bills/Taxes'))
+        self.showtrans.add_command(label="Show Number of (Transportation) Transactions",
+                                   accelerator='Alt+E',
+                                   command= lambda: self.monthlytransactions('Transportation'))
+        self.showtrans.add_command(label="Show Number of (Grocery) Transactions",
+                                   accelerator='Ctrl+E',
+                                   command= lambda: self.monthlytransactions('Grocery'))
+        self.showtrans.add_command(label="Show Number of (Bills/Taxes) Transactions",
+                                   accelerator='Ctrl+Y',
+                                   command= lambda: self.monthlytransactions('Bills/Taxes'))
         self.menu.add_cascade(label="Transactions", menu=self.showtrans)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About",
@@ -156,6 +162,9 @@ class Expenses():
         self.master.config(menu=self.menu)
         self.master.bind('<Alt-i>', lambda event: self.monthlytransactions('Other'))
         self.master.bind('<Alt-w>', lambda event: self.monthlytransactions(None))
+        self.master.bind('<Alt-e>', lambda event: self.monthlytransactions('Transportation'))
+        self.master.bind('<Control-e>', lambda event: self.monthlytransactions('Grocery'))
+        self.master.bind('<Control-y>', lambda event:self.monthlytransactions('Bills/Taxes'))
         self.master.bind('<Alt-p>', lambda event: self.setgrocerybudget())
         self.master.bind('<Alt-q>', lambda event: self.setotherbudget())
         self.master.bind('<Control-q>', lambda event: self.settransportationbudget())
