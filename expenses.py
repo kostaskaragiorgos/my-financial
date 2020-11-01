@@ -70,7 +70,7 @@ class Expenses():
         if not os.path.exists('expenses budget'+str(self.nowmonth)+'.csv'):
             with open('expeses budget'+ str(self.nowmonth)+'.csv', 'w') as f:
                 thewriter = csv.writer(f)
-                thewriter.writerow(['Grocery Budget', 'Other Budget', 'Transportation Budget', 'Bills/Taxes Budget'])
+                thewriter.writerow(['Amount', 'Category'])
         self.menu = Menu(self.master)
         self.file_menu = Menu(self.menu, tearoff=0)
         self.file_menu.add_command(label="Add Expense",
@@ -209,6 +209,9 @@ class Expenses():
         self.budget = simpledialog.askfloat("Enter"+ str(category)+ "Budget", "Enter your" +str(category) +"budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
         while self.budget is None:
             self.budget = simpledialog.askfloat("Enter"+str(category)+ "Budget", "Enter your" +str(category)+ "budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
+        with open('expeses budget'+ str(self.nowmonth)+'.csv', 'a+') as f:
+            thewriter = csv.writer(f)
+            thewriter.writerow([str(self.budget), str(category)])
     def show_expenses_info(self):
         """ shows expenses info """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
