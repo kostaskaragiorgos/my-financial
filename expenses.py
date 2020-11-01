@@ -88,13 +88,13 @@ class Expenses():
         self.budget_menu = Menu(self.menu, tearoff=0)
         self.submenu = Menu(self.budget_menu, tearoff=0)
         self.submenu.add_command(label="Set Grocery budget",
-                                 accelerator='Alt+P', command=self.setgrocerybudget)
+                                 accelerator='Alt+P', command=lambda: self.setbudget('Grocery'))
         self.submenu.add_command(label="Set Other budget",
-                                 accelerator='Alt+Q', command=self.setotherbudget)
+                                 accelerator='Alt+Q', command=lambda: self.setbudget('Other'))
         self.submenu.add_command(label="Set Transportation budget",
-                                 accelerator='Ctrl+Q', command=self.settransportationbudget)
+                                 accelerator='Ctrl+Q', command=lambda: self.setbudget('Transportation'))
         self.submenu.add_command(label="Set Bills/Taxes",
-                                 accelerator='Ctrl+W', command=self.setbillsortaxesbudget)
+                                 accelerator='Ctrl+W', command=lambda: self.setbudget('Bills/Taxes'))
         self.budget_menu.add_cascade(label="Set budget", menu=self.submenu, underline=0)
         self.budget_menu.add_command(label="Show budget")
         self.menu.add_cascade(label="Budget", menu=self.budget_menu)
@@ -203,26 +203,11 @@ class Expenses():
         self.popupcatlistmenu.pack()
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp) 
         self.incomeb.pack()
-    def setbillsortaxesbudget(self):
-        """ sets a bills/taxes budget """
-        self.billsortaxes_budget = simpledialog.askfloat("Bills/Taxes Budget", "Enter your bills/taxes budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
-        while self.billsortaxes_budget is None:
-            self.billsortaxes_budget = simpledialog.askfloat("Bills/Taxes Budget", "Enter your bills/taxes budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
-    def settransportationbudget(self):
-        """ sets a transportation budget"""
-        self.transportation_budget = simpledialog.askfloat("Transportation Budget", "Enter your transportation budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
-        while self.transportation_budget is None:
-            self.transportation_budget = simpledialog.askfloat("Transportation Budget", "Enter your transportation budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
-    def setotherbudget(self):
-        """ sets other budget"""
-        self.other_budget = simpledialog.askfloat("Other Budget", "Enter your other budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
-        while self.other_budget is None:
-            self.other_budget = simpledialog.askfloat("Other Budget", "Enter your other budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
-    def setgrocerybudget(self):
-        """ sets a grocery budget """
-        self.grocery_budeget = simpledialog.askfloat("Grocery Budget", "Enter your gorcery budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
-        while self.grocery_budeget is None:
-            self.grocery_budeget = simpledialog.askfloat("Grocery Budget", "Enter your gorcery budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
+    def setbudget(self, category):
+        """ sets a budget  for the category"""
+        self.budget = simpledialog.askfloat("Enter"+ str(category)+ "Budget", "Enter your" +str(category) +"budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
+        while self.budget is None:
+            self.budget = simpledialog.askfloat("Enter"+str(category)+ "Budget", "Enter your" +str(category)+ "budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
     def show_expenses_info(self):
         """ shows expenses info """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
