@@ -103,7 +103,10 @@ class Expenses():
                                 command=lambda: self.Charts("Bar Chart of Expenses",
                                                             ["Other", "Transportation", "Grocery", "Bills/Taxes"],
                                                             'bar', ['r', 'g', 'y', 'b']))
-        self.charts.add_command(label="Pie Chart", accelerator='Ctrl+P', command=lambda: self.Charts("Pie Chart of Expenses", ["Other", "Transportation", "Grocery", "Bills/Taxes"], 'pie', ['r', 'g', 'y', 'b']))
+        self.charts.add_command(label="Pie Chart", accelerator='Ctrl+P',
+                                command=lambda: self.Charts("Pie Chart of Expenses",
+                                                            ["Other", "Transportation", "Grocery", "Bills/Taxes"],
+                                                            'pie', ['r', 'g', 'y', 'b']))
         self.charts.add_command(label="Show time series m",
                                 accelerator='Ctrl+T', command=self.timeseriesmonth)
         self.menu.add_cascade(label="Charts", menu=self.charts)
@@ -131,7 +134,9 @@ class Expenses():
                               command=self.show_expenses_info)
         self.menu.add_cascade(label="Show", menu=self.show)
         self.showtrans = Menu(self.menu, tearoff=0)
-        self.showtrans.add_command(label="Show Number of Total Transactions", command= lambda: self.monthlytransactions(None))
+        self.showtrans.add_command(label="Show Number of Total Transactions",
+                                   accelerator='Alt+W',
+                                   command= lambda: self.monthlytransactions(None))
         self.showtrans.add_command(label="Show Number of (Other) Transactions", command= lambda: self.monthlytransactions('Other'))
         self.showtrans.add_command(label="Show Number of (Transportation) Transactions", command= lambda: self.monthlytransactions('Transportation'))
         self.showtrans.add_command(label="Show Number of (Grocery) Transactions", command= lambda: self.monthlytransactions('Grocery'))
@@ -145,7 +150,9 @@ class Expenses():
         self.help_menu = Menu(self.menu, tearoff=0)
         self.help_menu.add_command(label="Help", accelerator='Ctrl+F1', command=helpmenu)
         self.menu.add_cascade(label="Help", menu=self.help_menu)
+
         self.master.config(menu=self.menu)
+        self.master.bind('<Alt-w>', lambda event: self.monthlytransactions(None))
         self.master.bind('<Alt-p>', lambda event: self.setgrocerybudget())
         self.master.bind('<Alt-q>', lambda event: self.setotherbudget())
         self.master.bind('<Control-q>', lambda event: self.settransportationbudget())
