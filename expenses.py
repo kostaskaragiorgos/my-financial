@@ -68,7 +68,7 @@ class Expenses():
                 thewriter = csv.writer(f)
                 thewriter.writerow(['Date', 'Amount', 'Description', 'Category'])
         if not os.path.exists('expenses budget'+str(self.nowmonth)+'.csv'):
-            with open('expeses budget'+ str(self.nowmonth)+'.csv', 'w') as f:
+            with open('expenses budget'+str(self.nowmonth)+'.csv', 'w') as f:
                 thewriter = csv.writer(f)
                 thewriter.writerow(['Amount', 'Category'])
         self.menu = Menu(self.master)
@@ -205,13 +205,15 @@ class Expenses():
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp) 
         self.incomeb.pack()
     def showbudget(self):
-        pass
+        df = pd.read_csv('expenses budget'+str(self.nowmonth)+'.csv')
+        df.drop_duplicates(subset='Category', keep='last', inplace=True)
+        msg.showinfo("Expenses Budget", str(df))
     def setbudget(self, category):
         """ sets a budget  for the category"""
         self.budget = simpledialog.askfloat("Enter"+ str(category)+ "Budget", "Enter your" +str(category) +"budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
         while self.budget is None:
             self.budget = simpledialog.askfloat("Enter"+str(category)+ "Budget", "Enter your" +str(category)+ "budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
-        with open('expeses budget'+ str(self.nowmonth)+'.csv', 'a+') as f:
+        with open('expenses budget'+ str(self.nowmonth)+'.csv', 'a+') as f:
             thewriter = csv.writer(f)
             thewriter.writerow([str(self.budget), str(category)])
         msg.showinfo("SUCCESS", "The budget for "+str(category) +" is "+str(self.budget))
