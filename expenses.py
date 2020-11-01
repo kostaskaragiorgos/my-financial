@@ -212,6 +212,7 @@ class Expenses():
         with open('expeses budget'+ str(self.nowmonth)+'.csv', 'a+') as f:
             thewriter = csv.writer(f)
             thewriter.writerow([str(self.budget), str(category)])
+        msg.showinfo("SUCCESS", "The budget for "+str(category) +" is "+str(self.budget))
     def show_expenses_info(self):
         """ shows expenses info """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
