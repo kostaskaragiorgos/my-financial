@@ -9,6 +9,17 @@ Edit menu
 Clear Amount Ctrl + Z
 Clear Description Alt + Z
 =========================
+Budget menu
+============
+Set budget
+===================================
+Set Grocery budget Alt + P
+Set Other budget Alt + Q
+Set Transportation budget Ctrl + Q
+Set Bills/Taxes Ctrl + W
+===================================
+Show budget
+===========
 Charts menu
 ==================
 Bar Chart Ctrl + B
