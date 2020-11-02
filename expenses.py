@@ -205,11 +205,15 @@ class Expenses():
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp) 
         self.incomeb.pack()
     def showbudget(self):
+        """ shows the budget for each category"""
         df = pd.read_csv('expenses budget'+str(self.nowmonth)+'.csv')
         df.drop_duplicates(subset='Category', keep='last', inplace=True)
         msg.showinfo("Expenses Budget", str(df))
     def setbudget(self, category):
-        """ sets a budget  for the category"""
+        """ sets a budget  for the category
+        Args:
+            category: a category of expense
+        """
         self.budget = simpledialog.askfloat("Enter"+ str(category)+ "Budget", "Enter your" +str(category) +"budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
         while self.budget is None:
             self.budget = simpledialog.askfloat("Enter"+str(category)+ "Budget", "Enter your" +str(category)+ "budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
@@ -289,6 +293,10 @@ class Expenses():
         """ clears description text field """
         self.textdes.delete(1.0, END)
     def monthlytransactions(self, category):
+        """ shows the number of monthly transactions for each dategory.
+        Args:
+            category: a category of expense
+        """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
             msg.showerror("No Transactions", "No Transactions")
