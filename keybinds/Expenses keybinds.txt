@@ -36,6 +36,14 @@ Show Monthly Expenses Ctrl + S
 Show Overview Ctrl + N
 Show Expenses Info Alt + N
 ===================================
+Transactions menu
+=====================================================
+Show Number of Total Transactions Alt + W
+Show Number of (Other) Transactions Alt + I
+Show Number of (Transportation) Transactions Alt + E
+Show Number of (Grocery) Transactions Ctrl + E
+Show Number of (Bills/Taxes) Transactions Ctrl + Y
+======================================================
 About menu
 ==============
 About Ctrl + I
