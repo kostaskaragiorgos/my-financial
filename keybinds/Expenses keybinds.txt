@@ -1,6 +1,7 @@
 File menu
-=======================
+=========================
 Add Expense Ctrl + T
+Save Overview as Ctrl + S
 Exit Alt + F4
 =======================
 Edit menu
