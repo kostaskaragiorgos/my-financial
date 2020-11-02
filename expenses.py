@@ -97,7 +97,8 @@ class Expenses():
         self.submenu.add_command(label="Set Bills/Taxes",
                                  accelerator='Ctrl+W', command=lambda: self.setbudget('Bills/Taxes'))
         self.budget_menu.add_cascade(label="Set budget", menu=self.submenu, underline=0)
-        self.budget_menu.add_command(label="Show budget", command= self.showbudget)
+        self.budget_menu.add_command(label="Show budget",
+                                     accelerator='Alt+F6', command= self.showbudget)
         self.menu.add_cascade(label="Budget", menu=self.budget_menu)
         self.charts = Menu(self.menu, tearoff=0)
         self.charts.add_command(label="Bar Chart", accelerator='Ctrl+B',
@@ -161,6 +162,7 @@ class Expenses():
         self.menu.add_cascade(label="Help", menu=self.help_menu)
 
         self.master.config(menu=self.menu)
+        self.master.bind('<Alt-F6>', lambda event: self.showbudget())
         self.master.bind('<Alt-i>', lambda event: self.monthlytransactions('Other'))
         self.master.bind('<Alt-w>', lambda event: self.monthlytransactions(None))
         self.master.bind('<Alt-e>', lambda event: self.monthlytransactions('Transportation'))
