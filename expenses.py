@@ -93,12 +93,14 @@ class Expenses():
         self.submenu.add_command(label="Set Other budget",
                                  accelerator='Alt+Q', command=lambda: self.setbudget('Other'))
         self.submenu.add_command(label="Set Transportation budget",
-                                 accelerator='Ctrl+Q', command=lambda: self.setbudget('Transportation'))
+                                 accelerator='Ctrl+Q',
+                                 command=lambda: self.setbudget('Transportation'))
         self.submenu.add_command(label="Set Bills/Taxes",
-                                 accelerator='Ctrl+W', command=lambda: self.setbudget('Bills/Taxes'))
+                                 accelerator='Ctrl+W',
+                                 command=lambda: self.setbudget('Bills/Taxes'))
         self.budget_menu.add_cascade(label="Set budget", menu=self.submenu, underline=0)
         self.budget_menu.add_command(label="Show budget",
-                                     accelerator='Alt+F6', command= self.showbudget)
+                                     accelerator='Alt+F6', command=self.showbudget)
         self.menu.add_cascade(label="Budget", menu=self.budget_menu)
         self.charts = Menu(self.menu, tearoff=0)
         self.charts.add_command(label="Bar Chart", accelerator='Ctrl+B',
@@ -138,19 +140,19 @@ class Expenses():
         self.showtrans = Menu(self.menu, tearoff=0)
         self.showtrans.add_command(label="Show Number of Total Transactions",
                                    accelerator='Alt+W',
-                                   command= lambda: self.monthlytransactions(None))
+                                   command=lambda: self.monthlytransactions(None))
         self.showtrans.add_command(label="Show Number of (Other) Transactions",
                                    accelerator='Alt+I',
-                                   command= lambda: self.monthlytransactions('Other'))
+                                   command=lambda: self.monthlytransactions('Other'))
         self.showtrans.add_command(label="Show Number of (Transportation) Transactions",
                                    accelerator='Alt+E',
-                                   command= lambda: self.monthlytransactions('Transportation'))
+                                   command=lambda: self.monthlytransactions('Transportation'))
         self.showtrans.add_command(label="Show Number of (Grocery) Transactions",
                                    accelerator='Ctrl+E',
-                                   command= lambda: self.monthlytransactions('Grocery'))
+                                   command=lambda: self.monthlytransactions('Grocery'))
         self.showtrans.add_command(label="Show Number of (Bills/Taxes) Transactions",
                                    accelerator='Ctrl+Y',
-                                   command= lambda: self.monthlytransactions('Bills/Taxes'))
+                                   command=lambda: self.monthlytransactions('Bills/Taxes'))
         self.menu.add_cascade(label="Transactions", menu=self.showtrans)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About",
@@ -167,7 +169,7 @@ class Expenses():
         self.master.bind('<Alt-w>', lambda event: self.monthlytransactions(None))
         self.master.bind('<Alt-e>', lambda event: self.monthlytransactions('Transportation'))
         self.master.bind('<Control-e>', lambda event: self.monthlytransactions('Grocery'))
-        self.master.bind('<Control-y>', lambda event:self.monthlytransactions('Bills/Taxes'))
+        self.master.bind('<Control-y>', lambda event: self.monthlytransactions('Bills/Taxes'))
         self.master.bind('<Alt-p>', lambda event: self.setbudget('Grocery'))
         self.master.bind('<Alt-q>', lambda event: self.setbudget('Other'))
         self.master.bind('<Control-q>', lambda event: self.setbudget('Transportation'))
@@ -185,8 +187,12 @@ class Expenses():
         self.master.bind('<Alt-g>', lambda event: self.monthlyexpenses('Grocery'))
         self.master.bind('<Control-z>', lambda event: self.clearamount())
         self.master.bind('<Alt-z>', lambda event: self.cleardes())
-        self.master.bind('<Control-p>', lambda event: self.Charts("Pie Chart of Expenses", self.categories, 'pie', ['r', 'g', 'y', 'b']))
-        self.master.bind('<Control-b>', lambda event: self.Charts("Bar Chart of Expenses", self.categories, 'bar', ['r', 'g', 'y', 'b']))
+        self.master.bind('<Control-p>', lambda event: self.Charts("Pie Chart of Expenses",
+                                                                  self.categories,
+                                                                  'pie', ['r', 'g', 'y', 'b']))
+        self.master.bind('<Control-b>', lambda event: self.Charts("Bar Chart of Expenses",
+                                                                  self.categories,
+                                                                  'bar', ['r', 'g', 'y', 'b']))
         self.master.bind('<Control-n>', lambda event: self.show_overview())
         self.master.bind('<Alt-n>', lambda event: self.show_expenses_info())
         #basic gui
@@ -204,7 +210,7 @@ class Expenses():
         self.var_cat_list.set(category_list[0])
         self.popupcatlistmenu = OptionMenu(self.master, self.var_cat_list, *category_list)
         self.popupcatlistmenu.pack()
-        self.incomeb = Button(self.master, text="Add Expense", command=self.addexp) 
+        self.incomeb = Button(self.master, text="Add Expense", command=self.addexp)
         self.incomeb.pack()
     def showbudget(self):
         """ shows the budget for each category"""
@@ -216,9 +222,15 @@ class Expenses():
         Args:
             category: a category of expense
         """
-        self.budget = simpledialog.askfloat("Enter"+ str(category)+ "Budget", "Enter your" +str(category) +"budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
+        self.budget = simpledialog.askfloat("Enter"+ str(category)+ "Budget",
+                                            "Enter your" +str(category) +"budget",
+                                            parent=self.master,
+                                            minvalue=1.0, maxvalue=10_000.00)
         while self.budget is None:
-            self.budget = simpledialog.askfloat("Enter"+str(category)+ "Budget", "Enter your" +str(category)+ "budget", parent=self.master, minvalue=1.0, maxvalue=10_000.00)
+            self.budget = simpledialog.askfloat("Enter"+str(category)+ "Budget",
+                                                "Enter your" +str(category)+ "budget",
+                                                parent=self.master,
+                                                minvalue=1.0, maxvalue=10_000.00)
         with open('expenses budget'+ str(self.nowmonth)+'.csv', 'a+') as f:
             thewriter = csv.writer(f)
             thewriter.writerow([str(self.budget), str(category)])
@@ -232,6 +244,7 @@ class Expenses():
             df.replace(r'\r\n', ' ', regex=True, inplace=True)
             msg.showinfo("EXPENSES INFO", df.to_string())
     def timeseriesmonth(self):
+        """ shows a time series graph """
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
         if df['Amount'].sum() == 0:
             msg.showerror("No Expenses", "No Expenses")
@@ -244,15 +257,30 @@ class Expenses():
         if df['Amount'].sum() == 0:
             msg.showerror("No Expenses", "No Expenses")
         else:
-            minexp = min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
-            maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
-            filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("txt files", "*.txt"), ("csv files", "*.csv"), ("all files", "*.*")))
+            minexp = min([df[df['Category'] == "Other"]['Amount'].sum(),
+                          df[df['Category'] == "Transportation"]['Amount'].sum(),
+                          df[df['Category'] == "Grocery"]['Amount'].sum(),
+                          df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
+
+            maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(),
+                          df[df['Category'] == "Transportation"]['Amount'].sum(),
+                          df[df['Category'] == "Grocery"]['Amount'].sum(),
+                          df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
+
+            filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file",
+                                                        filetypes=(("txt files", "*.txt"),
+                                                                   ("csv files", "*.csv"),
+                                                                   ("all files", "*.*")))
             check_save(filenamesave, df, minexp, maxexp)
     def chart_save_user_verification(self):
         """ user enters the name of the file """
-        self.filechartname = simpledialog.askstring("CHART NAME", "Enter chart name", parent=self.master)
+        self.filechartname = simpledialog.askstring("CHART NAME",
+                                                    "Enter chart name",
+                                                    parent=self.master)
         while self.filechartname is None or (not self.filechartname.strip()):
-            self.filechartname = simpledialog.askstring("CHART NAME", "Enter chart name", parent=self.master)
+            self.filechartname = simpledialog.askstring("CHART NAME",
+                                                        "Enter chart name",
+                                                        parent=self.master)
         return self.filechartname
     def savechartfunction(self, save):
         """ saves the chart to an image file """
@@ -267,14 +295,24 @@ class Expenses():
         if df['Amount'].sum() == 0:
             msg.showerror("No Expenses", "No Expenses")
         else:
-            minexp = min([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
-            maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
+            minexp = min([df[df['Category'] == "Other"]['Amount'].sum(),
+                          df[df['Category'] == "Transportation"]['Amount'].sum(),
+                          df[df['Category'] == "Grocery"]['Amount'].sum(),
+                          df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
+
+            maxexp = max([df[df['Category'] == "Other"]['Amount'].sum(),
+                          df[df['Category'] == "Transportation"]['Amount'].sum(),
+                          df[df['Category'] == "Grocery"]['Amount'].sum(),
+                          df[df['Category'] == "Bills/Taxes"]['Amount'].sum()])
             msg.showinfo("Expenses Overview", "Other:" + str(df[df['Category'] == "Other"]['Amount'].sum()) + "\nTransportation:" + str(df[df['Category'] == "Transportation"]['Amount'].sum())+
                          "\nGrocery:" + str(df[df['Category'] == "Grocery"]['Amount'].sum()) + "\nBills/Taxes:" + str(df[df['Category'] == "Bills/Taxes"]['Amount'].sum())+ "\nTotal:"+str(df['Amount'].sum())+ "\nMax:"+str(maxexp)+"\nMin:"+str(minexp))
     def Charts(self, title, categories, ctype, color):
         """ expenses  charts by ctype"""
         df = pd.read_csv('expenses'+str(self.nowmonth)+'.csv')
-        data = [df[df['Category'] == "Other"]['Amount'].sum(), df[df['Category'] == "Transportation"]['Amount'].sum(), df[df['Category'] == "Grocery"]['Amount'].sum(), df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
+        data = [df[df['Category'] == "Other"]['Amount'].sum(),
+                df[df['Category'] == "Transportation"]['Amount'].sum(),
+                df[df['Category'] == "Grocery"]['Amount'].sum(),
+                df[df['Category'] == "Bills/Taxes"]['Amount'].sum()]
         if df['Amount'].sum() == 0:
             msg.showerror("No Expenses", "No Expenses")
         else:
@@ -303,7 +341,9 @@ class Expenses():
         if df['Amount'].sum() == 0:
             msg.showerror("No Transactions", "No Transactions")
         elif category is None:
-            msg.showinfo("Total Transactions", "The total transactions for the " + str(self.nowmonth) + " month are " + str(df.shape[0]))
+            msg.showinfo("Total Transactions",
+                         "The total transactions for the " +
+                         str(self.nowmonth) + " month are " + str(df.shape[0]))
         else:
             msg.showinfo("Monthly Transactions for "+
                          str(category),
@@ -338,13 +378,18 @@ class Expenses():
         """ saves expenses to a csv file """
         with open('expenses'+str(self.nowmonth)+'.csv', 'a+') as f:
             thewriter = csv.writer(f)
-            thewriter.writerow([str(datetime.date.today().day), str(self.textamount.get(1.0, END)), self.textdes.get(1.0, END), str(self.var_cat_list.get())])
+            thewriter.writerow([str(datetime.date.today().day),
+                                str(self.textamount.get(1.0, END)),
+                                self.textdes.get(1.0, END), str(self.var_cat_list.get())])
     def addexp(self):
         """ adds an expense"""
         try:
             if float(self.textamount.get(1.0, END)) >= 0 and (self.textdes.count(1.0, END) != (1, )):
                 self.save_exp_to_csv()
-                msg.showinfo("Expanse", "Date:"+str(datetime.date.today()) +"\nAmount:"+str(self.textamount.get(1.0, END)) +"\nDescription:" + self.textdes.get(1.0, END) + "\nCategory:"+str(self.var_cat_list.get()))
+                msg.showinfo("Expanse", "Date:"+str(datetime.date.today()) +
+                             "\nAmount:"+str(self.textamount.get(1.0, END))
+                             +"\nDescription:" + self.textdes.get(1.0, END) +
+                             "\nCategory:"+str(self.var_cat_list.get()))
             else:
                 msg.showerror("Value Error", "Enter a number higher than zero\nEnter a description")
         except ValueError:
