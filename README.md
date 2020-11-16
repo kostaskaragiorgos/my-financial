@@ -29,6 +29,7 @@
     * [Emergency_fund_Keybinds](#Emergency_fund_Keybinds)
   * [Income](#Income)
     * [Income_Current_Version](#Income_Current_Version)
+    * [Income_Documentation](#Income_Documentation)
     * [Income_Radon](#Income_Radon)
       * [Income_Radon_cc](#Income_Radon_cc)
       * [Income_Radon_hal](#Income_Radon_hal)
@@ -174,6 +175,11 @@ All project documentation is located in the `./doc/expenses`  folder.
  ## Income_Current_Version
 
 <p><img src ="images/income.png" title = " income Version"/> </p>
+
+## Income_Documentation
+
+
+All project documentation is located in the `./doc/income`  folder.
 
 ## Income_Radon
 
