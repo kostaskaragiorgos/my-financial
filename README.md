@@ -21,6 +21,7 @@
     * [Expenses_Keybinds](#Expenses_Keybinds)
   * [Emergency_fund](#Emergency_fund)
     * [Emergency_fund_Current_Version](#Emergency_fund_Current_Version)
+    * [Emergency_fund_Documentation](#Emergency_fund_Documentation)
     * [Emergency_fund_Radon](#Emergency_fund_Radon)
       * [Emergency_fund_Radon_cc](#Emergency_fund_Radon_cc)
       * [Emergency_fund_Radon_hal](#Emergency_fund_Radon_hal)
