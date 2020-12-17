@@ -120,6 +120,7 @@ All project documentation is located in the `./doc/expenses`  folder.
   <li> Set Other budget(Alt+Q) </li>
   <li> Set Transportation budget(Ctrl+Q) </li>
   <li> Set Bills/Taxes(Ctrl+W) </li>
+  <li> Show Budget(Alt+F6) </li>
   <li> Bar Chart(Ctrl+B) </li>
   <li> Pie Chart(Ctrl+P) </li>
   <li> Show time series m(Ctrl+T) </li>
@@ -130,6 +131,11 @@ All project documentation is located in the `./doc/expenses`  folder.
   <li> Show Monthly Expenses(Ctrl+S) </li>
   <li> Show Overview(Ctrl+N) </li>
   <li> Show Expenses Info(Alt+N) </li>
+  <li> Show Number of Total Transactions(Alt+W) </li>
+  <li> Show Number of (Other) Transactions(Alt+I) </li>
+  <li> Show Number of (Transportation) Transactions(Alt+E)</li>
+  <li> Show Number of (Grocery) Transactions(Ctrl+E) </li>
+  <li> Show Number of (Bills/Taxes) Transactions(Ctrl+Y)</li>
   <li> About(Ctrl+I) </li>
   <li> Help(Ctrl+F1) </li>
 </ul>
