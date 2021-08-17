@@ -136,6 +136,8 @@ All project documentation is located in the `./doc/expenses`  folder.
   <li> Show Number of (Transportation) Transactions(Alt+E)</li>
   <li> Show Number of (Grocery) Transactions(Ctrl+E) </li>
   <li> Show Number of (Bills/Taxes) Transactions(Ctrl+Y)</li>
+  <li> Compare Years(Ctrl+J) </li>
+  <li> Compare Months(Alt+J) </li>
   <li> About(Ctrl+I) </li>
   <li> Help(Ctrl+F1) </li>
 </ul>
