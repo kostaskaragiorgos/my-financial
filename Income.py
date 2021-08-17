@@ -129,8 +129,8 @@ class Income():
                                  accelerator='Alt+M', command=lambda: self.monthlyincome(None))
         self.menu.add_cascade(label="Total Income", menu=self.showinc)
         self.compare_menu = Menu(self.menu, tearoff=0)
-        self.compare_menu.add_command(label="Compare Years")
-        self.compare_menu.add_command(label="Compare Months")
+        self.compare_menu.add_command(label="Compare Years", accelerator='Ctrl+J', command=self.compare)
+        self.compare_menu.add_command(label="Compare Months", accelerator='Alt+J', command=self.compare)
         self.menu.add_cascade(label="Compare", menu=self.compare_menu)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
@@ -162,6 +162,9 @@ class Income():
                                                    ['r', 'g']))
         self.master.bind('<Control-n>', lambda event: self.show_overview())
         self.master.bind('<Alt-n>', lambda event: self.show_income_info())
+    
+    def compare(self):
+        pass
     def show_income_info(self):
         """ shows income info """
         df = pd.read_csv('income'+str(self.nowmonth)+'.csv')
