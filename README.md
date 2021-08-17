@@ -226,6 +226,8 @@ All project documentation is located in the `./doc/income`  folder.
   <li> Monthly Salary(Alt+S) </li>
   <li> Monthly Other(Alt+O) </li>
   <li> Monthly Income(Alt+M) </li>
+  <li> Compare Years(Ctrl+J) </li>
+  <li> Compare Months(Alt+J) </li>
   <li> Abput(Ctrl+I) </li>
   <li> Help(Ctrl+F1) </li>
 </ul>
