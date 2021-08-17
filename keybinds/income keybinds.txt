@@ -22,6 +22,11 @@ Monthly Salary Alt + S
 Monthly Other Alt + O
 Monthly Income Alt + M
 ========================
+Compare menu
+==============
+Compare Years Ctrl + J
+Compare Months Alt + J
+==============
 About menu
 ==============
 About Ctrl + I
