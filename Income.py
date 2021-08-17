@@ -139,6 +139,8 @@ class Income():
         self.help_menu.add_command(label="Help", accelerator='Ctrl+F1', command=helpmenu)
         self.menu.add_cascade(label="Help", menu=self.help_menu)
         self.master.config(menu=self.menu)
+        self.master.bind('<Control-j>', lambda event: self.compare())
+        self.master.bind('<Alt-j>', lambda event: self.compare())
         self.master.bind('<Control-t>', lambda event: self.timeseriesmonth())
         self.master.bind('<Control-s>', lambda event: self.saveas())
         self.master.bind('<Alt-o>', lambda event: self.monthlyincome('Other'))
