@@ -217,6 +217,10 @@ class Expenses():
         self.popupcatlistmenu.pack()
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp)
         self.incomeb.pack()
+    
+    def compare(self):
+        pass
+
     def showbudget(self):
         """ shows the budget for each category"""
         df = pd.read_csv('expenses budget'+str(self.nowmonth)+'.csv')
