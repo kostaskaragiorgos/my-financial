@@ -128,6 +128,10 @@ class Income():
         self.showinc.add_command(label="Monthly Income",
                                  accelerator='Alt+M', command=lambda: self.monthlyincome(None))
         self.menu.add_cascade(label="Total Income", menu=self.showinc)
+        self.compare_menu = Menu(self.menu, tearoff=0)
+        self.compare_menu.add_command(label="Compare Years")
+        self.compare_menu.add_command(label="Compare Months")
+        self.menu.add_cascade(label="Compare", menu=self.compare_menu)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
         self.menu.add_cascade(label="About", menu=self.about_menu)
