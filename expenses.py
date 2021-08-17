@@ -154,6 +154,10 @@ class Expenses():
                                    accelerator='Ctrl+Y',
                                    command=lambda: self.monthlytransactions('Bills/Taxes'))
         self.menu.add_cascade(label="Transactions", menu=self.showtrans)
+        self.compare_menu = Menu(self.menu, tearoff=0)
+        self.compare_menu.add_command(label="Compare Years", accelerator='Ctrl+J', command=self.compare)
+        self.compare_menu.add_command(label="Compare Months", accelerator='Alt+J', command=self.compare)
+        self.menu.add_cascade(label="Compare", menu=self.compare_menu)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About",
                                     accelerator='Ctrl+I',
@@ -164,6 +168,7 @@ class Expenses():
         self.menu.add_cascade(label="Help", menu=self.help_menu)
 
         self.master.config(menu=self.menu)
+        
         self.master.bind('<Alt-F6>', lambda event: self.showbudget())
         self.master.bind('<Alt-i>', lambda event: self.monthlytransactions('Other'))
         self.master.bind('<Alt-w>', lambda event: self.monthlytransactions(None))
