@@ -155,8 +155,8 @@ class Expenses():
                                    command=lambda: self.monthlytransactions('Bills/Taxes'))
         self.menu.add_cascade(label="Transactions", menu=self.showtrans)
         self.compare_menu = Menu(self.menu, tearoff=0)
-        self.compare_menu.add_command(label="Compare Years", accelerator='Ctrl+J', command=self.compare)
-        self.compare_menu.add_command(label="Compare Months", accelerator='Alt+J', command=self.compare)
+        self.compare_menu.add_command(label="Compare Years", accelerator='Ctrl+J', command=self.compareyears)
+        self.compare_menu.add_command(label="Compare Months", accelerator='Alt+J', command=self.comparemonths)
         self.menu.add_cascade(label="Compare", menu=self.compare_menu)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About",
@@ -218,7 +218,10 @@ class Expenses():
         self.incomeb = Button(self.master, text="Add Expense", command=self.addexp)
         self.incomeb.pack()
     
-    def compare(self):
+    def compareyears(self):
+        pass
+
+    def comparemonths(self):
         pass
 
     def showbudget(self):
