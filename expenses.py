@@ -219,7 +219,17 @@ class Expenses():
         self.incomeb.pack()
     
     def compareyears(self):
-        pass
+        firstyear = simpledialog.askinteger("Compare Years",
+                                            "Enter the first year to compare",
+                                            parent=self.master,
+                                            minvalue=2020,
+                                            maxvalue=datetime.date.today().year)
+        secondyear = simpledialog.askinteger("Compare Years",
+                                    "Enter the first year to compare",
+                                    parent=self.master,
+                                    minvalue=2020,
+                                    maxvalue=datetime.date.today().year)
+
 
     def comparemonths(self):
         pass
