@@ -229,7 +229,10 @@ class Expenses():
                                     parent=self.master,
                                     minvalue=2020,
                                     maxvalue=datetime.date.today().year)
-
+        if firstyear == secondyear:
+            msg.showerror("ERROR", "YOU CAN'T COMPARE THE SAME YEAR")
+        else:
+            pass
 
     def comparemonths(self):
         pass
